@@ -2,7 +2,7 @@
 
 dir=~/dotfiles
 old_dir=~/dotfiles_old
-files="vimrc"
+files="vimrc vim"
 
 mkdir -p $old_dir
 cd $dir
