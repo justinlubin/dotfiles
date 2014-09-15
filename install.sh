@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dir=~/dotfiles
-old_dir=~/dotfiles_old
+old_dir=~/.dotfiles_old
 files="vimrc vim"
 
 mkdir -p $old_dir
