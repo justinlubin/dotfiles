@@ -42,6 +42,11 @@ syntax enable
 set number
 set ruler
 
+set cursorline
+
+set hlsearch
+set incsearch
+
 " Hardmode Activated
 noremap <Up> <NOP>
 noremap <Down> <NOP>
