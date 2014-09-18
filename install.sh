@@ -7,7 +7,7 @@ files="vimrc vim"
 mkdir -p $old_dir
 cd $dir
 for file in $files; do
-    mv ~/.$file ~/dotfiles_old
+    mv ~/.$file ~/$old_dir
     ln -s $dir/$file ~/.$file
 done
 
