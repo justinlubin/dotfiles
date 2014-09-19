@@ -11,6 +11,8 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
 
 Plugin 'scrooloose/nerdtree'
+Plugin 'https://github.com/vim-scripts/a.vim'
+Plugin 'kien/ctrlp.vim'
 
 Plugin 'https://github.com/guns/vim-clojure-static'
 Plugin 'https://github.com/tpope/vim-fireplace'
