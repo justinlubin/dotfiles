@@ -12,6 +12,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
+Plugin 'chriskempson/vim-tomorrow-theme' 
+Plugin 'jnurmine/Zenburn'
 
 " File Management
 Plugin 'scrooloose/nerdtree'
@@ -29,6 +31,9 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 call vundle#end()
 filetype plugin indent on
 syntax enable
+
+" 256 Color
+set t_Co=256
 
 " Current Color Scheme
 colorscheme molokai
