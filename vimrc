@@ -1,5 +1,30 @@
 set nocompatible
-Plugin 'jiangmiao/auto-pairs'
+
+" Required for Vundle (reset later)
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle-ception
+Plugin 'gmarik/Vundle.vim'
+
+" Color Schemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'tomasr/molokai'
+
+" File Management
+Plugin 'scrooloose/nerdtree'
+Plugin 'https://github.com/vim-scripts/a.vim'
+Plugin 'kien/ctrlp.vim'
+
+" Clojure
+Plugin 'https://github.com/guns/vim-clojure-static'
+Plugin 'https://github.com/tpope/vim-fireplace'
+Plugin 'https://github.com/kien/rainbow_parentheses.vim'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 call vundle#end()
 filetype plugin indent on
@@ -22,15 +47,15 @@ set expandtab
 set autoindent
 set cindent
 
-" Searching
-set hlsearch
-set incsearch
-
-" Miscellaneous Improvements
+" More information about file
 set number
 set ruler
 set cursorline
 set wildmenu
+
+" Searching
+set hlsearch
+set incsearch
 
 " Hardmode Activated
 noremap <Up> <NOP>
