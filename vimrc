@@ -30,6 +30,9 @@ Plugin 'guns/vim-clojure-highlight'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
+" Miscellaneous
+Plugin 'jiangmiao/auto-pairs'
+
 call vundle#end()
 filetype plugin indent on
 syntax enable
