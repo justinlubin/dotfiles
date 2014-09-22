@@ -17,7 +17,7 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'sjl/badwolf'
 
-" File Management
+" Editor Improvements
 Plugin 'scrooloose/nerdtree'
 Plugin 'https://github.com/vim-scripts/a.vim'
 Plugin 'kien/ctrlp.vim'
@@ -44,7 +44,7 @@ set t_Co=256
 set background=dark
 
 " Current Color Scheme
-colorscheme molokai
+colorscheme Tomorrow-Night
 
 let g:solarized_termcolors = 256
 " colorscheme solarized
