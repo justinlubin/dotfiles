@@ -69,6 +69,9 @@ set wildmenu
 set hlsearch
 set incsearch
 
+" Tab Autocomplete
+imap <Tab> <C-P>
+
 " Split Navigation
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
