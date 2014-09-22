@@ -35,12 +35,14 @@ syntax enable
 " 256 Color
 set t_Co=256
 
+" Dark Background
+set background=dark
+
 " Current Color Scheme
 colorscheme molokai
 
-" let g:solarized_termcolors = 256
+let g:solarized_termcolors = 256
 " colorscheme solarized
-" set background=dark
 
 " Tabs -> Spaces
 set tabstop=4
@@ -62,8 +64,14 @@ set wildmenu
 set hlsearch
 set incsearch
 
+" Split Navigation
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+
 " Hardmode Activated
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
 noremap <Right> <NOP>
+noremap <Down> <NOP>
+noremap <Up> <NOP>
+noremap <Left> <NOP>
