@@ -14,6 +14,8 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
 Plugin 'chriskempson/vim-tomorrow-theme' 
 Plugin 'jnurmine/Zenburn'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'sjl/badwolf'
 
 " File Management
 Plugin 'scrooloose/nerdtree'
