@@ -70,7 +70,7 @@ set hlsearch
 set incsearch
 
 " Tab Autocomplete
-imap <Tab> <C-P>
+imap <Tab> <C-N>
 
 " Split Navigation
 nnoremap <C-H> <C-W><C-H>
