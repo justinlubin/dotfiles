@@ -2,7 +2,7 @@
 
 dir=~/dotfiles
 old_dir=~/.dotfiles_old
-files="vimrc vim"
+files="vimrc vim tmux.conf"
 
 mkdir -p $old_dir
 cd $dir
