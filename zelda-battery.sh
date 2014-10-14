@@ -25,7 +25,7 @@ elif [[ $battery -lt 90 ]]; then
 elif [[ $battery -lt 100 ]]; then
     echo -n "♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♡ "
 else
-    echo -n "♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♡ "
+    echo -n "♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ "
 fi
 
 echo " ${battery}%" 
