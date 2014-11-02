@@ -75,6 +75,14 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
+" Better j/k navigation
+nnoremap j gj
+nnoremap k gk
+
+" Better escape key
+imap jk <Esc>
+imap kj <Esc>
+
 " Hardmode Activated
 noremap <Right> <NOP>
 noremap <Down> <NOP>
