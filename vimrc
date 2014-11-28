@@ -73,6 +73,12 @@ set wildmenu
 " Searching
 set hlsearch
 set incsearch
+nnoremap <F5> :noh<CR>
+
+" Buffer Navigation
+nnoremap <F2> :bp<CR>
+nnoremap <F3> :bn<CR>
+nnoremap <F4> :ls<CR>
 
 " Split Navigation
 nnoremap <C-H> <C-W><C-H>
