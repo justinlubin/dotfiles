@@ -19,13 +19,16 @@ Plugin 'sjl/badwolf'
 
 " Editor Improvements
 Plugin 'scrooloose/nerdtree'
-Plugin 'https://github.com/vim-scripts/a.vim'
+Plugin 'vim-scripts/a.vim'
 Plugin 'kien/ctrlp.vim'
 
+" HTML
+Plugin 'othree/html5.vim'
+
 " Clojure
-Plugin 'https://github.com/guns/vim-clojure-static'
-Plugin 'https://github.com/tpope/vim-fireplace'
-Plugin 'https://github.com/kien/rainbow_parentheses.vim'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'guns/vim-clojure-highlight'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
@@ -34,6 +37,7 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
+
 filetype plugin indent on
 syntax enable
 
@@ -57,7 +61,8 @@ set softtabstop=4
 " Indentation
 set expandtab
 set autoindent
-set cindent
+
+autocmd filetype css filetype plugin indent off
 
 " More information about file
 set number
@@ -82,6 +87,10 @@ nnoremap k gk
 " Better escape key
 imap jk <Esc>
 imap kj <Esc>
+
+" Handy Autocomplete
+" C-@ is C-Space in the terminal
+inoremap <C-@> <C-P>
 
 " Hardmode Activated
 noremap <Right> <NOP>
