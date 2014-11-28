@@ -62,7 +62,7 @@ set softtabstop=4
 set expandtab
 set autoindent
 
-autocmd filetype css filetype plugin indent off
+autocmd filetype css setlocal indentexpr=
 
 " More information about file
 set number
@@ -73,9 +73,10 @@ set wildmenu
 " Searching
 set hlsearch
 set incsearch
-nnoremap <F5> :noh<CR>
+nnoremap <F8> :noh<CR>
 
 " Buffer Navigation
+set hidden
 nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
 nnoremap <F4> :ls<CR>
@@ -93,6 +94,9 @@ nnoremap k gk
 " Better escape key
 imap jk <Esc>
 imap kj <Esc>
+
+" Save button
+nnoremap <F5> :w<CR>
 
 " Handy Autocomplete
 " C-@ is C-Space in the terminal
