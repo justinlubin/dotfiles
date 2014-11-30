@@ -3,10 +3,9 @@
 # Source: https://gist.github.com/stephencelis/4324139
 
 # Test if we have the pmset command
-command -v pmset || exit
+command -v pmset >/dev/null 2>&1 || exit
 
 battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
-echo $battery
 
 if [[ $battery -lt 10 ]]; then
     echo -n "#[blink]♥ #[noblink]♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ "
