@@ -25,6 +25,9 @@ Plugin 'kien/ctrlp.vim'
 " HTML
 Plugin 'othree/html5.vim'
 
+" CSS
+Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+
 " Clojure
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
@@ -35,6 +38,7 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Miscellaneous
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
