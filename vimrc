@@ -66,8 +66,6 @@ set softtabstop=4
 set expandtab
 set autoindent
 
-autocmd filetype css setlocal indentexpr=
-
 " More information about file
 set number
 set ruler
