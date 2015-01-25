@@ -6,6 +6,14 @@
 command -v pmset >/dev/null 2>&1 || exit
 
 battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
+discharging="$(pmset -g ps | grep dis)"
+
+color="09"
+if [[ -z $discharging ]]; then
+    color="11"
+fi
+
+echo -n "#[fg=colour$color]"
 
 if [[ $battery -lt 10 ]]; then
     echo -n "#[blink]♥ #[noblink]♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ "
@@ -29,6 +37,10 @@ elif [[ $battery -lt 100 ]]; then
     echo -n "♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♡ "
 else
     echo -n "♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ "
+fi
+
+if [[ -z $discharging ]]; then
+    echo -n " ⚡  "
 fi
 
 echo " ${battery}%" 
