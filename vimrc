@@ -93,10 +93,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap j gj
 nnoremap k gk
 
-" Better escape key
-imap jk <Esc>
-imap kj <Esc>
-
 " Save button
 nnoremap <F5> :w<CR>
 
