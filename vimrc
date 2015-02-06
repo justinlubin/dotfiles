@@ -25,6 +25,9 @@ Plugin 'kien/ctrlp.vim'
 " HTML
 Plugin 'othree/html5.vim'
 
+" Dart
+Plugin 'dart-lang/dart-vim-plugin'
+
 " CSS
 Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
@@ -65,6 +68,9 @@ set softtabstop=4
 " Indentation
 set expandtab
 set autoindent
+
+" 80-Column Guide
+set colorcolumn=80
 
 " More information about file
 set number
