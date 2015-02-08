@@ -68,6 +68,8 @@ set softtabstop=4
 " Indentation
 set expandtab
 set autoindent
+" Align to ( in function call
+set cino+=(0
 
 " 80-Column Guide
 set colorcolumn=80
