@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
-Plugin 'chriskempson/vim-tomorrow-theme' 
+Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'jnurmine/Zenburn'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'sjl/badwolf'
@@ -39,9 +39,13 @@ Plugin 'guns/vim-clojure-highlight'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
+" tmux
+Plugin 'christoomey/vim-tmux-navigator'
+
 " Miscellaneous
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 
@@ -69,7 +73,7 @@ set softtabstop=4
 set expandtab
 set autoindent
 
-" 80-Column Guide
+" Column Guide
 set colorcolumn=80
 
 " More information about file
@@ -77,6 +81,9 @@ set number
 set ruler
 set cursorline
 set wildmenu
+
+" NERDTree
+noremap <F10> :NERDTreeToggle<CR>
 
 " Searching
 set hlsearch
@@ -90,10 +97,16 @@ nnoremap <F3> :bn<CR>
 nnoremap <F4> :ls<CR>
 
 " Split Navigation
+set splitright
+set splitbelow
+
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+nnoremap <F11> :split 
+nnoremap <F12> :vsplit 
 
 " Better j/k navigation
 nnoremap j gj

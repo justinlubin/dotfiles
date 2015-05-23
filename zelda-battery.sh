@@ -43,4 +43,4 @@ if [[ -z $discharging ]]; then
     echo -n " ⚡  "
 fi
 
-echo " ${battery}%" 
+echo " ${battery}%"
