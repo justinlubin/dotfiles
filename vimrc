@@ -13,6 +13,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'chriskempson/base16-vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'sjl/badwolf'
@@ -25,11 +26,11 @@ Plugin 'kien/ctrlp.vim'
 " HTML
 Plugin 'othree/html5.vim'
 
-" Dart
-Plugin 'dart-lang/dart-vim-plugin'
-
 " CSS
 Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+
+" Dart
+Plugin 'dart-lang/dart-vim-plugin'
 
 " Clojure
 Plugin 'guns/vim-clojure-static'
@@ -58,11 +59,16 @@ set t_Co=256
 " Dark Background
 set background=dark
 
-" Current Color Scheme
-colorscheme Tomorrow-Night
+" Base 16 Shell
+let base16colorspace=256
 
-let g:solarized_termcolors = 256
-" colorscheme solarized
+" Current Color Scheme
+colorscheme base16-ocean
+
+" Transparent Background
+hi Normal ctermbg=none
+
+let g:solarized_termcolor =256
 
 " Tabs -> Spaces
 set tabstop=4
@@ -75,6 +81,9 @@ set autoindent
 
 " Column Guide
 set colorcolumn=80
+
+" No line wrapping
+set nowrap
 
 " More information about file
 set number
