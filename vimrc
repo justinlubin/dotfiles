@@ -40,6 +40,16 @@ Plugin 'guns/vim-clojure-highlight'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
+" Haskell
+Plugin 'dag/vim2hs'
+
+" TypeScript
+Plugin 'leafgarland/typescript-vim'
+
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
 " tmux
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -68,7 +78,13 @@ colorscheme base16-ocean
 " Transparent Background
 hi Normal ctermbg=none
 
+" Solarized Color Scheme Configuration
 let g:solarized_termcolor =256
+
+" Markdown Configuration
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+autocmd Filetype mkd.markdown setlocal textwidth=80
 
 " Tabs -> Spaces
 set tabstop=4
@@ -93,8 +109,15 @@ set ruler
 set cursorline
 set wildmenu
 
+" No Folding
+set nofoldenable
+
 " NERDTree
 noremap <F10> :NERDTreeToggle<CR>
+
+" Paste Toggle
+nnoremap <F6> :set paste<CR>
+nnoremap <F7> :set nopaste<CR>
 
 " Searching
 set hlsearch
@@ -135,3 +158,7 @@ noremap <Right> <NOP>
 noremap <Down> <NOP>
 noremap <Up> <NOP>
 noremap <Left> <NOP>
+
+" CSS Vendor Prefixes
+nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
+nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
