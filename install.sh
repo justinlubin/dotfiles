@@ -7,7 +7,7 @@ files="vimrc vim tmux.conf"
 mkdir -p $old_dir
 cd $dir
 for file in $files; do
-    mv ~/.$file ~/$old_dir
+    mv ~/.$file $old_dir
     ln -s $dir/$file ~/.$file
 done
 
