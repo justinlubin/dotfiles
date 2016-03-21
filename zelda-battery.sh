@@ -49,4 +49,5 @@ if [[ -z $discharging ]]; then
 fi
 
 # Output the battery percentage
+echo -n "#[fg=colour$oncolor]"
 echo " ${battery}%"
