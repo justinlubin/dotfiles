@@ -5,6 +5,7 @@ PS1="\[\e[01;35m\]\w \[\e[00;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
 git config --global user.name "Justin Lubin"
 git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
+git config --global push.default simple
 
 
 # alias vim="/Users/jlubin/Applications/MacVim.app/Contents/MacOS/Vim"
