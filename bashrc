@@ -44,7 +44,7 @@ function ghettomake() {
 function mm() {
 	echo "CC = gcc
 
-INCLUDES =  
+INCLUDES =
 
 CFLAGS = -g -Wall \$(INCLUDES)
 CXXFLAGS = -g -Wall \$(INCLUDES)
