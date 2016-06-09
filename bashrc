@@ -6,6 +6,7 @@ git config --global user.name "Justin Lubin"
 git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
+git config --global core.excludesfile ~/.gitignore_global
 
 
 # alias vim="/Users/jlubin/Applications/MacVim.app/Contents/MacOS/Vim"
@@ -14,7 +15,7 @@ alias ls="ls -G"
 alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
 alias vimupdate="vim +PluginInstall +qall"
-alias gerudo="playmusic ~/Music/Music/gerudo.mp3"
+alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
