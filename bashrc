@@ -36,12 +36,12 @@ function mstopmusic() {
     killall afplay
 }
 
-# Generate a ghetto makefile
+# Generate a ghetto Makefile
 function ghettomake() {
-    echo $1: > makefile
+    echo $1: > Makefile
 }
 
-# Generate a proper makefile
+# Generate a proper Makefile
 function mm() {
 	echo "CC = gcc
 
@@ -60,7 +60,7 @@ clean:
 
 .PHONY: all
 	all: clean $1
-" > makefile
+" > Makefile
 }
 
 # Make and run
