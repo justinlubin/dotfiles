@@ -25,6 +25,9 @@ alias rbash="source ~/.bashrc"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias rtmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
+alias pythonserver="python3 -m http.server"
+alias phpserver="php -S localhost:8000"
+alias tsc="tsc --noEmitOnError"
 
 # Play music on Mac
 function mplaymusic() {
