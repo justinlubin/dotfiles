@@ -8,8 +8,9 @@ git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
 
-
-# alias vim="/Users/jlubin/Applications/MacVim.app/Contents/MacOS/Vim"
+if [ -d "/Applications/MacVim.app/Contents/MacOS"  ]; then
+    alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+fi
 
 alias ls="ls -G"
 alias la="ls -Ga"
