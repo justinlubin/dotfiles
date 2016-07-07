@@ -25,6 +25,11 @@ fi
 heartcount=$((battery / 10))
 i=0
 
+# Output lightning if charging
+if [[ -z $discharging ]]; then
+    echo -n " ⚡  "
+fi
+
 # On hearts
 echo -n "#[fg=colour$oncolor]"
 if [[ $heartcount -eq 0 ]]; then
@@ -42,11 +47,6 @@ while [ $i -lt 10 ]; do
     echo -n "${offheart}"
     i=$((i + 1))
 done
-
-# Output lightning if charging
-if [[ -z $discharging ]]; then
-    echo -n " ⚡  "
-fi
 
 # Output the battery percentage
 echo -n "#[fg=colour$oncolor]"

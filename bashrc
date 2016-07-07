@@ -1,4 +1,8 @@
-export EDITOR=vim
+export EDITOR="vim"
+
+if [ -d "/usr/local/opt/android-sdk" ]; then
+    export ANDROID_HOME="/usr/local/opt/android-sdk"
+fi
 
 PS1="\[\e[01;35m\]\w \[\e[00;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
 
@@ -8,7 +12,7 @@ git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
 
-if [ -d "/Applications/MacVim.app/Contents/MacOS"  ]; then
+if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 fi
 

@@ -27,7 +27,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'othree/html5.vim'
 
 " CSS
-Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+Plugin 'miripiruni/CSScomb-for-Vim'
+
+" TypeScript
+Plugin 'leafgarland/typescript-vim'
 
 " Dart
 Plugin 'dart-lang/dart-vim-plugin'
@@ -42,9 +45,6 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Haskell
 Plugin 'dag/vim2hs'
-
-" TypeScript
-Plugin 'leafgarland/typescript-vim'
 
 " Markdown
 Plugin 'godlygeek/tabular'
