@@ -81,11 +81,6 @@ hi Normal ctermbg=none
 " Solarized Color Scheme Configuration
 let g:solarized_termcolor =256
 
-" Markdown Configuration
-let g:vim_markdown_math=1
-let g:vim_markdown_frontmatter=1
-autocmd Filetype mkd.markdown setlocal textwidth=80
-
 " Tabs -> Spaces
 set tabstop=4
 set shiftwidth=4
@@ -162,3 +157,8 @@ noremap <Left> <NOP>
 " CSS Vendor Prefixes
 nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
 nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
+
+" Markdown Configuration
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+autocmd Filetype markdown setlocal textwidth=80 wrap
