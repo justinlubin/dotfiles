@@ -32,7 +32,6 @@ alias rtmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
 alias pythonserver="python3 -m http.server"
 alias phpserver="php -S localhost:8000"
-alias tsc="tsc --noEmitOnError --noImplicitAny --noImplicitReturns"
 
 # Play music on Mac
 function mplaymusic() {
@@ -51,7 +50,8 @@ function ghettomake() {
 
 # Generate a proper Makefile
 function mm() {
-	echo "CC = gcc
+cat <<EOF >Makefile
+CC = gcc
 
 CFLAGS = -g -Wall
 LDFLAGS = -g -lm
@@ -65,7 +65,7 @@ clean:
 
 .PHONY: all
 	all: clean $1
-" > Makefile
+EOF
 }
 
 # Make and run
@@ -75,6 +75,19 @@ function mrun() {
 
 function mclean() {
     make clean
+}
+
+# Make tsconfig
+function mts() {
+cat <<EOF >tsconfig.json
+{
+    "compilerOptions": {
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true
+    }
+}
+EOF
 }
 
 # Base16 color scheme
