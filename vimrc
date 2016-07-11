@@ -161,6 +161,9 @@ nnoremap <F5> :w<CR>
 " C-@ is C-Space in the terminal
 inoremap <C-@> <C-P>
 
+" Auto-close HTML tags
+iabbrev </ </<C-X><C-O>
+
 " Hardmode Activated
 noremap <Right> <NOP>
 noremap <Down> <NOP>
