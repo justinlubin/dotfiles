@@ -53,6 +53,10 @@ Plugin 'plasticboy/vim-markdown'
 " tmux
 Plugin 'christoomey/vim-tmux-navigator'
 
+" Snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 " Miscellaneous
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
@@ -109,6 +113,15 @@ set nofoldenable
 
 " NERDTree
 noremap <F10> :NERDTreeToggle<CR>
+
+" Snippet Configuration
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Paste Toggle
 nnoremap <F6> :set paste<CR>

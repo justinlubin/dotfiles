@@ -21,6 +21,7 @@ done
 mkdir "~/.vim"
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+ln -s $dir/UltiSnips ~/.vim/
 
 # Install base16 color schemes
 mkdir ~/.config
