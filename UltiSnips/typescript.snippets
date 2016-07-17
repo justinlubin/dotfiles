@@ -1,0 +1,24 @@
+snippet for
+for (let ${1:i} = 0; $1 < $2; $1++) {
+	$0
+}
+endsnippet
+snippet for2
+for (let ${1:row} = 0; $1 < $2; $1++) {
+	for (let ${3:col} = 0; $3 < $4; $3++) {
+		$0
+	}
+}
+endsnippet
+snippet forl
+for (let ${1:i} = 0; $1 < $2.length; $1++) {
+	$0
+}
+endsnippet
+snippet forl2
+for (let ${1:row} = 0; $1 < $2.length; $1++) {
+	for (let ${3:col} = 0; $3 < $2[$1].length; $3++) {
+		$0
+	}
+}
+endsnippet
