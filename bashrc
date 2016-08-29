@@ -1,21 +1,33 @@
 export EDITOR="vim"
 
+# Pip
+export PIP_REQUIRE_VIRTUALENV="true"
+
+# Python Virtual Environment
+export WORKON_HOME="~/.virtualenvs"
+source "/usr/local/bin/virtualenvwrapper.sh"
+
+# Android SDK
 if [ -d "/usr/local/opt/android-sdk" ]; then
     export ANDROID_HOME="/usr/local/opt/android-sdk"
 fi
 
+# Prompt
 PS1="\[\e[01;35m\]\w \[\e[00;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
 
+# Git
 git config --global user.name "Justin Lubin"
 git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
 
+# Better Vim
 if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 fi
 
+# Aliases
 alias ls="ls -G"
 alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
