@@ -19,9 +19,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'sjl/badwolf'
 
 " Editor Improvements
-Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/a.vim'
-Plugin 'kien/ctrlp.vim'
 
 " HTML
 Plugin 'othree/html5.vim'
@@ -44,7 +42,7 @@ Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Haskell
-Plugin 'dag/vim2hs'
+Plugin 'neovimhaskell/haskell-vim'
 
 " Markdown
 Plugin 'godlygeek/tabular'
@@ -105,7 +103,6 @@ set nowrap
 " More information about file
 set number
 set ruler
-set cursorline
 set wildmenu
 
 " No Folding
@@ -178,3 +175,11 @@ nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxh
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 autocmd Filetype markdown setlocal textwidth=80 wrap
+
+" Hardcopy
+nnoremap <F9> :call HardcopyToPS()<CR>
+function HardcopyToPS()
+    let psName = expand("%:r") . ".ps"
+    let outputCommand = "hardcopy > " . psName
+    exec outputCommand
+endfunction

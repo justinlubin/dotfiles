@@ -4,7 +4,9 @@ export EDITOR="vim"
 export PIP_REQUIRE_VIRTUALENV="true"
 
 # Python Virtual Environment
-export WORKON_HOME="~/.virtualenvs"
+export WORKON_HOME="$HOME/.virtualenvs"
+export PROJECT_HOME="$HOME/Documents"
+export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
 source "/usr/local/bin/virtualenvwrapper.sh"
 
 # Android SDK
@@ -44,6 +46,7 @@ alias rtmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
 alias pythonserver="python3 -m http.server"
 alias phpserver="php -S localhost:8000"
+alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Autumn\ Quarter/CMSC\ 161/"
 
 # Play music on Mac
 function mplaymusic() {
@@ -106,6 +109,7 @@ EOF
 BASE16_THEME="ocean.dark"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
 [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
+
 
 # Launch tmux
 if [[ ! $TERM =~ screen  ]]; then
