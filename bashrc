@@ -1,3 +1,7 @@
+# Path
+PATH=~/.cabal/bin:$PATH
+
+# Editor
 export EDITOR="vim"
 
 # Pip
@@ -35,6 +39,7 @@ alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
 alias vimupdate="vim +PluginInstall +qall"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
+alias gerudo="mplaymusic ~/Dropbox/WANO/wano.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
@@ -46,7 +51,7 @@ alias rtmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
 alias pythonserver="python3 -m http.server"
 alias phpserver="php -S localhost:8000"
-alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Autumn\ Quarter/CMSC\ 161/"
+alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Q1\ \(Autumn\ Quarter\)/CMSC\ 161/"
 
 # Play music on Mac
 function mplaymusic() {

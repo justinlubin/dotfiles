@@ -44,6 +44,9 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 " Haskell
 Plugin 'neovimhaskell/haskell-vim'
 
+" Elm
+Plugin 'lambdatoast/elm.vim'
+
 " Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -183,3 +186,7 @@ function HardcopyToPS()
     let outputCommand = "hardcopy > " . psName
     exec outputCommand
 endfunction
+
+" Haskell
+let g:haskell_indent_case = 4
+let g:haskell_indent_guard = 4
