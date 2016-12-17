@@ -27,6 +27,7 @@ git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
+git config --global credential.helper osxkeychain
 
 # Better Vim
 if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
@@ -39,7 +40,8 @@ alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
 alias vimupdate="vim +PluginInstall +qall"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
-alias gerudo="mplaymusic ~/Dropbox/WANO/wano.mp3"
+alias wano="mplaymusic ~/Dropbox/WANO/wano.mp3"
+alias wanof="mplaymusic ~/Dropbox/WANO/Wano_Fugue_II.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"

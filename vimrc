@@ -55,8 +55,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 
 " Miscellaneous
 Plugin 'jiangmiao/auto-pairs'
@@ -178,6 +178,9 @@ nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxh
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 autocmd Filetype markdown setlocal textwidth=80 wrap
+
+" Git
+autocmd Filetype gitcommit set colorcolumn=72
 
 " Hardcopy
 nnoremap <F9> :call HardcopyToPS()<CR>
