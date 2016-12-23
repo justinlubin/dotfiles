@@ -97,6 +97,9 @@ set autoindent
 " Align to ( in function call
 set cino+=(0
 
+" For Elm, use 2 space indent
+autocmd FileType elm setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 " Column Guide
 set colorcolumn=80
 

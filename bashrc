@@ -18,8 +18,33 @@ if [ -d "/usr/local/opt/android-sdk" ]; then
     export ANDROID_HOME="/usr/local/opt/android-sdk"
 fi
 
+
+function parse_git_branch() {
+    if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
+        return
+    fi;
+
+    local untracked=$(git status 2> /dev/null | grep "Untracked files")
+    local notstaged=$(git status 2> /dev/null | grep "Changes not staged for commit")
+    local staged=$(git status 2> /dev/null | grep "Changes to be committed")
+
+    echo -n " ("
+    # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
+    if [[ $untracked ]]; then
+        printf "\e[01;33m?"
+    fi
+    if [[ $notstaged ]]; then
+        printf "\e[01;31m*"
+    fi
+    if [[ $staged ]]; then
+        printf "\e[01;32m+"
+    fi
+    printf "\e[01;34m)"
+}
+
 # Prompt
-PS1="\[\e[01;35m\]\w \[\e[00;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
+PS1="\[\e[01;35m\]\w\[\e[01;34m\]\$(parse_git_branch) \[\e[01;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
 
 # Git
 git config --global user.name "Justin Lubin"
