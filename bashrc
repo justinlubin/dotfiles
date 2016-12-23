@@ -28,7 +28,6 @@ function parse_git_branch() {
     local notstaged=$(git status 2> /dev/null | grep "Changes not staged for commit")
     local staged=$(git status 2> /dev/null | grep "Changes to be committed")
     local ahead=$(git status 2> /dev/null | grep "Your branch is ahead")
-    local behind=$(git status 2> /dev/null | grep "Your branch is behind")
 
     tput bold
     tput setaf 4
@@ -50,10 +49,6 @@ function parse_git_branch() {
     if [[ $ahead ]]; then
         tput setaf 5
         echo -n ">"
-    fi
-    if [[ $behind ]]; then
-        tput setaf 5
-        echo -n "<"
     fi
     tput setaf 4
     echo -n ")"
