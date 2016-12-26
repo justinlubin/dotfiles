@@ -31,7 +31,7 @@ gray="$(tput setaf 8)"
 bold="$(tput bold)"
 reset="$(tput sgr0)"
 
-function parse_git_branch() {
+function __parse_git_branch() {
     if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
         return
     fi
@@ -41,7 +41,7 @@ function parse_git_branch() {
     local staged=$(git status 2> /dev/null | grep "Changes to be committed")
     local ahead=$(git status 2> /dev/null | grep "Your branch is ahead")
 
-    printf '\[${blue}\]('
+    printf ' \[${blue}\]('
     # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
     if [[ $untracked ]]; then
@@ -60,7 +60,10 @@ function parse_git_branch() {
 }
 
 # Prompt
-PS1="\[${bold}${pink}\]\w $(parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+function set_bash_prompt() {
+    PS1="\[${bold}${pink}\]\w$(__parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+}
+PROMPT_COMMAND=set_bash_prompt
 
 # Git
 git config --global user.name "Justin Lubin"
