@@ -18,44 +18,49 @@ if [ -d "/usr/local/opt/android-sdk" ]; then
     export ANDROID_HOME="/usr/local/opt/android-sdk"
 fi
 
+# Colors
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+yellow="$(tput setaf 3)"
+blue="$(tput setaf 4)"
+pink="$(tput setaf 5)"
+cyan="$(tput setaf 6)"
+white="$(tput setaf 7)"
+gray="$(tput setaf 8)"
+
+bold="$(tput bold)"
+reset="$(tput sgr0)"
 
 function parse_git_branch() {
     if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
         return
-    fi;
+    fi
 
     local untracked=$(git status 2> /dev/null | grep "Untracked files")
     local notstaged=$(git status 2> /dev/null | grep "Changes not staged for commit")
     local staged=$(git status 2> /dev/null | grep "Changes to be committed")
     local ahead=$(git status 2> /dev/null | grep "Your branch is ahead")
 
-    tput bold
-    tput setaf 4
-    echo -n " ("
+    printf '\[${blue}\]('
     # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
     if [[ $untracked ]]; then
-        tput setaf 3
-        echo -n "?"
+        printf '\[${yellow}\]?'
     fi
     if [[ $notstaged ]]; then
-        tput setaf 1
-        echo -n "*"
+        printf '\[${red}\]*'
     fi
     if [[ $staged ]]; then
-        tput setaf 6
-        echo -n "+"
+        printf '\[${green}\]+'
     fi
     if [[ $ahead ]]; then
-        tput setaf 5
-        echo -n ">"
+        printf '\[${pink}\]>'
     fi
-    tput setaf 4
-    echo -n ")"
+    printf '\[${blue}\])'
 }
 
 # Prompt
-PS1="\[\e[01;35m\]\w\$(parse_git_branch) \[\e[01;35m\]❯\[\e[01;35m\]❯\[\e[01;37m\]❯\[\e[0m\] "
+PS1="\[${bold}${pink}\]\w $(parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
 
 # Git
 git config --global user.name "Justin Lubin"
