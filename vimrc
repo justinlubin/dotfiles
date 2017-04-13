@@ -84,12 +84,12 @@ colorscheme base16-ocean
 hi Normal ctermbg=none
 
 " Solarized Color Scheme Configuration
-let g:solarized_termcolor =256
+let g:solarized_termcolor=256
 
 " Tabs -> Spaces
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 " Indentation
 set expandtab

@@ -1,5 +1,5 @@
 # Path
-PATH=~/.cabal/bin:$PATH
+PATH=~/.cabal/bin:~/bin:$PATH
 
 # Editor
 export EDITOR="vim"
@@ -70,7 +70,7 @@ git config --global user.name "Justin Lubin"
 git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
-git config --global core.excludesfile ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore
 git config --global credential.helper osxkeychain
 
 # Better Vim
@@ -90,6 +90,9 @@ alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
 alias sss="ssh justin@172.24.10.31"
+alias csil="ssh justinlubin@linux.cs.uchicago.edu"
+alias seel="ssh justinlubin@seel.cs.uchicago.edu"
+alias csilm="mosh justinlubin@linux.cs.uchicago.edu"
 alias ebash="$EDITOR ~/.bashrc"
 alias rbash="source ~/.bashrc"
 alias etmux="$EDITOR ~/.tmux.conf"
@@ -98,6 +101,9 @@ alias evim="$EDITOR ~/.vimrc"
 alias pythonserver="python3 -m http.server"
 alias phpserver="php -S localhost:8000"
 alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Q1\ \(Autumn\ Quarter\)/CMSC\ 161/"
+alias cmsc162="cd ~/Google\ Drive/College/Year\ 1/Q2\ \(Winter\ Quarter\)/CMSC\ 162/"
+alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 15400/"
+alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 
 # Play music on Mac
 function mplaymusic() {
