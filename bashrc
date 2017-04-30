@@ -5,7 +5,7 @@ PATH=~/.cabal/bin:~/bin:$PATH
 export EDITOR="vim"
 
 # Python Virtual Environment
-if [ -d "/usr/local/bin/virtualenvwrapper.sh" ]; then
+if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]; then
     export PIP_REQUIRE_VIRTUALENV="true"
     export WORKON_HOME="$HOME/.virtualenvs"
     export PROJECT_HOME="$HOME/Documents"
@@ -180,6 +180,10 @@ EOF
 BASE16_THEME="ocean.dark"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
 [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
+
+if [ -e "$HOME/.local_bashrc" ]; then
+    source "$HOME/.local_bashrc"
+fi
 
 # Launch tmux on startup
 # if [[ ! $TERM =~ screen  ]]; then
