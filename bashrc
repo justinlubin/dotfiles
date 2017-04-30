@@ -60,9 +60,7 @@ function __parse_git_branch() {
 }
 
 if [ -n "$SSH_CLIENT"  ] || [ -n "$SSH_TTY"  ]; then
-    is_ssh=1
-else
-    is_ssh=0
+    is_ssh="1"
 fi
 
 # Prompt
