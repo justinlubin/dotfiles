@@ -84,7 +84,6 @@ git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore
-git config --global credential.helper osxkeychain
 
 # Better Vim
 if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
