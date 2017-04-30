@@ -4,6 +4,9 @@ PATH=~/.cabal/bin:~/bin:$PATH
 # Editor
 export EDITOR="vim"
 
+# tmux weirdness
+export EVENT_NOKQUEUE=1
+
 # Python Virtual Environment
 if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]; then
     export PIP_REQUIRE_VIRTUALENV="true"
