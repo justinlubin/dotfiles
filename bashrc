@@ -4,14 +4,14 @@ PATH=~/.cabal/bin:~/bin:$PATH
 # Editor
 export EDITOR="vim"
 
-# Pip
-export PIP_REQUIRE_VIRTUALENV="true"
-
 # Python Virtual Environment
-export WORKON_HOME="$HOME/.virtualenvs"
-export PROJECT_HOME="$HOME/Documents"
-export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
-source "/usr/local/bin/virtualenvwrapper.sh"
+if [ -d "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    export PIP_REQUIRE_VIRTUALENV="true"
+    export WORKON_HOME="$HOME/.virtualenvs"
+    export PROJECT_HOME="$HOME/Documents"
+    export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+    source "/usr/local/bin/virtualenvwrapper.sh"
+fi
 
 # Android SDK
 if [ -d "/usr/local/opt/android-sdk" ]; then
@@ -59,11 +59,26 @@ function __parse_git_branch() {
     printf '\[${blue}\])'
 }
 
+if [ -n "$SSH_CLIENT"  ] || [ -n "$SSH_TTY"  ]; then
+    is_ssh=1
+else
+    is_ssh=0
+fi
+
 # Prompt
 function set_bash_prompt() {
     PS1="\[${bold}${pink}\]\w$(__parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
 }
-PROMPT_COMMAND=set_bash_prompt
+
+function set_bash_prompt_ssh() {
+    PS1="\[${bold}${red}(SSH) ${pink}\]\w$(__parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+}
+
+if [[ $is_ssh ]]; then
+    PROMPT_COMMAND=set_bash_prompt
+else
+    PROMPT_COMMAND=set_bash_prompt_ssh
+fi
 
 # Git
 git config --global user.name "Justin Lubin"
@@ -167,7 +182,6 @@ EOF
 BASE16_THEME="ocean.dark"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
 [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
-
 
 # Launch tmux on startup
 # if [[ ! $TERM =~ screen  ]]; then
