@@ -92,6 +92,7 @@ alias pipes="~/dotfiles/pipes.sh"
 alias sss="ssh justin@172.24.10.31"
 alias csil="ssh justinlubin@linux.cs.uchicago.edu"
 alias seel="ssh justinlubin@seel.cs.uchicago.edu"
+alias muk="ssh justinlubin@muk.cs.uchicago.edu"
 alias csilm="mosh justinlubin@linux.cs.uchicago.edu"
 alias ebash="$EDITOR ~/.bashrc"
 alias rbash="source ~/.bashrc"
@@ -168,7 +169,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
 [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
 
 
-# Launch tmux
-if [[ ! $TERM =~ screen  ]]; then
-    exec tmux
-fi
+# Launch tmux on startup
+# if [[ ! $TERM =~ screen  ]]; then
+#     exec tmux
+# fi
