@@ -73,9 +73,9 @@ function set_bash_prompt_ssh() {
 }
 
 if [[ $is_ssh ]]; then
-    PROMPT_COMMAND=set_bash_prompt
-else
     PROMPT_COMMAND=set_bash_prompt_ssh
+else
+    PROMPT_COMMAND=set_bash_prompt
 fi
 
 # Git
