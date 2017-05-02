@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Source: https://gist.github.com/stephencelis/4324139
-
-# Test if we have the pmset command
-command -v pmset >/dev/null 2>&1 || exit
-
 # Get system information
 battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
 discharging="$(pmset -g ps | grep dis)"
@@ -50,4 +45,4 @@ done
 
 # Output the battery percentage
 echo -n "#[fg=colour$oncolor]"
-echo " ${battery}%"
+echo -n " ${battery}%"
