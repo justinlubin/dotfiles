@@ -182,9 +182,9 @@ EOF
 }
 
 # Base16 color scheme
-BASE16_THEME="ocean.dark"
-BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
-[[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_ocean
 
 if [ -e "$HOME/.local_bashrc" ]; then
     source "$HOME/.local_bashrc"
