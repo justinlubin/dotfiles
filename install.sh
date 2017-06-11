@@ -28,7 +28,7 @@ ln -s $dir/vim_syntax ~/.vim/syntax
 mkdir ~/.config
 cd ~/.config
 git clone "https://github.com/chriskempson/base16-shell"
-git clone "https://github.com/chriskempson/base16-iterm2"
 if [ "$(uname)" == "Darwin" ]; then
+    git clone "https://github.com/chriskempson/base16-iterm2"
     printf "$(tput bold && tput setaf 3)** NOTE: Do not forget to install AND enable the desired iTerm2 theme located in ~/.config/base16-iterm2. Make sure to use the 256 variant.\n"
 fi
