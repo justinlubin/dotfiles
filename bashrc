@@ -22,17 +22,19 @@ if [ -d "/usr/local/opt/android-sdk" ]; then
 fi
 
 # Colors
-red="$(tput setaf 1)"
-green="$(tput setaf 2)"
-yellow="$(tput setaf 3)"
-blue="$(tput setaf 4)"
-pink="$(tput setaf 5)"
-cyan="$(tput setaf 6)"
-white="$(tput setaf 7)"
-gray="$(tput setaf 8)"
+if [[ $- == *i* ]]; then
+  red="$(tput setaf 1)"
+  green="$(tput setaf 2)"
+  yellow="$(tput setaf 3)"
+  blue="$(tput setaf 4)"
+  pink="$(tput setaf 5)"
+  cyan="$(tput setaf 6)"
+  white="$(tput setaf 7)"
+  gray="$(tput setaf 8)"
 
-bold="$(tput bold)"
-reset="$(tput sgr0)"
+  bold="$(tput bold)"
+  reset="$(tput sgr0)"
+fi
 
 function __parse_git_branch() {
     if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
@@ -183,9 +185,9 @@ EOF
 }
 
 # Base16 color scheme
-BASE16_THEME="ocean.dark"
-BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_THEME.sh"
-[[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_ocean
 
 if [ -e "$HOME/.local_bashrc" ]; then
     source "$HOME/.local_bashrc"
