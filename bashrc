@@ -87,6 +87,9 @@ git config --global user.email "jlubi333@gmail.com"
 git config --global color.ui true
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore
+git config --global merge.tool opendiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
 
 # Better Vim
 if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then

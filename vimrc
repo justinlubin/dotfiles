@@ -114,9 +114,6 @@ set wildmenu
 " No Folding
 set nofoldenable
 
-" NERDTree
-noremap <F10> :NERDTreeToggle<CR>
-
 " Snippet Configuration
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -135,11 +132,12 @@ set hlsearch
 set incsearch
 nnoremap <F8> :noh<CR>
 
-" Buffer Navigation
-set hidden
-nnoremap <F2> :bp<CR>
-nnoremap <F3> :bn<CR>
-nnoremap <F4> :ls<CR>
+" Tabs
+nnoremap <F10> :tabnew 
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 " Split Navigation
 set splitright
@@ -186,7 +184,7 @@ autocmd Filetype markdown setlocal textwidth=80 wrap
 autocmd Filetype gitcommit set colorcolumn=72
 
 " Hardcopy
-nnoremap <F9> :call HardcopyToPS()<CR>
+nnoremap <leader>= :call HardcopyToPS()<CR>
 function HardcopyToPS()
     let psName = expand("%:r") . ".ps"
     let outputCommand = "hardcopy > " . psName
