@@ -132,9 +132,6 @@ set hlsearch
 set incsearch
 nnoremap <F8> :noh<CR>
 
-" Tabs
-nnoremap <F10> :tabnew 
-
 " Split Navigation
 set splitright
 set splitbelow
