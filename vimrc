@@ -20,6 +20,7 @@ Plugin 'sjl/badwolf'
 
 " Editor Improvements
 Plugin 'vim-scripts/a.vim'
+Plugin 'Yggdroot/indentLine'
 
 " HTML
 Plugin 'othree/html5.vim'
@@ -113,6 +114,9 @@ set wildmenu
 
 " No Folding
 set nofoldenable
+
+" Indent Lines
+let g:indentLine_char = '│'
 
 " Snippet Configuration
 let g:UltiSnipsExpandTrigger="<Tab>"
