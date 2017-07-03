@@ -117,6 +117,7 @@ set nofoldenable
 
 " Indent Lines
 let g:indentLine_char = '│'
+nnoremap <leader>l :IndentLinesToggle<CR>
 
 " Snippet Configuration
 let g:UltiSnipsExpandTrigger="<Tab>"
