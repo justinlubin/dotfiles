@@ -70,11 +70,11 @@ fi
 
 # Prompt
 function set_bash_prompt() {
-    PS1="\[${bold}${pink}\]\w$(__parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+    PS1="\[${bold}${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
 }
 
 function set_bash_prompt_ssh() {
-    PS1="\[${bold}${red}\](SSH) \[${pink}\]\w$(__parse_git_branch) \[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+    PS1="\[${bold}${red}\](SSH) \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
 }
 
 if [[ $is_ssh ]]; then
