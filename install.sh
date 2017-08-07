@@ -7,7 +7,7 @@ dir=~/dotfiles
 old_dir=~/.dotfiles_old
 
 # The dotfiles to handle
-files="vimrc tmux.conf bashrc agignore"
+files="vimrc tmux.conf bashrc agignore tinyvimrc"
 
 # Link new dotfiles and backup old ones
 mkdir -p $old_dir
