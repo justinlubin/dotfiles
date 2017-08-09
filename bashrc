@@ -127,6 +127,7 @@ alias cmsc162="cd ~/Google\ Drive/College/Year\ 1/Q2\ \(Winter\ Quarter\)/CMSC\ 
 alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 15400/"
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux attach -t init || tmux new -s init"
+alias simple-ssh-server="python3 -m http.server 7532"
 
 # Play music on Mac
 function mplaymusic() {
