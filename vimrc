@@ -45,7 +45,7 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'neovimhaskell/haskell-vim'
 
 " Elm
-Plugin 'lambdatoast/elm.vim'
+Plugin 'ElmCast/elm-vim'
 
 " Markdown
 Plugin 'godlygeek/tabular'
@@ -97,9 +97,6 @@ set autoindent
 " Align to ( in function call
 set cino+=(0
 
-" For Elm, use 2 space indent
-autocmd FileType elm setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
 " Column Guide
 set colorcolumn=80
 
@@ -131,6 +128,7 @@ nnoremap <F7> :set nopaste<CR>
 set hlsearch
 set incsearch
 nnoremap <F8> :noh<CR>
+nnoremap <leader>8 :noh<CR>
 
 " Split Navigation
 set splitright
@@ -142,7 +140,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
 nnoremap <F11> :split 
+nnoremap <leader>9 :split 
+
 nnoremap <F12> :vsplit 
+nnoremap <leader>0 :vsplit 
 
 " Better j/k navigation
 nnoremap j gj
@@ -187,3 +188,7 @@ endfunction
 " Haskell
 let g:haskell_indent_case = 4
 let g:haskell_indent_guard = 4
+
+" Elm
+let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 0

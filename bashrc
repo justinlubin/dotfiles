@@ -1,5 +1,5 @@
 # Path
-PATH=~/.cabal/bin:~/bin:$PATH
+PATH=~/.local/bin:~/.cabal/bin:~/bin:$PATH
 
 # Editor
 export EDITOR="vim"
@@ -128,6 +128,7 @@ alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux attach -t init || tmux new -s init"
 alias simple-ssh-server="python3 -m http.server 7532"
+alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 
 # Play music on Mac
