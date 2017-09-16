@@ -1,0 +1,20 @@
+[user]
+  name = "Justin Lubin"
+  email = "jlubi333@gmail.com"
+
+[core]
+  excludesfile = ~/.gitignore
+
+[push]
+  default = simple
+
+[merge]
+  conflictstyle = diff3
+
+[mergetool]
+  prompt = false
+
+[color]
+  ui = true
+[credential]
+	helper = osxkeychain

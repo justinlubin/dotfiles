@@ -64,34 +64,12 @@ function __parse_git_branch() {
     printf '\[${blue}\])'
 }
 
-if [ -n "$SSH_CLIENT"  ] || [ -n "$SSH_TTY"  ]; then
-    is_ssh="1"
-fi
-
 # Prompt
 function set_bash_prompt() {
-    PS1="\[${bold}${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+    PS1="\[${bold}${gray}\][\h] \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
 }
 
-function set_bash_prompt_ssh() {
-    PS1="\[${bold}${red}\](SSH) \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
-}
-
-if [[ $is_ssh ]]; then
-    PROMPT_COMMAND=set_bash_prompt_ssh
-else
-    PROMPT_COMMAND=set_bash_prompt
-fi
-
-# Git
-git config --global user.name "Justin Lubin"
-git config --global user.email "jlubi333@gmail.com"
-git config --global color.ui true
-git config --global push.default simple
-git config --global core.excludesfile ~/.gitignore
-git config --global merge.tool opendiff
-git config --global merge.conflictstyle diff3
-git config --global mergetool.prompt false
+PROMPT_COMMAND=set_bash_prompt
 
 # Better Vim
 if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
@@ -126,7 +104,7 @@ alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Q1\ \(Autumn\ Quarter\)/CMSC\ 
 alias cmsc162="cd ~/Google\ Drive/College/Year\ 1/Q2\ \(Winter\ Quarter\)/CMSC\ 162/"
 alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 15400/"
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
-alias tinit="tmux attach -t init || tmux new -s init"
+alias tinit="tmux new-session -A -s init"
 alias simple-ssh-server="python3 -m http.server 7532"
 alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
@@ -139,11 +117,6 @@ function mplaymusic() {
 # Stop music playing on Mac
 function mstopmusic() {
     killall afplay
-}
-
-# Generate a ghetto Makefile
-function ghettomake() {
-    echo $1: > Makefile
 }
 
 # Generate a proper Makefile
@@ -199,10 +172,10 @@ fi
 
 # Bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+    . $(brew --prefix)/etc/bash_completion
 fi
 
 # Launch tmux on startup
-# if [[ ! $TERM =~ screen  ]]; then
-#     exec tmux
-# fi
+if [[ ! $TERM =~ "screen" ]]; then
+    tinit
+fi

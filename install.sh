@@ -7,7 +7,7 @@ dir=~/dotfiles
 old_dir=~/.dotfiles_old
 
 # The dotfiles to handle
-files="vimrc tmux.conf bashrc agignore tinyvimrc"
+files="vimrc tmux.conf bashrc agignore tinyvimrc gitconfig"
 
 # Link new dotfiles and backup old ones
 mkdir -p $old_dir
@@ -18,7 +18,7 @@ for file in $files; do
 done
 
 # Install vim plugins
-mkdir "~/.vim"
+mkdir ~/.vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 ln -s $dir/UltiSnips ~/.vim/
@@ -28,7 +28,3 @@ ln -s $dir/vim_syntax ~/.vim/syntax
 mkdir ~/.config
 cd ~/.config
 git clone "https://github.com/chriskempson/base16-shell"
-if [ "$(uname)" == "Darwin" ]; then
-    git clone "https://github.com/chriskempson/base16-iterm2"
-    printf "$(tput bold && tput setaf 3)** NOTE: Do not forget to install AND enable the desired iTerm2 theme located in ~/.config/base16-iterm2. Make sure to use the 256 variant.\n"
-fi
