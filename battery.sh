@@ -3,8 +3,8 @@
 battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
 discharging="$(pmset -g ps | grep dis)"
 
-dischargingcolor="09"
-chargingcolor="11"
+dischargingcolor="01"
+chargingcolor="03"
 
 if [[ $discharging ]]; then
     echo -n "#[fg=colour$dischargingcolor]"

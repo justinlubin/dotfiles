@@ -105,6 +105,7 @@ alias cmsc162="cd ~/Google\ Drive/College/Year\ 1/Q2\ \(Winter\ Quarter\)/CMSC\ 
 alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 15400/"
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux new-session -A -s init"
+alias takeover="tmux detach -a"
 alias simple-ssh-server="python3 -m http.server 7532"
 alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"

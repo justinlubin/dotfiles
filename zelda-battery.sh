@@ -5,11 +5,11 @@ battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
 discharging="$(pmset -g ps | grep dis)"
 
 # Configuration
-oncolor="09"
-offcolor="19"
+oncolor="01"
+offcolor="11"
 onheart="♡ "
 offheart="♡ "
-chargingcolor="11"
+chargingcolor="03"
 
 # Set color depending on charging status
 if [[ -z $discharging ]]; then

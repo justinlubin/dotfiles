@@ -74,9 +74,6 @@ set t_Co=256
 " Dark Background
 set background=dark
 
-" Fix base16 Color Schemes
-let base16colorspace=256
-
 " Current Color Scheme
 colorscheme base16-ocean
 
