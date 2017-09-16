@@ -66,7 +66,7 @@ function __parse_git_branch() {
 
 # Prompt
 function set_bash_prompt() {
-    PS1="\[${bold}${gray}\][\h] \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]❯❯\[${white}\]❯\[${reset}\] "
+    PS1="\[${gray}\][\h] \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]>>\[${white}\]> \[${reset}\]"
 }
 
 PROMPT_COMMAND=set_bash_prompt
