@@ -197,6 +197,11 @@ if [ -e "$HOME/.local_bashrc" ]; then
     source "$HOME/.local_bashrc"
 fi
 
+# Bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 # Launch tmux on startup
 # if [[ ! $TERM =~ screen  ]]; then
 #     exec tmux
