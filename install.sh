@@ -23,8 +23,3 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 ln -s $dir/UltiSnips ~/.vim/
 ln -s $dir/vim_syntax ~/.vim/syntax
-
-# Install base16 color schemes
-mkdir ~/.config
-cd ~/.config
-git clone "https://github.com/chriskempson/base16-shell"
