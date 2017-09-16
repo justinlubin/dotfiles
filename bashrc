@@ -1,5 +1,5 @@
 # Path
-PATH=~/.local/bin:~/.cabal/bin:~/bin:$PATH
+PATH=~/.local/bin:~/.cabal/bin:~/bin:~/.cargo/bin:$PATH
 
 # Editor
 export EDITOR="vim"
