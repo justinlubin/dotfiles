@@ -104,11 +104,12 @@ alias cmsc161="cd ~/Google\ Drive/College/Year\ 1/Q1\ \(Autumn\ Quarter\)/CMSC\ 
 alias cmsc162="cd ~/Google\ Drive/College/Year\ 1/Q2\ \(Winter\ Quarter\)/CMSC\ 162/"
 alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 15400/"
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
-alias tinit="tmux new-session -A -s init"
+alias tinit="tmux new-session -A -s init \; new-window rbash && rtmux"
 alias takeover="tmux detach -a"
 alias simple-ssh-server="python3 -m http.server 7532"
 alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
+alias r="rbash && rtmux"
 
 # Play music on Mac
 function mplaymusic() {
@@ -165,6 +166,10 @@ EOF
 if [ -e "$HOME/.local_bashrc" ]; then
     source "$HOME/.local_bashrc"
 fi
+
+# Base 16 Color Scheme
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then

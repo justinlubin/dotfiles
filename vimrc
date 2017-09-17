@@ -74,8 +74,11 @@ set t_Co=256
 " Dark Background
 set background=dark
 
-" Current Color Scheme
-colorscheme base16-ocean
+" Base 16 Color Scheme
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
 
 " Transparent Background
 hi Normal ctermbg=none
