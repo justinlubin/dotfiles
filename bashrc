@@ -94,6 +94,7 @@ alias muk="ssh justinlubin@muk.cs.uchicago.edu"
 alias csilm="mosh justinlubin@linux.cs.uchicago.edu"
 alias ebash="$EDITOR ~/.bashrc"
 alias rbash="source ~/.bashrc"
+alias relbash="source ~/.bashrc"
 alias ebashl="$EDITOR ~/.local_bashrc"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias rtmux="tmux source-file ~/.tmux.conf"
@@ -172,7 +173,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+command -v pmset >/dev/null 2>&1 || exit;
+
 battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
 discharging="$(pmset -g ps | grep dis)"
 
