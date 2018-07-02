@@ -19,6 +19,14 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'sjl/badwolf'
 
 " Editor Improvements
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
+Plugin 'ntpeters/vim-better-whitespace'
+
+" tmux
+Plugin 'christoomey/vim-tmux-navigator'
+
+" C
 Plugin 'vim-scripts/a.vim'
 
 " HTML
@@ -47,21 +55,15 @@ Plugin 'neovimhaskell/haskell-vim'
 " Elm
 Plugin 'ElmCast/elm-vim'
 
+" Rust
+Plugin 'rust-lang/rust.vim'
+
+" Wyvern
+Plugin 'hcnelson99/wyvern.vim'
+
 " Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-
-" tmux
-Plugin 'christoomey/vim-tmux-navigator'
-
-" Snippets
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-
-" Miscellaneous
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-surround'
-Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 
