@@ -80,7 +80,7 @@ fi
 alias ls="ls -G"
 alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
-alias viminstall="vim +PlugInstall +qall"
+alias viminstall="vim +PlugInstall"
 alias vimupdate="vim +PlugUpdate"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias wano="mplaymusic ~/Dropbox/WANO/wano.mp3"

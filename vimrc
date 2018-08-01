@@ -20,6 +20,7 @@ Plug 'sjl/badwolf'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -111,15 +112,6 @@ set wildmenu
 " No Folding
 set nofoldenable
 
-" Snippet Configuration
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 " Paste Toggle
 nnoremap <F6> :set paste<CR>
 nnoremap <F7> :set nopaste<CR>
@@ -192,3 +184,6 @@ let g:haskell_indent_guard = 4
 " Elm
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 0
+
+" Indent Line
+let g:indentLine_char = '│'
