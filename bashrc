@@ -80,8 +80,8 @@ fi
 alias ls="ls -G"
 alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
-alias viminstall="vim +PluginInstall +qall"
-alias vimupdate="vim +PluginInstall!"
+alias viminstall="vim +PlugInstall +qall"
+alias vimupdate="vim +PlugUpdate"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias wano="mplaymusic ~/Dropbox/WANO/wano.mp3"
 alias wanof="mplaymusic ~/Dropbox/WANO/Wano_Fugue_II.mp3"
@@ -113,6 +113,7 @@ alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
 alias smlr="rlwrap sml"
+alias tb="nc termbin.com 9999"
 
 # Play music on Mac
 function mplaymusic() {

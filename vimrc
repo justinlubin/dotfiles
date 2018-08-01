@@ -1,71 +1,69 @@
 set nocompatible
 
-" Required for Vundle (reset later)
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " Vundle-ception
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " Color Schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'chriskempson/base16-vim'
-Plugin 'jnurmine/Zenburn'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'sjl/badwolf'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/seoul256.vim'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'chriskempson/base16-vim'
+Plug 'jnurmine/Zenburn'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sjl/badwolf'
 
 " Editor Improvements
-" Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-surround'
-Plugin 'ntpeters/vim-better-whitespace'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'airblade/vim-gitgutter'
 
 " tmux
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " C
-Plugin 'vim-scripts/a.vim'
+Plug 'vim-scripts/a.vim'
 
 " HTML
-Plugin 'othree/html5.vim'
+Plug 'othree/html5.vim'
 
 " CSS
-Plugin 'miripiruni/CSScomb-for-Vim'
+Plug 'miripiruni/CSScomb-for-Vim'
 
 " TypeScript
-Plugin 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 
 " Dart
-Plugin 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin'
 
 " Clojure
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Haskell
-Plugin 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim'
 
 " Elm
-Plugin 'ElmCast/elm-vim'
+Plug 'ElmCast/elm-vim'
 
 " Rust
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Wyvern
-Plugin 'hcnelson99/wyvern.vim'
+Plug 'hcnelson99/wyvern.vim'
 
 " Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax enable

@@ -19,7 +19,7 @@ done
 
 # Install vim plugins
 mkdir ~/.vim
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-ln -s $dir/UltiSnips ~/.vim/
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
 ln -s $dir/vim_syntax ~/.vim/syntax
