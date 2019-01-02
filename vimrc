@@ -22,6 +22,10 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 
+" Fuzzy Finder
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -119,6 +123,8 @@ nnoremap <F7> :set nopaste<CR>
 " Searching
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 nnoremap <F8> :noh<CR>
 nnoremap <leader>8 :noh<CR>
 
@@ -150,6 +156,9 @@ inoremap <C-@> <C-P>
 
 " Auto-close HTML tags
 iabbrev </ </<C-X><C-O>
+
+" Mouse
+set mouse=a
 
 " Hardmode Activated
 noremap <Right> <NOP>
@@ -187,3 +196,13 @@ let g:elm_format_autosave = 0
 
 " Indent Line
 let g:indentLine_char = '│'
+
+" Git Gutter
+set updatetime=100
+
+" Fuzzy finder
+nnoremap <leader>[ :Files<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'btab': 'split',
+  \ 'tab': 'vsplit' }

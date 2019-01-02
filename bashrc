@@ -108,12 +108,28 @@ alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux new-session -A -s init \; new-window rebash && retmux"
 alias takeover="tmux detach -a"
-alias simple-ssh-server="python3 -m http.server 7532"
-alias live-ssh-server="live-server --port=7532 --no-browser"
+# Simple server
+alias simple-serve="python3 -m http.server 7532"
+# Live server
+alias serve="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
 alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
+
+function sizes_helper() {
+  ls -1 | while read -r f; do
+    du -sh "$f"
+  done | sort -h -b -r 
+}
+
+function sizes() {
+  if [ -z "$1" ]; then
+    sizes_helper
+  else
+    sizes_helper | head -$1
+  fi;
+}
 
 # Play music on Mac
 function mplaymusic() {
@@ -165,6 +181,11 @@ cat <<EOF >tsconfig.json
     }
 }
 EOF
+}
+
+# Fuzzy git diff
+function gdiff() {
+  git diff "*$1*"
 }
 
 if [ -e "$HOME/.local_bashrc" ]; then
