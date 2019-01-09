@@ -116,6 +116,7 @@ alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
 alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
+alias livetex="fswatch -0 *.tex | xargs -0 -n 1 -I {} make && make"
 
 function sizes_helper() {
   ls -1 | while read -r f; do
