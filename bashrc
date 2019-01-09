@@ -110,6 +110,13 @@ alias simple-ssh-server="python3 -m http.server 7532"
 alias live-ssh-server="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
+alias line80="echo \"--------------------------------------------------------------------------------\""
+
+function rememberssh() {
+  killall ssh-agent -u justinlubin
+  eval `ssh-agent -s`
+  ssh-add ~/.ssh/id_rsa
+}
 
 # Play music on Mac
 function mplaymusic() {
