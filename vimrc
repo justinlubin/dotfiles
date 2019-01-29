@@ -1,69 +1,74 @@
 set nocompatible
 
-" Required for Vundle (reset later)
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " Vundle-ception
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " Color Schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'chriskempson/base16-vim'
-Plugin 'jnurmine/Zenburn'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'sjl/badwolf'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/seoul256.vim'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'chriskempson/base16-vim'
+Plug 'jnurmine/Zenburn'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sjl/badwolf'
 
 " Editor Improvements
-Plugin 'vim-scripts/a.vim'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
 
-" HTML
-Plugin 'othree/html5.vim'
-
-" CSS
-Plugin 'miripiruni/CSScomb-for-Vim'
-
-" TypeScript
-Plugin 'leafgarland/typescript-vim'
-
-" Dart
-Plugin 'dart-lang/dart-vim-plugin'
-
-" Clojure
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-
-" Haskell
-Plugin 'neovimhaskell/haskell-vim'
-
-" Elm
-Plugin 'ElmCast/elm-vim'
-
-" Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+" Fuzzy Finder
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " tmux
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
-" Snippets
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
+" C
+Plug 'vim-scripts/a.vim'
 
-" Miscellaneous
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-surround'
-Plugin 'ntpeters/vim-better-whitespace'
+" HTML
+Plug 'othree/html5.vim'
 
-call vundle#end()
+" CSS
+Plug 'miripiruni/CSScomb-for-Vim'
+
+" TypeScript
+Plug 'leafgarland/typescript-vim'
+
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
+
+" Clojure
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
+" Haskell
+Plug 'neovimhaskell/haskell-vim'
+
+" Elm
+Plug 'ElmCast/elm-vim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+
+" Wyvern
+Plug 'hcnelson99/wyvern.vim'
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+call plug#end()
 
 filetype plugin indent on
 syntax enable
@@ -111,15 +116,6 @@ set wildmenu
 " No Folding
 set nofoldenable
 
-" Snippet Configuration
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 " Paste Toggle
 nnoremap <F6> :set paste<CR>
 nnoremap <F7> :set nopaste<CR>
@@ -127,6 +123,8 @@ nnoremap <F7> :set nopaste<CR>
 " Searching
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 nnoremap <F8> :noh<CR>
 nnoremap <leader>8 :noh<CR>
 
@@ -158,6 +156,9 @@ inoremap <C-@> <C-P>
 
 " Auto-close HTML tags
 iabbrev </ </<C-X><C-O>
+
+" Mouse
+set mouse=a
 
 " Hardmode Activated
 noremap <Right> <NOP>
@@ -192,3 +193,16 @@ let g:haskell_indent_guard = 4
 " Elm
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 0
+
+" Indent Line
+let g:indentLine_char = '│'
+
+" Git Gutter
+set updatetime=100
+
+" Fuzzy finder
+nnoremap <leader>[ :Files<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'btab': 'split',
+  \ 'tab': 'vsplit' }

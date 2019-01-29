@@ -80,7 +80,8 @@ fi
 alias ls="ls -G"
 alias la="ls -Ga"
 alias nyan="telnet nyancat.dakko.us"
-alias vimupdate="vim +PluginInstall +qall"
+alias viminstall="vim +PlugInstall"
+alias vimupdate="vim +PlugUpdate"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias wano="mplaymusic ~/Dropbox/WANO/wano.mp3"
 alias wanof="mplaymusic ~/Dropbox/WANO/Wano_Fugue_II.mp3"
@@ -95,6 +96,7 @@ alias csilm="mosh justinlubin@linux.cs.uchicago.edu"
 alias ebash="$EDITOR ~/.bashrc"
 alias rebash="source ~/.bashrc"
 alias ebashl="$EDITOR ~/.local_bashrc"
+alias rebashl="source ~/.local_bashrc"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias retmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
@@ -106,16 +108,34 @@ alias cmsc154="cd ~/Google\ Drive/College/Year\ 1/Q3\ \(Spring\ Quarter\)/CMSC\ 
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux new-session -A -s init \; new-window rebash && retmux"
 alias takeover="tmux detach -a"
-alias simple-ssh-server="python3 -m http.server 7532"
-alias live-ssh-server="live-server --port=7532 --no-browser"
+# Simple server
+alias simple-serve="python3 -m http.server 7532"
+# Live server
+alias serve="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
 alias line80="echo \"--------------------------------------------------------------------------------\""
+alias smlr="rlwrap sml"
+alias tb="nc termbin.com 9999"
 
 function rememberssh() {
   killall ssh-agent -u justinlubin
   eval `ssh-agent -s`
   ssh-add ~/.ssh/id_rsa
+}
+
+function sizes_helper() {
+  ls -1 | while read -r f; do
+    du -sh "$f"
+  done | sort -h -b -r 
+}
+
+function sizes() {
+  if [ -z "$1" ]; then
+    sizes_helper
+  else
+    sizes_helper | head -$1
+  fi;
 }
 
 # Play music on Mac
@@ -168,6 +188,11 @@ cat <<EOF >tsconfig.json
     }
 }
 EOF
+}
+
+# Fuzzy git diff
+function gdiff() {
+  git diff "*$1*"
 }
 
 if [ -e "$HOME/.local_bashrc" ]; then
