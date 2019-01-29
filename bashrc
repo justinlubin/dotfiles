@@ -117,6 +117,7 @@ alias r="rebash && retmux"
 alias line80="echo \"--------------------------------------------------------------------------------\""
 alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
+alias livetex="fswatch -0 *.tex | xargs -0 -n 1 -I {} make && make"
 
 function rememberssh() {
   killall ssh-agent -u justinlubin
