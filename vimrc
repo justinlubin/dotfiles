@@ -106,8 +106,6 @@ nnoremap <F7> :set nopaste<CR>
 " Searching
 set hlsearch
 set incsearch
-set ignorecase
-set smartcase
 nnoremap <F8> :noh<CR>
 nnoremap <leader>8 :noh<CR>
 

@@ -109,9 +109,9 @@ alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux new-session -A -s init \; new-window rebash && retmux"
 alias takeover="tmux detach -a"
 # Simple server
-alias simple-serve="python3 -m http.server 7532"
+alias sserver="python3 -m http.server 7532"
 # Live server
-alias serve="live-server --port=7532 --no-browser"
+alias lserver="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias r="rebash && retmux"
 alias line80="echo \"--------------------------------------------------------------------------------\""
