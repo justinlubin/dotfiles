@@ -2,18 +2,9 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-" Vundle-ception
-Plug 'gmarik/Vundle.vim'
-
 " Color Schemes
 Plug 'altercation/vim-colors-solarized'
-Plug 'junegunn/seoul256.vim'
-Plug 'tomasr/molokai'
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'chriskempson/base16-vim'
-Plug 'jnurmine/Zenburn'
-Plug 'nanotech/jellybeans.vim'
-Plug 'sjl/badwolf'
 
 " Editor Improvements
 " Plug 'jiangmiao/auto-pairs'
@@ -41,17 +32,6 @@ Plug 'miripiruni/CSScomb-for-Vim'
 " TypeScript
 Plug 'leafgarland/typescript-vim'
 
-" Dart
-Plug 'dart-lang/dart-vim-plugin'
-
-" Clojure
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'guns/vim-clojure-highlight'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-
 " Haskell
 Plug 'neovimhaskell/haskell-vim'
 
@@ -67,6 +47,9 @@ Plug 'hcnelson99/wyvern.vim'
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+
+" JSON
+Plug 'elzr/vim-json'
 
 call plug#end()
 
@@ -145,13 +128,6 @@ nnoremap <leader>0 :vsplit
 nnoremap j gj
 nnoremap k gk
 
-" Save button
-nnoremap <F5> :w<CR>
-
-" Handy Autocomplete
-" C-@ is C-Space in the terminal
-inoremap <C-@> <C-P>
-
 " Auto-close HTML tags
 iabbrev </ </<C-X><C-O>
 
@@ -171,22 +147,11 @@ nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxh
 " Markdown Configuration
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
+let g:vim_markdown_conceal=0
 autocmd Filetype markdown setlocal textwidth=80 wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
-
-" Hardcopy
-nnoremap <leader>= :call HardcopyToPS()<CR>
-function HardcopyToPS()
-    let psName = expand("%:r") . ".ps"
-    let outputCommand = "hardcopy > " . psName
-    exec outputCommand
-endfunction
-
-" Haskell
-let g:haskell_indent_case = 4
-let g:haskell_indent_guard = 4
 
 " Elm
 let g:elm_setup_keybindings = 0
@@ -204,6 +169,3 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'btab': 'split',
   \ 'tab': 'vsplit' }
-
-" No concealing
-set conceallevel=0
