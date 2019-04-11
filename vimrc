@@ -204,3 +204,6 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'btab': 'split',
   \ 'tab': 'vsplit' }
+
+" No concealing
+set conceallevel=0
