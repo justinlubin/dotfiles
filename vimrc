@@ -11,7 +11,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'Yggdroot/indentLine'
 
 " Fuzzy Finder
 Plug '/usr/local/opt/fzf'
@@ -128,9 +127,6 @@ nnoremap <leader>0 :vsplit
 nnoremap j gj
 nnoremap k gk
 
-" Auto-close HTML tags
-iabbrev </ </<C-X><C-O>
-
 " Mouse
 set mouse=a
 
@@ -149,6 +145,9 @@ let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_conceal=0
 autocmd Filetype markdown setlocal textwidth=80 wrap
+
+" TeX Configuration
+autocmd Filetype tex setlocal textwidth=80 wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
