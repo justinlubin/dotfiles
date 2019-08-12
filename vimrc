@@ -11,6 +11,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-easy-align'
 
 " Fuzzy Finder
 Plug '/usr/local/opt/fzf'
@@ -49,6 +50,9 @@ Plug 'plasticboy/vim-markdown'
 
 " JSON
 Plug 'elzr/vim-json'
+
+" ReasonML
+Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
 
@@ -107,6 +111,9 @@ set hlsearch
 set incsearch
 nnoremap <F8> :noh<CR>
 nnoremap <leader>8 :noh<CR>
+
+" Cursor lines
+map <leader>- :set cursorcolumn!<Bar>set cursorline!<CR>
 
 " Split Navigation
 set splitright
@@ -168,3 +175,10 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'btab': 'split',
   \ 'tab': 'vsplit' }
+
+" Vertical resize to show 80 (plus some padding)
+nnoremap <leader>` :vertical resize 88<CR>
+
+" Easy align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
