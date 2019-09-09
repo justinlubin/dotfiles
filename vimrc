@@ -182,3 +182,6 @@ nnoremap <leader>` :vertical resize 88<CR>
 " Easy align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Easier saving
+command! W write

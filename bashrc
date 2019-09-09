@@ -112,9 +112,17 @@ alias r="rebash && retmux"
 alias line80="echo \"--------------------------------------------------------------------------------\""
 alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
-alias livetex="fswatch -0 *.tex | xargs -0 -n 1 -I {} make && make"
 alias emacs="emacs -nw"
-alias openv="eval $(opam env)"
+alias openv='eval $(opam env)'
+alias unsafe-chrome="open -a Google\ Chrome\ Canary --args --disable-web-security --user-data-dir=\"\""
+
+function livetex() {
+  fswatch -0 *.tex | xargs -0 -n 1 -I {} make $1
+}
+
+function skim() {
+  open -a Skim $1 &
+}
 
 function rememberssh() {
   killall ssh-agent -u justinlubin
