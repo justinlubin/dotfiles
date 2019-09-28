@@ -163,9 +163,6 @@ autocmd Filetype gitcommit set colorcolumn=72
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 0
 
-" Indent Line
-let g:indentLine_char = '│'
-
 " Git Gutter
 set updatetime=100
 
