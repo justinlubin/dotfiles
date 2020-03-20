@@ -1,5 +1,22 @@
-# Path
+################################################################################
+# Paths
+################################################################################
+
 PATH=~/.local/bin:~/.cabal/bin:~/bin:~/.cargo/bin:$PATH
+
+# Android SDK
+if [ -d "/usr/local/opt/android-sdk" ]; then
+    export ANDROID_HOME="/usr/local/opt/android-sdk"
+fi
+
+# Better vim
+if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
+    alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+fi
+
+################################################################################
+# Global Variables
+################################################################################
 
 # Editor
 export EDITOR="vim"
@@ -7,34 +24,24 @@ export EDITOR="vim"
 # tmux weirdness
 export EVENT_NOKQUEUE=1
 
-# Python Virtual Environment
-if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]; then
-    export PIP_REQUIRE_VIRTUALENV="true"
-    export WORKON_HOME="$HOME/.virtualenvs"
-    export PROJECT_HOME="$HOME/Documents"
-    export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
-    source "/usr/local/bin/virtualenvwrapper.sh"
-fi
-
-# Android SDK
-if [ -d "/usr/local/opt/android-sdk" ]; then
-    export ANDROID_HOME="/usr/local/opt/android-sdk"
-fi
-
 # Colors
 if [[ $- == *i* ]]; then
-  red="$(tput setaf 1)"
-  green="$(tput setaf 2)"
-  yellow="$(tput setaf 3)"
-  blue="$(tput setaf 4)"
-  pink="$(tput setaf 5)"
-  cyan="$(tput setaf 6)"
-  white="$(tput setaf 7)"
-  gray="$(tput setaf 8)"
+  RED="$(tput setaf 1)"
+  GREEN="$(tput setaf 2)"
+  YELLOW="$(tput setaf 3)"
+  BLUE="$(tput setaf 4)"
+  PINK="$(tput setaf 5)"
+  CYAN="$(tput setaf 6)"
+  WHITE="$(tput setaf 7)"
+  GRAY="$(tput setaf 8)"
 
-  bold="$(tput bold)"
-  reset="$(tput sgr0)"
+  BOLD="$(tput bold)"
+  RESET_COLOR="$(tput sgr0)"
 fi
+
+################################################################################
+# PS1
+################################################################################
 
 function __parse_git_branch() {
     if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
@@ -46,45 +53,38 @@ function __parse_git_branch() {
     local staged=$(git status 2> /dev/null | grep "Changes to be committed")
     local ahead=$(git status 2> /dev/null | grep "Your branch is ahead")
 
-    printf ' \[${blue}\]('
+    printf ' \[${BLUE}\]('
     # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
     if [[ $untracked ]]; then
-        printf '\[${yellow}\]?'
+        printf '\[${YELLOW}\]?'
     fi
     if [[ $notstaged ]]; then
-        printf '\[${red}\]*'
+        printf '\[${RED}\]*'
     fi
     if [[ $staged ]]; then
-        printf '\[${green}\]+'
+        printf '\[${GREEN}\]+'
     fi
     if [[ $ahead ]]; then
-        printf '\[${pink}\]>'
+        printf '\[${PINK}\]>'
     fi
-    printf '\[${blue}\])'
+    printf '\[${BLUE}\])'
 }
 
-# Prompt
 function set_bash_prompt() {
-    PS1="\[${gray}\][\h] \[${pink}\]\w$(__parse_git_branch)\n\[${pink}\]>>\[${white}\]> \[${reset}\]"
+    PS1="\[${GRAY}\][\h] \[${PINK}\]\w$(__parse_git_branch)\n\[${PINK}\]>>\[${WHITE}\]> \[${RESET_COLOR}\]"
 }
 
 PROMPT_COMMAND=set_bash_prompt
 
-# Better Vim
-if [ -d "/Applications/MacVim.app/Contents/MacOS" ]; then
-    alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-fi
+################################################################################
+# Aliases and functions
+################################################################################
 
-# Aliases
 alias ls="ls -G"
-alias la="ls -Ga"
-alias nyan="telnet nyancat.dakko.us"
 alias viminstall="vim +PlugInstall"
 alias vimupdate="vim +PlugUpdate"
 alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
-alias wano="mplaymusic ~/Dropbox/WANO/wano.mp3"
-alias wanof="mplaymusic ~/Dropbox/WANO/Wano_Fugue_II.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
@@ -98,8 +98,6 @@ alias rebashl="source ~/.local_bashrc"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias retmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
-alias pythonserver="python3 -m http.server"
-alias phpserver="php -S localhost:8000"
 alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
 alias tinit="tmux new-session -A -s init \; new-window rebash && retmux"
 alias takeover="tmux detach -a"
@@ -108,13 +106,11 @@ alias sserver="python3 -m http.server 7532"
 # Live server
 alias lserver="live-server --port=7532 --no-browser"
 alias tinyvim="vim -u ~/.tinyvimrc"
-alias r="rebash && retmux"
 alias line80="echo \"--------------------------------------------------------------------------------\""
 alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
 alias emacs="emacs -nw"
 alias openv='eval $(opam env)'
-alias unsafe-chrome="open -a Google\ Chrome\ Canary --args --disable-web-security --user-data-dir=\"\""
 
 function livetex() {
   fswatch -0 *.tex | xargs -0 -n 1 -I {} make $1
@@ -154,7 +150,7 @@ function mstopmusic() {
     killall afplay
 }
 
-# Generate a proper Makefile
+# Generate a proper C Makefile
 function mm() {
 cat <<EOF >Makefile
 CC = gcc
@@ -174,42 +170,21 @@ clean:
 EOF
 }
 
-# Make and run
-function mrun() {
-    make && ./$1
-}
-
-function mclean() {
-    make clean
-}
-
-# Make tsconfig
-function mts() {
-cat <<EOF >tsconfig.json
-{
-    "compilerOptions": {
-        "noEmitOnError": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true
-    }
-}
-EOF
-}
-
 # Fuzzy git diff
 function gdiff() {
   git diff "*$1*"
 }
-
-if [ -e "$HOME/.local_bashrc" ]; then
-    source "$HOME/.local_bashrc"
-fi
+################################################################################
+# Shell Configuration
+################################################################################
 
 # Base 16 Color Scheme
+
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Bash completion
+
 if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
@@ -219,9 +194,22 @@ fi
 __expand_tilde_by_ref() {
   return 0
 }
+
 _expand() {
   return 0
 }
+
+################################################################################
+# Local Configuration
+################################################################################
+
+if [ -e "$HOME/.local_bashrc" ]; then
+    source "$HOME/.local_bashrc"
+fi
+
+################################################################################
+# Launching
+################################################################################
 
 # Launch tmux on startup
 if [[ ! $TERM =~ "screen" ]]; then

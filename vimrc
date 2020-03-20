@@ -1,83 +1,74 @@
 set nocompatible
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#begin('~/.vim/plugged')
 
-" Color Schemes
-Plug 'altercation/vim-colors-solarized'
+" Color schemes
 Plug 'chriskempson/base16-vim'
 
-" Editor Improvements
-" Plug 'jiangmiao/auto-pairs'
+" Editor improvements
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/vim-easy-align'
-
-" Fuzzy Finder
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-
-" tmux
 Plug 'christoomey/vim-tmux-navigator'
-
-" C
 Plug 'vim-scripts/a.vim'
 
-" HTML
-Plug 'othree/html5.vim'
-
-" CSS
-Plug 'miripiruni/CSScomb-for-Vim'
-
-" TypeScript
-Plug 'leafgarland/typescript-vim'
-
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
-
-" Elm
+" Language support
 Plug 'ElmCast/elm-vim'
-
-" Rust
 Plug 'rust-lang/rust.vim'
-
-" Wyvern
-Plug 'hcnelson99/wyvern.vim'
-
-" Markdown
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-
-" JSON
 Plug 'elzr/vim-json'
-
-" ReasonML
-Plug 'reasonml-editor/vim-reason-plus'
 
 call plug#end()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Filetypes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" All
 filetype plugin indent on
 syntax enable
 
-" 256 Color
+" Markdown
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_conceal=0
+autocmd Filetype markdown setlocal textwidth=80 wrap
+
+" TeX
+autocmd Filetype tex setlocal textwidth=80 wrap
+
+" Git
+autocmd Filetype gitcommit set colorcolumn=72
+
+" Elm
+let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 256 colors
 set t_Co=256
 
-" Dark Background
+" Dark background
 set background=dark
 
-" Base 16 Color Scheme
+" Base 16 color scheme
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 endif
 
-" Transparent Background
-hi Normal ctermbg=none
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editor Behavior and Appearance
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Solarized Color Scheme Configuration
-let g:solarized_termcolor=256
-
-" Tabs -> Spaces
+" Tabs -> spaces
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -85,10 +76,8 @@ set softtabstop=2
 " Indentation
 set expandtab
 set autoindent
-" Align to ( in function call
-set cino+=(0
 
-" Column Guide
+" Column guide
 set colorcolumn=80
 
 " No line wrapping
@@ -102,33 +91,22 @@ set wildmenu
 " No Folding
 set nofoldenable
 
-" Paste Toggle
-nnoremap <F6> :set paste<CR>
-nnoremap <F7> :set nopaste<CR>
-
 " Searching
 set hlsearch
 set incsearch
-nnoremap <F8> :noh<CR>
-nnoremap <leader>8 :noh<CR>
 
 " Cursor lines
 map <leader>- :set cursorcolumn!<Bar>set cursorline!<CR>
 
-" Split Navigation
-set splitright
-set splitbelow
+" Easier saving
+command! W write
 
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
+" For gitgutter
+set updatetime=100
 
-nnoremap <F11> :split 
-nnoremap <leader>9 :split 
-
-nnoremap <F12> :vsplit 
-nnoremap <leader>0 :vsplit 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Navigation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Better j/k navigation
 nnoremap j gj
@@ -143,42 +121,27 @@ noremap <Down> <NOP>
 noremap <Up> <NOP>
 noremap <Left> <NOP>
 
-" CSS Vendor Prefixes
-nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
-nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Splits
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Markdown Configuration
-let g:vim_markdown_math=1
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_conceal=0
-autocmd Filetype markdown setlocal textwidth=80 wrap
+" Behavior
+set splitright
+set splitbelow
 
-" TeX Configuration
-autocmd Filetype tex setlocal textwidth=80 wrap
-
-" Git
-autocmd Filetype gitcommit set colorcolumn=72
-
-" Elm
-let g:elm_setup_keybindings = 0
-let g:elm_format_autosave = 0
-
-" Git Gutter
-set updatetime=100
-
-" Fuzzy finder
-nnoremap <leader>[ :Files<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'btab': 'split',
-  \ 'tab': 'vsplit' }
+" Navigation
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
 
 " Vertical resize to show 80 (plus some padding)
 nnoremap <leader>` :vertical resize 88<CR>
 
-" Easy align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Miscellaneous
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Easier saving
-command! W write
+" CSS Vendor Prefixes
+nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
+nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
