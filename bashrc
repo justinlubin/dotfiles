@@ -43,7 +43,7 @@ fi
 # PS1
 ################################################################################
 
-function __parse_git_branch() {
+__parse_git_branch() {
     if [[ -z $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
         return
     fi
@@ -71,7 +71,7 @@ function __parse_git_branch() {
     printf '\[${BLUE}\])'
 }
 
-function set_bash_prompt() {
+set_bash_prompt() {
     PS1="\[${GRAY}\][\h] \[${PINK}\]\w$(__parse_git_branch)\n\[${PINK}\]>>\[${WHITE}\]> \[${RESET_COLOR}\]"
 }
 
@@ -88,7 +88,7 @@ alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
-alias csil="ssh justinlubin@linux3.cs.uchicago.edu -L 7532:localhost:7532"
+alias csil="ssh justinlubin@linux2.cs.uchicago.edu -L 7532:localhost:7532"
 alias seel="ssh justinlubin@seel.cs.uchicago.edu"
 alias muk="ssh justinlubin@muk.cs.uchicago.edu"
 alias ebash="$EDITOR ~/.bashrc"
@@ -111,28 +111,41 @@ alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
 alias emacs="emacs -nw"
 alias openv='eval $(opam env)'
+alias ocamls='cd `ocamlc -where`'
 
-function livetex() {
+hide() {
+  mv $1 .$1
+}
+
+show() {
+  mv $1 "${1:1}"
+}
+
+agreplace() {
+  ag -0 -l "$1" | xargs -0 perl -pi.bak -e "s/$1/$2/g"
+}
+
+livetex() {
   fswatch -0 *.tex | xargs -0 -n 1 -I {} make $1
 }
 
-function skim() {
+skim() {
   open -a Skim $1 &
 }
 
-function rememberssh() {
+rememberssh() {
   killall ssh-agent -u justinlubin
   eval `ssh-agent -s`
-  ssh-add ~/.ssh/id_rsa
+  ssh-add -K ~/.ssh/id_rsa
 }
 
-function sizes_helper() {
+sizes_helper() {
   ls -1 | while read -r f; do
     du -sh "$f"
   done | sort -h -b -r 
 }
 
-function sizes() {
+sizes() {
   if [ -z "$1" ]; then
     sizes_helper
   else
@@ -141,17 +154,17 @@ function sizes() {
 }
 
 # Play music on Mac
-function mplaymusic() {
+mplaymusic() {
     afplay $1 &
 }
 
 # Stop music playing on Mac
-function mstopmusic() {
+mstopmusic() {
     killall afplay
 }
 
 # Generate a proper C Makefile
-function mm() {
+mm() {
 cat <<EOF >Makefile
 CC = gcc
 
@@ -171,9 +184,10 @@ EOF
 }
 
 # Fuzzy git diff
-function gdiff() {
+gdiff() {
   git diff "*$1*"
 }
+
 ################################################################################
 # Shell Configuration
 ################################################################################
@@ -210,6 +224,9 @@ fi
 ################################################################################
 # Launching
 ################################################################################
+
+# OCaml
+openv
 
 # Launch tmux on startup
 if [[ ! $TERM =~ "screen" ]]; then
