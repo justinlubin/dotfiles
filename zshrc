@@ -2,7 +2,7 @@
 # Paths
 ################################################################################
 
-PATH=~/.local/bin:~/.cabal/bin:~/bin:~/.cargo/bin:$PATH
+PATH=~/.local/bin:~/.cabal/bin:~/bin:~/.cargo/bin:~/Library/Python/2.7/bin:$PATH
 
 ################################################################################
 # Global Variables
