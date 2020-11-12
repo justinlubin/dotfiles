@@ -112,6 +112,19 @@ command! W write
 " For gitgutter
 set updatetime=100
 
+" Change cursor shape between insert and normal mode in iTerm
+" https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
+" https://gist.github.com/andyfowler/1195581
+if $TERM_PROGRAM =~ "iTerm"
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
