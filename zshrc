@@ -90,6 +90,7 @@ alias tb="nc termbin.com 9999"
 alias emacs="emacs -nw"
 alias openv='eval $(opam env)'
 alias ocamls='cd `ocamlc -where`'
+alias ffind="find . -name"
 
 agreplace() {
   ag -0 -l "$1" | xargs -0 perl -pi.bak -e "s/$1/$2/g"
