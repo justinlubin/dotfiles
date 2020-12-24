@@ -52,12 +52,9 @@ __parse_git_branch() {
     printf '%%4F)'
 }
 
-set_bash_prompt() {
-    PS1="%8F[%M] %5F%~$(__parse_git_branch)"$'\n'"%5F>>%7F> %f"
+precmd() {
+    PS1="%8F[%M] %5F%~$(__parse_git_branch)"$'\n'"%5F>>> %f"
 }
-
-PROMPT_COMMAND=set_bash_prompt
-precmd() { eval "$PROMPT_COMMAND" }
 
 ################################################################################
 # Aliases and functions
@@ -70,22 +67,18 @@ alias gerudo="mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias clock='while [ 1 ] ; do echo -en "$(date +%T)\r" ; sleep 0.5; done'
 alias lz="while [ 1 ] ; do echo '$ ls'; ls; sleep 0.25; done"
 alias pipes="~/dotfiles/pipes.sh"
-alias csil="ssh justinlubin@linux2.cs.uchicago.edu -L 7532:localhost:7532"
-alias seel="ssh justinlubin@seel.cs.uchicago.edu"
-alias muk="ssh justinlubin@muk.cs.uchicago.edu"
 alias ezsh="$EDITOR ~/.zshrc"
 alias rezsh="source ~/.zshrc"
 alias etmux="$EDITOR ~/.tmux.conf"
 alias retmux="tmux source-file ~/.tmux.conf"
 alias evim="$EDITOR ~/.vimrc"
-alias shorten="export PROMPT_COMMAND=\"\"; PS1=\"\W $ \""
+alias shorten="function precmd() { PS1='%2F$ %f' }"
 alias tinit="tmux new-session -A -s init \; new-window rebash && retmux"
 alias takeover="tmux detach -a"
 alias sserver="python3 -m http.server 7532" # Simple server
 alias lserver="live-server --port=7532 --no-browser" # Live server
 alias tinyvim="vim -u ~/.tinyvimrc"
 alias line80="echo \"--------------------------------------------------------------------------------\""
-alias smlr="rlwrap sml"
 alias tb="nc termbin.com 9999"
 alias emacs="emacs -nw"
 alias openv='eval $(opam env)'
@@ -113,7 +106,7 @@ rememberssh() {
 _sizes_helper() {
   ls -1 | while read -r f; do
     du -sh "$f"
-  done | sort -h -b -r 
+  done | sort -h -b -r
 }
 
 sizes() {
