@@ -5,7 +5,7 @@
 PATH=~/.local/bin:~/.cabal/bin:~/bin:~/.cargo/bin:~/Library/Python/2.7/bin:$PATH
 
 ################################################################################
-# Global Variables
+# Global variables
 ################################################################################
 
 # Editor
@@ -133,13 +133,18 @@ gdiff() {
 }
 
 ################################################################################
-# Shell Configuration
+# Shell configuration
 ################################################################################
 
-# Base 16 Color Scheme
+# Base 16 color scheme
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# Edit commands
+
+bindkey -e # emacs, not vim
+bindkey "\e[3~" delete-char # forward delete
 
 ################################################################################
 # Launching
