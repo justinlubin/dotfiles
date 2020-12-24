@@ -1,3 +1,8 @@
+# To install fish:
+#   brew install fish
+#   echo /usr/local/bin/fish | sudo tee -a /etc/shells
+#   chsh -s /usr/local/bin/fish
+
 #!/bin/bash
 
 # The installation directory
@@ -26,16 +31,6 @@ done
 mkdir -p ~/.config/fish
 mv ~/.config/fish/config.fish $old_dir
 ln -s $dir/config.fish ~/.config/fish/config.fish
-
-# Fisher
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-fisher install FabioAntunes/base16-fish-shell
-base16-gruvbox-dark-hard
-
-# To install fish:
-#   brew install fish
-#   echo /usr/local/bin/fish | sudo tee -a /etc/shells
-#   chsh -s /usr/local/bin/fish
 
 # Install vim plugins
 mkdir -p ~/.vim

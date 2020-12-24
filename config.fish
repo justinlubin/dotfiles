@@ -136,11 +136,11 @@ function gdiff
   git diff "*$1*"
 end
 
-function base16
-  cd ~/dotfiles/base16-fish/functions
-  source base16-$argv[1].fish
-  base16-$argv[1]
-end
+# function base16
+#   cd ~/dotfiles/base16-fish/functions
+#   source base16-$argv[1].fish
+#   base16-$argv[1]
+# end
 
 ################################################################################
 # Shell configuration
@@ -148,11 +148,13 @@ end
 
 set fish_greeting
 
-set -gx BASE16_SHELL "$HOME/.config/base16-shell/"
-
-if status --is-interactive && test -s $BASE16_SHELL/profile_helper.sh
-  bash -c (bash $BASE16_SHELL/profile_helper.sh)
-end
+# set -gx BASE16_SHELL "$HOME/.config/base16-shell/"
+#
+# if status --is-interactive && test -s $BASE16_SHELL/profile_helper.sh
+#   set -l IFS
+#   set -l result (bash $BASE16_SHELL/profile_helper.sh)
+#   bash -c "$result"
+# end
 
 ################################################################################
 # Launching
