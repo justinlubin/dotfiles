@@ -28,21 +28,28 @@ function git_prompt
     return
   end
 
+  set -l untracked (git status 2> /dev/null | grep 'Untracked files')
+  set -l not_staged (git status 2> /dev/null | grep 'Changes not staged for commit')
+  set -l staged (git status 2> /dev/null | grep 'Changes to be committed')
+  set -l ahead (git status 2> /dev/null | grep 'Your branch is ahead')
+
   echo -ns (set_color blue) ' ('
 
   # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
 
-  if test -n (git status 2> /dev/null | grep 'Untracked files')
+  echo (git status 2> /dev/null | grep 'Untracked files')
+
+  if test -n "$untracked"
     echo -ns (set_color yellow) '?'
   end
-  if test -n (git status 2> /dev/null | grep 'Changes not staged for commit')
+  if test -n "$not_staged"
     echo -ns (set_color red) '*'
   end
-  if test -n (git status 2> /dev/null | grep 'Changes to be committed')
+  if test -n "$staged"
     echo -ns (set_color green) '+'
   end
-  if test -n (git status 2> /dev/null | grep 'Your branch is ahead')
+  if test -n "$ahead"
     echo -ns (set_color magenta) '>'
   end
 
