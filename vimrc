@@ -21,6 +21,7 @@ Plug 'ElmCast/elm-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
+Plug 'dag/vim-fish'
 
 call plug#end()
 
