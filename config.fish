@@ -1,45 +1,48 @@
-################################################################################
-# Paths
-################################################################################
+# Path
 
-set -gx PATH ~/.local/bin ~/.cabal/bin ~/bin ~/.cargo/bin ~/Library/Python/2.7/bin $PATH
+set -gx PATH \
+  ~/.local/bin \
+  ~/.cabal/bin \
+  ~/bin \
+  ~/.cargo/bin \
+  ~/Library/Python/2.7/bin \
+  $PATH
 
-################################################################################
 # Global variables
-################################################################################
 
-# Editor
 set -gx EDITOR 'vim'
 
-################################################################################
-# PS1
-################################################################################
+# Shell configuration
+
+set fish_greeting
+
+if status --is-interactive
+  set BASE16_SHELL "$HOME/.config/base16-shell/"
+  source "$BASE16_SHELL/profile_helper.fish"
+end
+
+# Prompt
 
 function git_prompt
   if test -z (git rev-parse --is-inside-work-tree 2> /dev/null)
     return
   end
 
-  set -l untracked (git status 2> /dev/null | grep 'Untracked files')
-  set -l not_staged (git status 2> /dev/null | grep 'Changes not staged for commit')
-  set -l staged (git status 2> /dev/null | grep 'Changes to be committed')
-  set -l ahead (git status 2> /dev/null | grep 'Your branch is ahead')
-
   echo -ns (set_color blue) ' ('
 
   # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
 
-  if test -n "$untracked"
+  if test -n (git status 2> /dev/null | grep 'Untracked files')
     echo -ns (set_color yellow) '?'
   end
-  if test -n "$not_staged"
+  if test -n (git status 2> /dev/null | grep 'Changes not staged for commit')
     echo -ns (set_color red) '*'
   end
-  if test -n "$staged"
+  if test -n (git status 2> /dev/null | grep 'Changes to be committed')
     echo -ns (set_color green) '+'
   end
-  if test -n "$ahead"
+  if test -n (git status 2> /dev/null | grep 'Your branch is ahead')
     echo -ns (set_color magenta) '>'
   end
 
@@ -66,9 +69,7 @@ function fish_prompt
     (set_color normal)
 end
 
-################################################################################
-# Aliases and functions
-################################################################################
+# Aliases
 
 alias ls "ls -G"
 alias viminstall "vim +PlugInstall"
@@ -87,14 +88,12 @@ alias lserver "live-server --port=7532 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias tb "nc termbin.com 9999"
-alias emacs="emacs -nw"
-alias openv='eval (opam env)'
-alias ocamls='cd `ocamlc -where`'
-alias ffind="find . -name"
+alias emacs "emacs -nw"
+alias openv 'eval (opam env)'
+alias ocamls 'cd `ocamlc -where`'
+alias ffind "find . -name"
 
-function agreplace
-  ag -0 -l "$argv[1]" | xargs -0 perl -pi.bak -e "s/$argv[1]/$argv[2]/g"
-end
+# Functions
 
 function livetex
   fswatch -0 *.tex | xargs -0 -n 1 -I {} make $argv[1]
@@ -102,12 +101,6 @@ end
 
 function skim
   open -a Skim $argv[1] &
-end
-
-function rememberssh
-  killall ssh-agent -u justinlubin
-  eval `ssh-agent -s`
-  ssh-add -K ~/.ssh/id_rsa
 end
 
 function _sizes_helper
@@ -136,30 +129,6 @@ function gdiff
   git diff "*$1*"
 end
 
-# function base16
-#   cd ~/dotfiles/base16-fish/functions
-#   source base16-$argv[1].fish
-#   base16-$argv[1]
-# end
-
-################################################################################
-# Shell configuration
-################################################################################
-
-set fish_greeting
-
-# set -gx BASE16_SHELL "$HOME/.config/base16-shell/"
-#
-# if status --is-interactive && test -s $BASE16_SHELL/profile_helper.sh
-#   set -l IFS
-#   set -l result (bash $BASE16_SHELL/profile_helper.sh)
-#   bash -c "$result"
-# end
-
-################################################################################
-# Launching
-################################################################################
-
 # OCaml
 
 if type "opam" > /dev/null 2> /dev/null
@@ -170,7 +139,7 @@ end
 
 switch $TERM
   case "screen*"
-    true
+    true # do nothing
   case "*"
     tinit
 end
