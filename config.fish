@@ -38,8 +38,6 @@ function git_prompt
   # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
 
-  echo (git status 2> /dev/null | grep 'Untracked files')
-
   if test -n "$untracked"
     echo -ns (set_color yellow) '?'
   end
