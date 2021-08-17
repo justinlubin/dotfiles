@@ -6,11 +6,15 @@ set -gx PATH \
   ~/bin \
   ~/.cargo/bin \
   ~/Library/Python/2.7/bin \
+  ~/Library/Python/3.9/bin \
+  /usr/local/smlnj/bin \
+  ~/.go/bin \
   $PATH
 
 # Global variables
 
 set -gx EDITOR 'vim'
+set -gx GOPATH ~/.go
 
 # Shell configuration
 
@@ -79,7 +83,6 @@ end
 alias ls "ls -G"
 alias viminstall "vim +PlugInstall"
 alias vimupdate "vim +PlugUpdate"
-alias gerudo "mplaymusic ~/Dropbox/Gerudo/gerudo.mp3"
 alias pipes "~/dotfiles/pipes.sh"
 alias efish "$EDITOR ~/.config/fish/config.fish"
 alias refish "source ~/.config/fish/config.fish"
@@ -93,16 +96,12 @@ alias lserver "live-server --port=7532 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias tb "nc termbin.com 9999"
-alias emacs "emacs -nw"
 alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
+alias firefox "open -a Firefox"
 
 # Functions
-
-function livetex
-  fswatch -0 *.tex | xargs -0 -n 1 -I {} make $argv[1]
-end
 
 function skim
   open -a Skim $argv[1] &
@@ -120,18 +119,6 @@ function sizes
   else
     _sizes_helper | head -$1
   end
-end
-
-function mplaymusic
-  afplay $1 &
-end
-
-function mstopmusic
-  killall afplay
-end
-
-function gdiff
-  git diff "*$1*"
 end
 
 # OCaml
