@@ -37,6 +37,12 @@ mkdir -p ~/.config/fish
 mv ~/.config/fish/config.fish $old_dir
 ln -s $dir/config.fish ~/.config/fish/config.fish
 
+# nvim configuration
+
+mkdir -p ~/.config/nvim
+mv ~/.config/nvim/init.vim $old_dir
+ln -s $dir/init.vim ~/.config/nvim/init.vim
+
 # Base16 color schemes
 
 git clone \
@@ -55,3 +61,8 @@ curl -fLo \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 vim +PlugInstall +qall
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+nvim +PlugInstall +qall

@@ -17,7 +17,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
 
 " Language support
-" Plug 'ElmCast/elm-vim'
+Plug 'ElmCast/elm-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
@@ -25,16 +25,8 @@ Plug 'dag/vim-fish'
 Plug 'cespare/vim-toml'
 Plug 'https://git.rhiannon.website/rhi/beluga.vim.git'
 Plug 'purescript-contrib/purescript-vim'
-Plug 'ocaml/vim-ocaml'
 
-" LSP
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
-let g:ale_completion_enabled = 1
-Plug 'dense-analysis/ale'
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
@@ -42,34 +34,14 @@ call plug#end()
 " Filetypes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" let g:LanguageClient_loggingFile = expand("~/Desktop/lsp-log.txt")
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-
-" \ 'rust': ['rust-analyzer']
-" \ 'ocaml': ['ocamllsp'],
-" autocmd BufWritePre *.ml :call LanguageClient#textDocument_formatting_sync()
-
 " Logger
-let g:LanguageClient_serverCommands = {
-  \ 'elm': ['edit-mirror', 'language-server'],
-  \ }
-
-let g:LanguageClient_rootMarkers = {
-  \ 'elm': ['elm.json'],
-  \ }
-
-let g:ale_fixers = {
-  \ 'ocaml': ['ocamlformat'],
-  \ }
-
-let g:ale_fix_on_save = 1
-let g:ale_set_highlights = 0
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" let g:LanguageClient_serverCommands = {
+"     \ 'elm': ['~/Desktop/edit-mirror-client/edit-mirror'],
+"     \ 'ocaml': ['ocamllsp'],
+"     \ }
 
 " All
 filetype plugin indent on
-syntax enable
 
 " Markdown
 let g:vim_markdown_math=1
@@ -174,12 +146,6 @@ nnoremap k gk
 " Mouse
 set mouse=a
 
-" Hardmode Activated
-noremap <Right> <NOP>
-noremap <Down> <NOP>
-noremap <Up> <NOP>
-noremap <Left> <NOP>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,3 +170,17 @@ nnoremap <leader>` :vertical resize 88<CR>
 " CSS Vendor Prefixes
 nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
 nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LSP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
+require'lspconfig'.ocamllsp.setup{}
+EOF
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()

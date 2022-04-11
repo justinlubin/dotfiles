@@ -9,6 +9,7 @@ set -gx PATH \
   ~/Library/Python/3.9/bin \
   /usr/local/smlnj/bin \
   ~/.go/bin \
+  ~/Desktop/edit-mirror-client \
   $PATH
 
 # Global variables
@@ -134,13 +135,13 @@ function skim
 end
 
 function _sizes_helper
-  ls -1 | while read -r f
+  for f in (ls -1);
     du -sh "$f"
   end | sort -h -b -r
 end
 
 function sizes
-  if test -z "$1" then
+  if test -z "$1"
     _sizes_helper
   else
     _sizes_helper | head -$1
@@ -155,9 +156,9 @@ end
 
 # Launch tmux on startup
 
-switch $TERM
-  case "screen*"
-    true # do nothing
-  case "*"
-    tinit
+set -l in_tmux (string match "screen*" "$TERM")
+set -l in_vscode (string match "vscode" "$TERM_PROGRAM" )
+
+if test \( -z "$in_tmux" \) -a \( -z "$in_vscode" \)
+  tinit
 end
