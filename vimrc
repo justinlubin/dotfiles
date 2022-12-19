@@ -18,15 +18,10 @@ Plug 'vim-scripts/a.vim'
 Plug 'vim-autoformat/vim-autoformat'
 
 " Language support
-" Plug 'ElmCast/elm-vim'
-Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
 Plug 'dag/vim-fish'
-Plug 'cespare/vim-toml'
-Plug 'https://git.rhiannon.website/rhi/beluga.vim.git'
 Plug 'ocaml/vim-ocaml'
-Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
@@ -49,9 +44,6 @@ autocmd Filetype tex setlocal textwidth=80 wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
-
-" Twelf
-autocmd BufNewFile,BufRead *.elf set syntax=beluga
 
 " OCaml
 au BufWrite *.ml :Autoformat
@@ -169,15 +161,4 @@ let g:autoformat_remove_trailing_spaces = 0
 let g:formatdef_ocamlformat = '"ocamlformat --name " . expand("%:p") . " -"'
 let g:formatters_ocaml = ['ocamlformat']
 
-let g:formatdef_brittany = '"brittany"'
-let g:formatters_haskell = ['brittany']
-
 nnoremap <leader>f :Autoformat<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Miscellaneous
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" CSS Vendor Prefixes
-nnoremap <leader>p I-webkit-<ESC>yy4plciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
-nnoremap <leader>o wbi-webkit-<ESC>yy4pf-lciwmoz<ESC>jciwms<ESC>jciwo<ESC>jdiwxhx$
