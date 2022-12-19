@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'jpalardy/vim-slime'
 
 " Language support
 Plug 'plasticboy/vim-markdown'
@@ -44,10 +45,6 @@ autocmd Filetype tex setlocal textwidth=80 wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
-
-" OCaml
-au BufWrite *.ml :Autoformat
-au BufWrite *.mli :Autoformat
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -150,9 +147,23 @@ nnoremap <C-L> <C-W><C-L>
 " Vertical resize to show 80 (plus some padding)
 nnoremap <leader>` :vertical resize 88<CR>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-slime
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
+let g:slime_dont_ask_default = 1
+vnoremap . :SlimeSend<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autoformat
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au BufWrite *.ml :Autoformat
+au BufWrite *.mli :Autoformat
+au BufWrite *.py :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
@@ -160,5 +171,7 @@ let g:autoformat_remove_trailing_spaces = 0
 
 let g:formatdef_ocamlformat = '"ocamlformat --name " . expand("%:p") . " -"'
 let g:formatters_ocaml = ['ocamlformat']
+
+let g:formatters_python = ['black']
 
 nnoremap <leader>f :Autoformat<CR>

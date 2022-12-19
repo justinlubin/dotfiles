@@ -6,11 +6,8 @@ set -gx PATH \
   ~/.cabal/bin \
   ~/bin \
   ~/.cargo/bin \
-  ~/Library/Python/2.7/bin \
-  ~/Library/Python/3.9/bin \
-  /usr/local/smlnj/bin \
+  (python3 -m site --user-base)/bin \
   ~/.go/bin \
-  ~/Desktop/edit-mirror-client \
   /usr/local/opt/ruby/bin \
   /usr/local/opt/libxml2/bin \
   $PATH
