@@ -15,6 +15,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
+Plug 'vim-autoformat/vim-autoformat'
 
 " Language support
 " Plug 'ElmCast/elm-vim'
@@ -24,48 +25,14 @@ Plug 'elzr/vim-json'
 Plug 'dag/vim-fish'
 Plug 'cespare/vim-toml'
 Plug 'https://git.rhiannon.website/rhi/beluga.vim.git'
-Plug 'purescript-contrib/purescript-vim'
 Plug 'ocaml/vim-ocaml'
-
-" LSP
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
-let g:ale_completion_enabled = 1
-Plug 'dense-analysis/ale'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetypes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:LanguageClient_loggingFile = expand("~/Desktop/lsp-log.txt")
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-
-" \ 'rust': ['rust-analyzer']
-" \ 'ocaml': ['ocamllsp'],
-" autocmd BufWritePre *.ml :call LanguageClient#textDocument_formatting_sync()
-
-" Logger
-let g:LanguageClient_serverCommands = {
-  \ 'elm': ['edit-mirror', 'language-server'],
-  \ }
-
-let g:LanguageClient_rootMarkers = {
-  \ 'elm': ['elm.json'],
-  \ }
-
-let g:ale_fixers = {
-  \ 'ocaml': ['ocamlformat'],
-  \ }
-
-let g:ale_fix_on_save = 1
-let g:ale_set_highlights = 0
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " All
 filetype plugin indent on
@@ -83,18 +50,12 @@ autocmd Filetype tex setlocal textwidth=80 wrap
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
 
-" Elm
-let g:elm_setup_keybindings = 0
-let g:elm_format_autosave = 0
-
 " Twelf
 autocmd BufNewFile,BufRead *.elf set syntax=beluga
 
-" PureScript
-let g:purescript_indent_case = 2
-let g:purescript_indent_let = 0
-let g:purescript_indent_where = 2
-let g:purescript_indent_do = 2
+" OCaml
+au BufWrite *.ml :Autoformat
+au BufWrite *.mli :Autoformat
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -174,7 +135,7 @@ nnoremap k gk
 " Mouse
 set mouse=a
 
-" Hardmode Activated
+" Hardmode activated
 noremap <Right> <NOP>
 noremap <Down> <NOP>
 noremap <Up> <NOP>
@@ -196,6 +157,22 @@ nnoremap <C-L> <C-W><C-L>
 
 " Vertical resize to show 80 (plus some padding)
 nnoremap <leader>` :vertical resize 88<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autoformat
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+let g:formatdef_ocamlformat = '"ocamlformat --name " . expand("%:p") . " -"'
+let g:formatters_ocaml = ['ocamlformat']
+
+let g:formatdef_brittany = '"brittany"'
+let g:formatters_haskell = ['brittany']
+
+nnoremap <leader>f :Autoformat<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous

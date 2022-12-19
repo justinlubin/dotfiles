@@ -1,6 +1,7 @@
 # Path
 
 set -gx PATH \
+  # ~/.micromamba/bin \
   ~/.local/bin \
   ~/.cabal/bin \
   ~/bin \
@@ -10,20 +11,28 @@ set -gx PATH \
   /usr/local/smlnj/bin \
   ~/.go/bin \
   ~/Desktop/edit-mirror-client \
+  /usr/local/opt/ruby/bin \
+  /usr/local/opt/libxml2/bin \
   $PATH
 
 # Global variables
 
 set -gx EDITOR 'vim'
 set -gx GOPATH ~/.go
+set -gx EDIT_MIRROR_DIR ~/bin
 
 # Shell configuration
 
+set -l in_iterm (string match "iTerm.app" "$TERM_PROGRAM")
+set -l in_tmux (string match "screen*" "$TERM")
+
 set fish_greeting
 
-if status --is-interactive
-  set BASE16_SHELL "$HOME/.config/base16-shell/"
-  source "$BASE16_SHELL/profile_helper.fish"
+if test \( -n "$in_iterm" \)
+  if status --is-interactive
+    set BASE16_SHELL "$HOME/.config/base16-shell/"
+    source "$BASE16_SHELL/profile_helper.fish"
+  end
 end
 
 # Prompt
@@ -116,7 +125,7 @@ alias refish "source ~/.config/fish/config.fish"
 alias etmux "$EDITOR ~/.tmux.conf"
 alias retmux "tmux source-file ~/.tmux.conf"
 alias evim "$EDITOR ~/.vimrc"
-alias tinit "tmux new-session -A -s init \; new-window rebash && retmux"
+alias tinit "tmux new-session -A -s init"
 alias takeover "tmux detach -a"
 alias sserver "python3 -m http.server 7532" # Simple server
 alias lserver "live-server --port=7532 --no-browser" # Live server
@@ -126,7 +135,8 @@ alias tb "nc termbin.com 9999"
 alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
-alias firefox "open -a Firefox"
+# alias firefox "open -a Firefox"
+alias ashby "ssh cs199-dvl@ashby.cs.berkeley.edu"
 
 # Functions
 
@@ -141,11 +151,24 @@ function _sizes_helper
 end
 
 function sizes
-  if test -z "$1"
+  if test -z "$argv[1]"
     _sizes_helper
   else
-    _sizes_helper | head -$1
+    _sizes_helper | head -$argv[1]
   end
+end
+
+function py
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  eval /Users/jlubin/.micromamba/bin/conda "shell.fish" "hook" $argv | source
+
+  if test -f "/Users/jlubin/.micromamba/etc/fish/conf.d/mamba.fish"
+      source "/Users/jlubin/.micromamba/etc/fish/conf.d/mamba.fish"
+  end
+  # <<< conda initialize <<<
+
+  conda activate scratch
 end
 
 # OCaml
@@ -156,9 +179,6 @@ end
 
 # Launch tmux on startup
 
-set -l in_tmux (string match "screen*" "$TERM")
-set -l in_vscode (string match "vscode" "$TERM_PROGRAM" )
-
-if test \( -z "$in_tmux" \) -a \( -z "$in_vscode" \)
+if test \( -n "$in_iterm" \) -a \( -z "$in_tmux" \)
   tinit
 end
