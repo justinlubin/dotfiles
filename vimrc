@@ -17,14 +17,32 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'jpalardy/vim-slime'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Language support
 Plug 'plasticboy/vim-markdown'
-Plug 'elzr/vim-json'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LSP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <F5> <Plug>(lcn-menu)
+
+let g:LanguageClient_serverCommands = {
+  \ 'python': ['pylsp'],
+  \ 'ocaml': ['ocamllsp'],
+  \ 'elm': ['elm-language-server'],
+  \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetypes
@@ -41,7 +59,8 @@ let g:vim_markdown_conceal=0
 autocmd Filetype markdown setlocal textwidth=80 wrap
 
 " TeX
-autocmd Filetype tex setlocal textwidth=80 wrap
+" autocmd Filetype tex setlocal textwidth=80 wrap
+autocmd Filetype tex setlocal wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
@@ -113,6 +132,9 @@ command! W write
 " For gitgutter
 set updatetime=100
 
+" Allow backspacing
+set backspace=indent,eol,start
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,9 +175,13 @@ nnoremap <leader>` :vertical resize 88<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
 let g:slime_dont_ask_default = 1
 vnoremap . :SlimeSend<CR>
+nmap <leader>s <Plug>SlimeSendCell
+
+autocmd Filetype python let b:slime_cell_delimiter = "# %%"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autoformat
@@ -174,4 +200,25 @@ let g:formatters_ocaml = ['ocamlformat']
 
 let g:formatters_python = ['black']
 
-nnoremap <leader>f :Autoformat<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LanguageClient-neovim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi clear SpellCap
+hi SpellCap cterm=underline
+
+nnoremap <leader>q <Plug>(lcn-menu)
+nnoremap <leader>w <Plug>(lcn-hover)
+nnoremap <leader>r <Plug>(lcn-rename)
+
+nnoremap <leader>j :cnext<CR>
+nnoremap <leader>k :cprev<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-fzf
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <leader><Space> :Files<CR>
+nnoremap <leader>f :Rg 

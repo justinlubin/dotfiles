@@ -1,22 +1,17 @@
 # Path
 
 set -gx PATH \
-  # ~/.micromamba/bin \
   ~/.local/bin \
   ~/.cabal/bin \
   ~/bin \
   ~/.cargo/bin \
-  (python3 -m site --user-base)/bin \
-  ~/.go/bin \
-  /usr/local/opt/ruby/bin \
-  /usr/local/opt/libxml2/bin \
+  ~/.elan/bin \
   $PATH
 
 # Global variables
 
 set -gx EDITOR 'vim'
-set -gx GOPATH ~/.go
-set -gx EDIT_MIRROR_DIR ~/bin
+set -gx FZF_DEFAULT_COMMAND 'rg --files'
 
 # Shell configuration
 
@@ -114,6 +109,7 @@ end
 # Aliases
 
 alias ls "ls -G"
+
 alias viminstall "vim +PlugInstall"
 alias vimupdate "vim +PlugUpdate"
 alias pipes "~/dotfiles/pipes.sh"
@@ -128,12 +124,9 @@ alias sserver "python3 -m http.server 7532" # Simple server
 alias lserver "live-server --port=7532 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
-alias tb "nc termbin.com 9999"
 alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
-# alias firefox "open -a Firefox"
-alias ashby "ssh cs199-dvl@ashby.cs.berkeley.edu"
 
 # Functions
 
@@ -164,8 +157,46 @@ function py
       source "/Users/jlubin/.micromamba/etc/fish/conf.d/mamba.fish"
   end
   # <<< conda initialize <<<
-
   conda activate scratch
+end
+
+function pyc
+  py && conda activate $argv[1]
+end
+
+# https://stackoverflow.com/a/16673745
+function read_confirm_n
+  while true
+    set -l prompt (echo -ns "$argv[1] [y/N] " (set_color normal))
+    read -l -P "$prompt" confirm
+
+    switch $confirm
+      case Y y
+        return 0
+      case '' N n
+        return 1
+    end
+  end
+end
+
+function _ok_helper
+  set -l last_nonempty_line
+  while read line
+    set line (string trim "$line")
+    if test -n $line
+      set last_nonempty_line $line
+    end
+  end
+  echo $last_nonempty_line
+end
+
+function ok
+  set -l last_nonempty_line (eval "$history[1] 2>&1 | _ok_helper")
+	echo -ns (set_color --bold green) "Command to run: " (set_color normal)
+  echo $last_nonempty_line
+	if read_confirm_n (echo -ns (set_color --bold red) "Continue?")
+		eval $last_nonempty_line
+	end
 end
 
 # OCaml
