@@ -13,6 +13,10 @@ set -gx PATH \
 set -gx EDITOR 'vim'
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
 
+# Set more environment variables
+
+source "$HOME/.env"
+
 # Shell configuration
 
 set -l in_iterm (string match "iTerm.app" "$TERM_PROGRAM")
@@ -75,6 +79,7 @@ function fish_prompt
     (set_color brblack) "[" (hostname) "] " \
     (set_color magenta) (prompt_pwd) \
     (git_prompt) \
+    (set_color brblack) " [" "$CMD_DURATION" "ms]" \
     (status_prompt $previous_status) \
     (set_color magenta) '\n>>> ' \
     (set_color normal)
@@ -127,6 +132,7 @@ alias line80 "echo \"-----------------------------------------------------------
 alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
+alias va "source .venv/bin/activate.fish"
 
 # Functions
 

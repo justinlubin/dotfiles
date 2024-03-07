@@ -19,27 +19,50 @@ Plug 'vim-autoformat/vim-autoformat'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/tagbar'
 
 " Language support
 Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
+Plug 'souffle-lang/souffle.vim'
 
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
   \ }
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LSP
+" LSP and debugger
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap <F5> <Plug>(lcn-menu)
-
 let g:LanguageClient_serverCommands = {
-  \ 'python': ['pylsp'],
+  \ 'python': {
+  \   'name': 'pylsp',
+  \   'command': ['pylsp'],
+  \   'initializationOptions': {
+  \      'pylsp': {
+  \        'configurationSources': ['flake8'],
+  \        'plugins': {
+  \          'pycodestyle': {
+  \            'enabled': v:false
+  \          },
+  \          'mccabe': {
+  \            'enabled': v:false
+  \          },
+  \          'pyflakes': {
+  \            'enabled': v:false
+  \          },
+  \          'flake8': {
+  \            'enabled': v:true
+  \          }
+  \        }
+  \      }
+  \   }
+  \ },
   \ 'ocaml': ['ocamllsp'],
   \ 'elm': ['elm-language-server'],
   \ }
@@ -119,6 +142,7 @@ set nofoldenable
 " Searching
 set hlsearch
 set incsearch
+map <leader>n :noh<CR>
 
 " Sign column
 set signcolumn=yes
@@ -169,6 +193,9 @@ nnoremap <C-L> <C-W><C-L>
 " Vertical resize to show 80 (plus some padding)
 nnoremap <leader>` :vertical resize 88<CR>
 
+" Make splits
+nnoremap <leader>j :split<CR>
+nnoremap <leader>k :vsplit<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-slime
@@ -213,8 +240,8 @@ nnoremap <leader>q <Plug>(lcn-menu)
 nnoremap <leader>w <Plug>(lcn-hover)
 nnoremap <leader>r <Plug>(lcn-rename)
 
-nnoremap <leader>j :cnext<CR>
-nnoremap <leader>k :cprev<CR>
+nnoremap <leader>h :cnext<CR>
+nnoremap <leader>l :cprev<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-fzf
@@ -222,3 +249,18 @@ nnoremap <leader>k :cprev<CR>
 
 nnoremap <leader><Space> :Files<CR>
 nnoremap <leader>f :Rg 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimspector
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <leader>d <Plug>VimspectorContinue
+nnoremap <leader>e :call vimspector#Reset()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:tagbar_position = 'topleft vertical'
+let g:tagbar_sort = 0
+nnoremap <leader>m :TagbarToggle<CR>
