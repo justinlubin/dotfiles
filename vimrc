@@ -22,6 +22,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 
 " Language support
+Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
@@ -65,7 +66,11 @@ let g:LanguageClient_serverCommands = {
   \ },
   \ 'ocaml': ['ocamllsp'],
   \ 'elm': ['elm-language-server'],
+  \ 'rust': ['rust-analyzer'],
   \ }
+
+" let g:LanguageClient_usePopupHover = 0
+" au CursorMoved *.rs call LanguageClient_textDocument_hover()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetypes
@@ -87,6 +92,8 @@ autocmd Filetype tex setlocal wrap
 
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
+
+au BufRead,BufNewFile *.cea set filetype=cea
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -217,6 +224,7 @@ autocmd Filetype python let b:slime_cell_delimiter = "# %%"
 au BufWrite *.ml :Autoformat
 au BufWrite *.mli :Autoformat
 au BufWrite *.py :Autoformat
+au BufWrite *.rs :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
@@ -226,6 +234,8 @@ let g:formatdef_ocamlformat = '"ocamlformat --name " . expand("%:p") . " -"'
 let g:formatters_ocaml = ['ocamlformat']
 
 let g:formatters_python = ['black']
+
+let g:formaterrs_rust = ['rustfmt']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LanguageClient-neovim
