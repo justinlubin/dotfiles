@@ -31,6 +31,12 @@ for file in $files; do
   ln -s $dir/$file ~/.$file
 done
 
+# alacritty
+
+mkdir -p ~/.config/alacritty
+mv ~/.config/alacritty/alacritty.toml $old_dir
+ln -s $dir/alacritty.toml ~/.config/alacritty/alacritty.toml
+
 # fish configuration
 
 mkdir -p ~/.config/fish
