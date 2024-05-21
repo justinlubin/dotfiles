@@ -213,6 +213,6 @@ end
 
 # Launch tmux on startup
 
-if test \( -n "$in_iterm" \) -a \( -z "$in_tmux" \)
+if test \( -z "$in_tmux" \)
   tinit
 end

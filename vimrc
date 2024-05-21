@@ -100,24 +100,26 @@ au BufRead,BufNewFile *.cea set filetype=cea
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 256 colors
-set t_Co=256
+" set t_Co=256
 
 " Dark background
 set background=dark
 
 " Base 16 color scheme
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+"     let base16colorspace=256
+"     source ~/.vimrc_background
+" endif
 
-highlight LineNr ctermbg=0
-highlight SignColumn ctermbg=0
+highlight LineNr ctermbg=NONE ctermfg=0
+highlight SignColumn ctermbg=NONE
 
-highlight GitGutterAdd ctermbg=0
-highlight GitGutterChange ctermbg=0
-highlight GitGutterDelete ctermbg=0
-highlight GitGutterChangeDelete ctermbg=0
+highlight GitGutterAdd ctermbg=NONE
+highlight GitGutterChange ctermbg=NONE
+highlight GitGutterDelete ctermbg=NONE
+highlight GitGutterChangeDelete ctermbg=NONE
+
+highlight ColorColumn ctermbg=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor Behavior and Appearance
