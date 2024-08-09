@@ -77,11 +77,19 @@ end
 
 set -g fish_prompt_pwd_dir_length 0
 
+function check_ssh
+  if test -n $SSH_CLIENT
+    echo -ens "SSH:"
+  end
+end
+
 function fish_prompt
   set -l previous_status $status
   set_color brblack
   echo -ens \
-    (set_color brblack) "[" (hostname) "] " \
+    (set_color brblack) "[" \
+    (set_color brgreen) (check_ssh) \
+    (set_color brblack) (hostname) "] " \
     (set_color magenta) (prompt_pwd) \
     (git_prompt) \
     (set_color brblack) " [" "$CMD_DURATION" "ms]" \
@@ -102,7 +110,7 @@ function bind_bang
 end
 
 function bind_dollar
-  switch (commandline -t)[-1]
+  switch (commandlie -t)[-1]
     case "!"
       commandline -t ""
       commandline -f history-token-search-backward
