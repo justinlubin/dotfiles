@@ -27,6 +27,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'souffle-lang/souffle.vim'
+Plug 'andymass/vim-matlab'
 
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
@@ -67,6 +68,7 @@ let g:LanguageClient_serverCommands = {
   \ 'ocaml': ['ocamllsp'],
   \ 'elm': ['elm-language-server'],
   \ 'rust': ['rust-analyzer'],
+  \ 'javascript': ['npx', '@biomejs/biome', 'lsp-proxy'],
   \ }
 
 " let g:LanguageClient_usePopupHover = 0
@@ -93,7 +95,8 @@ autocmd Filetype tex setlocal wrap
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
 
-au BufRead,BufNewFile *.cea set filetype=cea
+au BufRead,BufNewFile *.hblib set filetype=honeybee
+au BufRead,BufNewFile *.hb set filetype=honeybee
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -227,7 +230,6 @@ autocmd Filetype python let b:slime_cell_delimiter = "# %%"
 au BufWrite *.ml :Autoformat
 au BufWrite *.mli :Autoformat
 au BufWrite *.py :Autoformat
-au BufWrite *.rs :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
@@ -238,7 +240,7 @@ let g:formatters_ocaml = ['ocamlformat']
 
 let g:formatters_python = ['black']
 
-let g:formaterrs_rust = ['rustfmt']
+" let g:formatters_rust = ['rustfmt']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LanguageClient-neovim
@@ -252,9 +254,12 @@ hi SpellCap cterm=underline
 nnoremap <leader>q <Plug>(lcn-menu)
 nnoremap <leader>w <Plug>(lcn-hover)
 nnoremap <leader>r <Plug>(lcn-rename)
+nnoremap <leader>a <Plug>(lcn-format)
 
 nnoremap <leader>h :cnext<CR>
 nnoremap <leader>l :cprev<CR>
+
+autocmd BufWritePre *.rs,*.js call LanguageClient#textDocument_formatting_sync()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-fzf

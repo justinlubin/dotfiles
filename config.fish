@@ -4,8 +4,12 @@ set -gx PATH \
   ~/.local/bin \
   ~/.cabal/bin \
   ~/bin \
+  ~/bin/sra \
+  ~/bin/edirect \
+  ~/bin/enaBrowserTools/python3 \
   ~/.cargo/bin \
   ~/.elan/bin \
+  /usr/local/opt/llvm/bin \
   $PATH
 
 # Global variables
@@ -134,8 +138,17 @@ alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
 alias va "source .venv/bin/activate.fish"
+alias kao "tmux detach; ssh justinlubin@kaofang.cs.berkeley.edu -t 'fish --login'"
 
 # Functions
+
+function va
+  if test -z "$argv[1]"
+    source .venv/bin/activate.fish
+  else
+    source $argv[1]/.venv/bin/activate.fish
+  end
+end
 
 function skim
   open -a Skim $argv[1] &
