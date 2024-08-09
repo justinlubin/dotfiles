@@ -87,7 +87,7 @@ function fish_prompt
   set_color brblack
   echo -ens \
     (set_color brblack) "[" \
-    (set_color brgreen) (check_ssh) \
+    (set_color green) (check_ssh) \
     (set_color brblack) (hostname) "] " \
     (set_color magenta) (prompt_pwd) \
     (git_prompt) \
