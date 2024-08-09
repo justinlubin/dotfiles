@@ -29,11 +29,9 @@ set -l in_tmux (string match "screen*" "$TERM")
 
 set fish_greeting
 
-if test \( -n "$in_iterm" \)
-  if status --is-interactive
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
-  end
+if status --is-interactive
+  set BASE16_SHELL "$HOME/.config/base16-shell/"
+  source "$BASE16_SHELL/profile_helper.fish"
 end
 
 # Prompt

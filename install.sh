@@ -20,7 +20,7 @@ fi
 
 # The dotfiles to handle
 
-files="vimrc vimrc_background tmux.conf tinyvimrc gitconfig"
+files="vimrc tmux.conf tinyvimrc gitconfig"
 
 # Link new dotfiles and backup old ones
 
