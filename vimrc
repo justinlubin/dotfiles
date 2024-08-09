@@ -102,28 +102,15 @@ au BufRead,BufNewFile *.hb set filetype=honeybee
 " Color
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Dark background
 set background=dark
+colorscheme base16-ocean
 
-" Base 16 color scheme
-if filereadable(expand("~/.vimrc_background"))
-    set t_Co=256
-
-    let base16colorspace=256
-    source ~/.vimrc_background
-
-    highlight LineNr ctermbg=0
-    highlight SignColumn ctermbg=0
-    highlight GitGutterAdd ctermbg=0
-    highlight GitGutterChange ctermbg=0
-    highlight GitGutterDelete ctermbg=0
-    highlight GitGutterChangeDelete ctermbg=0
-else
-    highlight LineNr ctermbg=NONE ctermfg=0
-    highlight SignColumn ctermbg=NONE
-    highlight ColorColumn ctermbg=8
-endif
-
+highlight LineNr ctermbg=0
+highlight SignColumn ctermbg=0
+highlight GitGutterAdd ctermbg=0
+highlight GitGutterChange ctermbg=0
+highlight GitGutterDelete ctermbg=0
+highlight GitGutterChangeDelete ctermbg=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor Behavior and Appearance

@@ -49,16 +49,6 @@ mkdir -p ~/.config/nvim
 mv ~/.config/nvim/init.vim $old_dir
 ln -s $dir/init.vim ~/.config/nvim/init.vim
 
-# Base16 color schemes
-
-git clone \
-  https://github.com/chriskempson/base16-shell.git \
-  ~/.config/base16-shell
-
-git clone \
-  https://github.com/saesh/base16-fish \
-  ~/.config/base16-fish
-
 # Vim plugins (and plugin manager)
 
 mkdir -p ~/.vim
