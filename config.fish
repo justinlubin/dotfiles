@@ -4,7 +4,7 @@ set -gx PATH \
   ~/.local/bin \
   ~/.cabal/bin \
   ~/bin \
-  ~/bin/sra \
+  ~/bin/sra/bin \
   ~/bin/edirect \
   ~/bin/enaBrowserTools/python3 \
   ~/.cargo/bin \
