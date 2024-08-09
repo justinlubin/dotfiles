@@ -42,6 +42,7 @@ ln -s $dir/alacritty.toml ~/.config/alacritty/alacritty.toml
 mkdir -p ~/.config/fish
 mv ~/.config/fish/config.fish $old_dir
 ln -s $dir/config.fish ~/.config/fish/config.fish
+ln -s $dir/fish_variables ~/.config/fish/fish_variables
 
 # nvim configuration
 
