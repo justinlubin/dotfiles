@@ -138,6 +138,7 @@ alias retmux "tmux source-file ~/.tmux.conf"
 alias evim "$EDITOR ~/.vimrc"
 alias tinit "tmux new-session -A -s init"
 alias takeover "tmux detach -a"
+alias td "tmux detach"
 alias sserver "python3 -m http.server 7532" # Simple server
 alias lserver "live-server --port=7532 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
@@ -146,9 +147,12 @@ alias openv 'eval (opam env)'
 alias ocamls 'cd `ocamlc -where`'
 alias ffind "find . -name"
 alias va "source .venv/bin/activate.fish"
-alias kao "tmux detach; ssh justinlubin@kaofang.cs.berkeley.edu -t 'fish --login'"
 
 # Functions
+
+function kao
+  ssh justinlubin@kaofang.cs.berkeley.edu -t "fish --login"
+end
 
 function va
   if test -z "$argv[1]"
