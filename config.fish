@@ -78,7 +78,7 @@ end
 set -g fish_prompt_pwd_dir_length 0
 
 function check_ssh
-  if test -n $SSH_CLIENT
+  if test -n "$SSH_CLIENT"
     echo -ens "SSH:"
   end
 end
@@ -110,7 +110,7 @@ function bind_bang
 end
 
 function bind_dollar
-  switch (commandlie -t)[-1]
+  switch (commandline -t)[-1]
     case "!"
       commandline -t ""
       commandline -f history-token-search-backward
