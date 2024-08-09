@@ -12,6 +12,7 @@ set -gx PATH \
 
 set -gx EDITOR 'vim'
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
+set -gx FISH (which fish)
 
 # Set more environment variables
 
