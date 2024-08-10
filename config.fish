@@ -179,6 +179,10 @@ function sizes
   end
 end
 
+function space
+  df -h .
+end
+
 function py
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
