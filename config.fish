@@ -151,7 +151,7 @@ alias va "source .venv/bin/activate.fish"
 
 function kao
   ssh \
-    -L 8889:localhost:8888 \
+    -L 8888:localhost:8888 \
     justinlubin@kaofang.cs.berkeley.edu \
     -t "fish --login"
 end
