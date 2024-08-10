@@ -138,8 +138,8 @@ alias evim "$EDITOR ~/.vimrc"
 alias tinit "tmux new-session -A -s init"
 alias takeover "tmux detach -a"
 alias td "tmux detach"
-alias sserver "python3 -m http.server 7532" # Simple server
-alias lserver "live-server --port=7532 --no-browser" # Live server
+alias sserver "python3 -m http.server 8888" # Simple server
+alias lserver "live-server --port=8888 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
@@ -150,7 +150,10 @@ alias va "source .venv/bin/activate.fish"
 # Functions
 
 function kao
-  ssh justinlubin@kaofang.cs.berkeley.edu -t "fish --login"
+  ssh \
+    -L 8889:localhost:8888 \
+    justinlubin@kaofang.cs.berkeley.edu \
+    -t "fish --login"
 end
 
 function va
