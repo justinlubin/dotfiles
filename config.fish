@@ -18,22 +18,9 @@ set -gx EDITOR 'vim'
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
 set -gx FISH (which fish)
 
-# Set more environment variables
+# Set local environment variables
 
 source "$HOME/.env"
-
-# Shell configuration
-
-set -l in_iterm (string match "iTerm.app" "$TERM_PROGRAM")
-set -l in_tmux (string match "screen*" "$TERM")
-
-set fish_greeting
-
-if status --is-interactive
-  # set BASE16_SHELL "$HOME/.config/base16-shell/"
-  # source "$BASE16_SHELL/profile_helper.fish"
-  # base16-ocean
-end
 
 # Prompt
 
@@ -143,9 +130,6 @@ alias lserver "live-server --port=8888 --no-browser" # Live server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
-alias ocamls 'cd `ocamlc -where`'
-alias ffind "find . -name"
-alias va "source .venv/bin/activate.fish"
 
 # Functions
 
@@ -184,22 +168,6 @@ end
 
 function space
   df -h .
-end
-
-function py
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  eval /Users/jlubin/.micromamba/bin/conda "shell.fish" "hook" $argv | source
-
-  if test -f "/Users/jlubin/.micromamba/etc/fish/conf.d/mamba.fish"
-      source "/Users/jlubin/.micromamba/etc/fish/conf.d/mamba.fish"
-  end
-  # <<< conda initialize <<<
-  conda activate scratch
-end
-
-function pyc
-  py && conda activate $argv[1]
 end
 
 # https://stackoverflow.com/a/16673745
@@ -245,6 +213,7 @@ end
 
 # Launch tmux on startup
 
-if test \( -z "$in_tmux" \)
+set -l in_tmux (string match "screen*" "$TERM")
+if test \( -z "$in_tmux" \); and status --is-interactive
   tinit
 end

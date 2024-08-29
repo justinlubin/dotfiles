@@ -71,9 +71,6 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['npx', '@biomejs/biome', 'lsp-proxy'],
   \ }
 
-" let g:LanguageClient_usePopupHover = 0
-" au CursorMoved *.rs call LanguageClient_textDocument_hover()
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetypes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
