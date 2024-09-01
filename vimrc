@@ -28,6 +28,7 @@ Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'souffle-lang/souffle.vim'
 Plug 'andymass/vim-matlab'
+Plug 'raivivek/nextflow-vim'
 
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
