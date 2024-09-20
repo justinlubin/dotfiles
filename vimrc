@@ -7,7 +7,9 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " Color schemes
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'jeffkreeftmeijer/vim-dim'
+Plug 'noahfrederick/vim-noctu'
 
 " Editor improvements
 Plug 'tpope/vim-surround'
@@ -20,6 +22,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree'
 
 " Language support
 Plug 'rust-lang/rust.vim'
@@ -100,7 +103,7 @@ au BufRead,BufNewFile *.hb set filetype=honeybee
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set background=dark
-colorscheme base16-ocean
+colorscheme dim
 
 highlight LineNr ctermbg=0
 highlight SignColumn ctermbg=0
@@ -108,6 +111,7 @@ highlight GitGutterAdd ctermbg=0
 highlight GitGutterChange ctermbg=0
 highlight GitGutterDelete ctermbg=0
 highlight GitGutterChangeDelete ctermbg=0
+highlight ColorColumn ctermbg=8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor Behavior and Appearance
@@ -180,6 +184,7 @@ noremap <Left> <NOP>
 " Behavior
 set splitright
 set splitbelow
+:set fillchars+=vert:\ 
 
 " Navigation
 nnoremap <C-H> <C-W><C-H>
@@ -237,11 +242,13 @@ hi SpellCap cterm=underline
 
 nnoremap <leader>q <Plug>(lcn-menu)
 nnoremap <leader>w <Plug>(lcn-hover)
-nnoremap <leader>r <Plug>(lcn-rename)
-nnoremap <leader>a <Plug>(lcn-format)
+nnoremap <leader>d <Plug>(lcn-definition)
+nnoremap <leader>r <Plug>(lcn-references)
+" nnoremap <leader>r <Plug>(lcn-rename)
+" nnoremap <leader>a <Plug>(lcn-format)
 
-nnoremap <leader>h :cnext<CR>
-nnoremap <leader>l :cprev<CR>
+nnoremap <leader>t :cprev<CR>
+nnoremap <leader>g :cnext<CR>
 
 autocmd BufWritePre *.rs,*.js call LanguageClient#textDocument_formatting_sync()
 
@@ -256,13 +263,15 @@ nnoremap <leader>f :Rg
 " Vimspector
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <leader>d <Plug>VimspectorContinue
-nnoremap <leader>e :call vimspector#Reset()<CR>
+" nnoremap <leader>d <Plug>VimspectorContinue
+" nnoremap <leader>e :call vimspector#Reset()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
+" NERDTree and Tagbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:tagbar_position = 'topleft vertical'
+" let g:tagbar_position = 'topleft vertical'
+let g:tagbar_position = 'rightbelow'
 let g:tagbar_sort = 0
-nnoremap <leader>m :TagbarToggle<CR>
+let g:tagbar_height = winheight(0) / 2
+nnoremap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
