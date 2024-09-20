@@ -127,6 +127,7 @@ alias takeover "tmux detach -a"
 alias td "tmux detach"
 alias sserver "python3 -m http.server 8888" # Simple server
 alias lserver "live-server --port=8888 --no-browser" # Live server
+alias jserver "jupyter lab --port=8888 --no-browser" # Jupyter lab server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
