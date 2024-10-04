@@ -45,30 +45,32 @@ call plug#end()
 " LSP and debugger
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" \ 'python': {
+" \   'name': 'pylsp',
+" \   'command': ['pylsp'],
+" \   'initializationOptions': {
+" \      'pylsp': {
+" \        'configurationSources': ['flake8'],
+" \        'plugins': {
+" \          'pycodestyle': {
+" \            'enabled': v:false
+" \          },
+" \          'mccabe': {
+" \            'enabled': v:false
+" \          },
+" \          'pyflakes': {
+" \            'enabled': v:false
+" \          },
+" \          'flake8': {
+" \            'enabled': v:true
+" \          }
+" \        }
+" \      }
+" \   }
+" \ },
+
 let g:LanguageClient_serverCommands = {
-  \ 'python': {
-  \   'name': 'pylsp',
-  \   'command': ['pylsp'],
-  \   'initializationOptions': {
-  \      'pylsp': {
-  \        'configurationSources': ['flake8'],
-  \        'plugins': {
-  \          'pycodestyle': {
-  \            'enabled': v:false
-  \          },
-  \          'mccabe': {
-  \            'enabled': v:false
-  \          },
-  \          'pyflakes': {
-  \            'enabled': v:false
-  \          },
-  \          'flake8': {
-  \            'enabled': v:true
-  \          }
-  \        }
-  \      }
-  \   }
-  \ },
+  \ 'python': ["uvx", "ruff", "server"],
   \ 'ocaml': ['ocamllsp'],
   \ 'elm': ['elm-language-server'],
   \ 'rust': ['rust-analyzer'],
@@ -142,7 +144,7 @@ set wildmenu
 set nofoldenable
 
 " Searching
-set hlsearch
+" set hlsearch
 set incsearch
 map <leader>n :noh<CR>
 
@@ -219,7 +221,7 @@ autocmd Filetype python let b:slime_cell_delimiter = "# %%"
 
 au BufWrite *.ml :Autoformat
 au BufWrite *.mli :Autoformat
-au BufWrite *.py :Autoformat
+" au BufWrite *.py :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
@@ -228,9 +230,11 @@ let g:autoformat_remove_trailing_spaces = 0
 let g:formatdef_ocamlformat = '"ocamlformat --name " . expand("%:p") . " -"'
 let g:formatters_ocaml = ['ocamlformat']
 
-let g:formatters_python = ['black']
+" let g:formatters_python = ['black']
 
 " let g:formatters_rust = ['rustfmt']
+
+autocmd BufWritePre *.py call LanguageClient#textDocument_formatting_sync()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LanguageClient-neovim
