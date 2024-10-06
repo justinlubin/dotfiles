@@ -1,33 +1,28 @@
 [user]
-  name = "Justin Lubin"
-  email = "jlubi333@gmail.com"
+    name = "Justin Lubin"
+    email = "jlubi333@gmail.com"
 
 [core]
-  excludesfile = ~/.gitignore
-	autocrlf = input
+    excludesfile = ~/.gitignore
+    autocrlf = input
 
 [push]
-  default = simple
+    default = simple
 
 [pull]
-  ff = only
+    ff = only
 
 [merge]
-  conflictstyle = diff3
+    conflictstyle = diff3
 
 [mergetool]
-  prompt = false
+    prompt = false
 
 [color]
-  ui = true
+    ui = true
 
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 
 [init]
-	defaultBranch = main
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    defaultBranch = main
