@@ -152,25 +152,25 @@ let g:tagbar_height = winheight(0) / 2
 " Leader commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <leader>n :noh<CR>
+nmap <leader>n :noh<CR>
 
-nnoremap <leader>j :split<CR>
-nnoremap <leader>k :vsplit<CR>
-nnoremap <leader>` :vertical resize 88<CR>
+nmap <leader>j :split<CR>
+nmap <leader>k :vsplit<CR>
+nmap <leader>` :vertical resize 88<CR>
 
-nnoremap <leader>- :set cursorcolumn!<Bar>set cursorline!<CR>
+nmap <leader>- :set cursorcolumn!<Bar>set cursorline!<CR>
 
-nnoremap <leader><Space> :Files<CR>
-nnoremap <leader>f :Rg 
+nmap <leader><Space> :Files<CR>
+nmap <leader>f :Rg 
 
-nnoremap <leader>q <Plug>(lcn-menu)
-nnoremap <leader>w <Plug>(lcn-hover)
-nnoremap <leader>d <Plug>(lcn-definition)
-nnoremap <leader>r <Plug>(lcn-references)
+nmap <leader>q <Plug>(lcn-menu)
+nmap <leader>w <Plug>(lcn-hover)
+nmap <leader>d <Plug>(lcn-definition)
+nmap <leader>r <Plug>(lcn-references)
 
-nnoremap <leader>t :cprev<CR>
-nnoremap <leader>g :cnext<CR>
+nmap <leader>t :cprev<CR>
+nmap <leader>g :cnext<CR>
 
-nnoremap <leader>s <Plug>SlimeSendCell
+nmap <leader>s <Plug>SlimeSendCell
 
-nnoremap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
+nmap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
