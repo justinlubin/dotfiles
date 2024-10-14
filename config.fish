@@ -131,6 +131,7 @@ alias jserver "jupyter lab --port=8888 --no-browser" # Jupyter lab server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
+alias ui "uv run ipython"
 
 # Functions
 
