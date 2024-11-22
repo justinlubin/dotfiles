@@ -73,8 +73,8 @@ command! W write
 
 " Tabs and indentation
 set tabstop=8
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 
