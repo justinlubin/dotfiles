@@ -5,7 +5,7 @@ padding = { x = 0, y = 0 }
 
 [font]
 normal = { family = "Iosevka Term", style = "Light Extended" }
-size = 19
+size = 21
 
 # Base16 Ocean - alacritty color config
 # Chris Kempson (http://chriskempson.com)

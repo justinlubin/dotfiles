@@ -1,0 +1,7 @@
+font-family = "Iosevka Term"
+font-size = 21
+theme = Oceanic-Next
+confirm-close-surface = false
+title = " "
+term = "xterm-256color"
+macos-titlebar-proxy-icon = hidden

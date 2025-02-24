@@ -22,7 +22,6 @@ Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 
 " Language support
-Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
@@ -34,6 +33,9 @@ Plug 'autozimu/LanguageClient-neovim', {
   \ }
 
 call plug#end()
+
+" Make the `filetype plugin indent on` setting from vim-plug explicit
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color
@@ -58,6 +60,7 @@ highlight ColorColumn ctermbg=8
 
 " Basics
 set backspace=indent,eol,start
+set textwidth=80
 set colorcolumn=80
 set mouse=a
 set nowrap
@@ -73,10 +76,11 @@ command! W write
 
 " Tabs and indentation
 set tabstop=8
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
+set smartindent
 
 " Search
 set hlsearch
@@ -107,6 +111,9 @@ autocmd Filetype tex setlocal wrap
 " Git
 autocmd Filetype gitcommit set colorcolumn=72
 autocmd Filetype gitcommit highlight ColorColumn ctermbg=1
+
+" Rust
+let g:rust_recommended_style = v:false " from the vim ftplugin
 
 " Honeybee
 au BufRead,BufNewFile *.hblib set filetype=honeybee

@@ -37,6 +37,12 @@ mkdir -p ~/.config/alacritty
 mv ~/.config/alacritty/alacritty.toml $old_dir
 ln -s $dir/alacritty.toml ~/.config/alacritty/alacritty.toml
 
+# alacritty
+
+mkdir -p ~/.config/ghostty
+mv ~/.config/ghostty/config $old_dir
+ln -s $dir/ghostty.toml ~/.config/ghostty/config
+
 # fish configuration
 
 mkdir -p ~/.config/fish

@@ -132,6 +132,8 @@ alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
 alias ui "uv run ipython"
+alias rgf "rg --files | rg"
+
 
 # Functions
 
