@@ -133,6 +133,10 @@ alias line80 "echo \"-----------------------------------------------------------
 alias openv 'eval (opam env)'
 alias ui "uv run ipython"
 alias rgf "rg --files | rg"
+alias bu "git add -A; git commit -m 'Backup'; git push"
+alias wk "vim +WikiIndex"
+alias wj "vim +WikiJournal"
+alias t "todo.sh"
 
 
 # Functions

@@ -9,9 +9,11 @@ call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'jeffkreeftmeijer/vim-dim'
 
-" Editor improvements
+" Editing improvements
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
+
+" Editor improvements
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/a.vim'
@@ -22,11 +24,17 @@ Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 
 " Language support
-Plug 'plasticboy/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'raivivek/nextflow-vim'
+Plug 'eigenfoo/stan-vim'
 
+" Wiki stuff
+Plug 'lervag/wiki.vim'
+Plug 'junegunn/goyo.vim'
+
+" LSP
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
@@ -41,18 +49,20 @@ filetype plugin indent on
 " Color
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! s:tweak_colors()
+    highlight LineNr ctermbg=0
+    highlight SignColumn ctermbg=0
+    highlight GitGutterAdd ctermbg=0
+    highlight GitGutterChange ctermbg=0
+    highlight GitGutterDelete ctermbg=0
+    highlight GitGutterChangeDelete ctermbg=0
+    highlight ColorColumn ctermbg=8
+endfunction
+
 syntax enable
-
 set background=dark
+autocmd! ColorScheme dim call s:tweak_colors()
 colorscheme dim
-
-highlight LineNr ctermbg=0
-highlight SignColumn ctermbg=0
-highlight GitGutterAdd ctermbg=0
-highlight GitGutterChange ctermbg=0
-highlight GitGutterDelete ctermbg=0
-highlight GitGutterChangeDelete ctermbg=0
-highlight ColorColumn ctermbg=8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Base editor behavior
@@ -60,7 +70,8 @@ highlight ColorColumn ctermbg=8
 
 " Basics
 set backspace=indent,eol,start
-set textwidth=80
+" set textwidth=80
+set textwidth=0
 set colorcolumn=80
 set mouse=a
 set nowrap
@@ -94,6 +105,12 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+" Move lines
+nnoremap <S-J> :move +1<CR>
+nnoremap <S-K> :move -2<CR>
+vnoremap <S-J> :move '>+1<CR>gv=gv
+vnoremap <S-K> :move '<-2<CR>gv=gv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype-specific settings
@@ -158,6 +175,32 @@ let g:tagbar_position = 'rightbelow'
 let g:tagbar_sort = 0
 let g:tagbar_height = winheight(0) / 2
 
+" Goyo
+
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+
+" wiki.vim
+let g:wiki_root = '~/Dropbox/notes'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,3 +227,7 @@ nmap <leader>g :cnext<CR>
 nmap <leader>s <Plug>SlimeSendCell
 
 nmap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
+
+nmap <leader>g :Goyo<CR>
+
+nmap <leader>b :!bu<CR>

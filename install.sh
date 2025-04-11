@@ -20,7 +20,7 @@ fi
 
 # The dotfiles to handle
 
-files="vimrc tmux.conf tinyvimrc gitconfig wezterm.lua"
+files="vimrc tmux.conf tinyvimrc gitconfig wezterm.lua todo.cfg"
 
 # Link new dotfiles and backup old ones
 
