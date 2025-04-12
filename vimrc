@@ -24,7 +24,7 @@ Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 
 " Language support
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'raivivek/nextflow-vim'
@@ -107,20 +107,26 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
 " Move lines
-nnoremap <S-J> :move +1<CR>
-nnoremap <S-K> :move -2<CR>
-vnoremap <S-J> :move '>+1<CR>gv=gv
-vnoremap <S-K> :move '<-2<CR>gv=gv
+nnoremap <C-S-J> :move +1<CR>
+nnoremap <C-S-K> :move -2<CR>
+vnoremap <C-S-J> :move '>+1<CR>gv=gv
+vnoremap <C-S-K> :move '<-2<CR>gv=gv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype-specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Markdown
-let g:vim_markdown_math=1
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_conceal=0
-autocmd Filetype markdown setlocal wrap
+augroup markdown
+  set foldenable
+  autocmd!
+  autocmd FileType markdown setlocal foldmethod=expr
+  autocmd FileType markdown setlocal foldexpr=MarkdownFold()
+  autocmd FileType markdown setlocal foldlevel=2
+  autocmd FileType markdown setlocal foldtext=getline(v:foldstart)
+  autocmd Filetype markdown setlocal wrap
+  nnoremap <Space> za
+augroup END
 
 " TeX
 autocmd Filetype tex setlocal wrap
@@ -200,6 +206,8 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 
 " wiki.vim
 let g:wiki_root = '~/Dropbox/notes'
+let g:wiki_link_creation = { 'md': { 'link_type': 'wiki' } }
+let g:wiki_link_transform_on_follow = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader commands
