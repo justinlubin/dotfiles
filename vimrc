@@ -24,7 +24,6 @@ Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 
 " Language support
-" Plug 'gabrielelana/vim-markdown'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'raivivek/nextflow-vim'
@@ -81,6 +80,7 @@ set signcolumn=yes
 set updatetime=100 " For gitgutter
 set wildmenu
 set nofoldenable
+set display=lastline
 nnoremap j gj
 nnoremap k gk
 command! W write
@@ -126,6 +126,9 @@ augroup markdown
   autocmd FileType markdown setlocal foldtext=getline(v:foldstart)
   autocmd Filetype markdown setlocal wrap
   nnoremap <Space> za
+  nmap <Enter> <plug>(wiki-link-follow)
+  nmap <Backspace> <plug>(wiki-link-return)
+  nmap <leader>a <plug>(wiki-link-add)
 augroup END
 
 " TeX
@@ -137,10 +140,6 @@ autocmd Filetype gitcommit highlight ColorColumn ctermbg=1
 
 " Rust
 let g:rust_recommended_style = v:false " from the vim ftplugin
-
-" Honeybee
-au BufRead,BufNewFile *.hblib set filetype=honeybee
-au BufRead,BufNewFile *.hb set filetype=honeybee
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -156,24 +155,30 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['npx', '@biomejs/biome', 'lsp-proxy'],
   \ }
 
+let g:LanguageClient_rootMarkers = ['biome.json']
+
 hi clear SpellBad
 hi SpellBad cterm=underline
 hi clear SpellCap
 hi SpellCap cterm=underline
 
 autocmd BufWritePre
-  \ *.py,*.rs,*.js
+  \ *.py,*.rs,*.js,*.elm
   \ call LanguageClient#textDocument_formatting_sync()
+
+autocmd BufWritePre
+  \ *.py
+  \ call LanguageClient#executeCodeAction('source.organizeImports.ruff')
 
 " vim-slime
 
 let g:slime_target = "tmux"
-" let g:slime_python_ipython = 1
 let g:slime_bracketed_paste = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
 let g:slime_dont_ask_default = 1
 autocmd Filetype python let b:slime_cell_delimiter = "# %%"
 autocmd Filetype sh let b:slime_cell_delimiter = "# %%"
+autocmd Filetype r let b:slime_cell_delimiter = "# %%"
 
 " NERDTree and Tagbar
 
@@ -206,8 +211,9 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 
 " wiki.vim
 let g:wiki_root = '~/Dropbox/notes'
-let g:wiki_link_creation = { 'md': { 'link_type': 'wiki' } }
+let g:wiki_link_creation = { 'md': { 'link_type': 'wiki', 'link_text': {_ -> ''} } }
 let g:wiki_link_transform_on_follow = 0
+let g:wiki_mappings_use_defaults = 'none'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader commands

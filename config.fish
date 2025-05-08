@@ -137,7 +137,6 @@ alias bu "git add -A; git commit -m 'Backup'; git push"
 alias wk "cd ~/Dropbox/notes; vim +WikiIndex"
 alias t "todo.sh"
 
-
 # Functions
 
 function kao
@@ -177,6 +176,11 @@ function space
   df -h .
 end
 
+# https://unix.stackexchange.com/a/205854
+function collapse_spaces
+    awk '{$1=$1};1'
+end
+
 # https://stackoverflow.com/a/16673745
 function read_confirm_n
   while true
@@ -210,6 +214,13 @@ function ok
 	if read_confirm_n (echo -ns (set_color --bold red) "Continue?")
 		eval $last_nonempty_line
 	end
+end
+
+function lmake
+    while true
+        make -s
+        sleep 1
+    end
 end
 
 # OCaml
