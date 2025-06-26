@@ -28,7 +28,7 @@ set -l file (
 
 if test -n "$file"
     vim +Goyo "$dir/$file"
-    bu
+    cd $dir && bu
     exit 0
 else
     exit 1
