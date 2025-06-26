@@ -22,16 +22,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim'
 
 " Language support
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'raivivek/nextflow-vim'
 Plug 'eigenfoo/stan-vim'
-
-" Wiki stuff
-Plug 'lervag/wiki.vim'
-Plug 'junegunn/goyo.vim'
 
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
@@ -81,6 +78,7 @@ set updatetime=100 " For gitgutter
 set wildmenu
 set nofoldenable
 set display=lastline
+set linebreak
 nnoremap j gj
 nnoremap k gk
 command! W write
@@ -117,19 +115,7 @@ vnoremap <C-S-K> :move '<-2<CR>gv=gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Markdown
-augroup markdown
-  set foldenable
-  autocmd!
-  autocmd FileType markdown setlocal foldmethod=expr
-  autocmd FileType markdown setlocal foldexpr=MarkdownFold()
-  autocmd FileType markdown setlocal foldlevel=2
-  autocmd FileType markdown setlocal foldtext=getline(v:foldstart)
-  autocmd Filetype markdown setlocal wrap
-  nnoremap <Space> za
-  nmap <Enter> <plug>(wiki-link-follow)
-  nmap <Backspace> <plug>(wiki-link-return)
-  nmap <leader>a <plug>(wiki-link-add)
-augroup END
+" autocmd Filetype markdown setlocal wrap
 
 " TeX
 autocmd Filetype tex setlocal wrap
@@ -153,6 +139,8 @@ let g:LanguageClient_serverCommands = {
   \ 'elm': ['elm-language-server'],
   \ 'rust': ['rust-analyzer'],
   \ 'javascript': ['npx', '@biomejs/biome', 'lsp-proxy'],
+  \ 'css': ['npx', '@biomejs/biome', 'lsp-proxy'],
+  \ 'gleam': ['gleam', 'lsp'],
   \ }
 
 let g:LanguageClient_rootMarkers = ['biome.json']
@@ -163,7 +151,7 @@ hi clear SpellCap
 hi SpellCap cterm=underline
 
 autocmd BufWritePre
-  \ *.py,*.rs,*.js,*.elm
+  \ *.py,*.rs,*.js,*.elm,*.gleam",*.css
   \ call LanguageClient#textDocument_formatting_sync()
 
 autocmd BufWritePre
@@ -193,9 +181,12 @@ function! s:goyo_enter()
   let b:quitting_bang = 0
   autocmd QuitPre <buffer> let b:quitting = 1
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+  set wrap
+  set number
 endfunction
 
 function! s:goyo_leave()
+  set nowrap
   " Quit Vim if this is the only remaining buffer
   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
     if b:quitting_bang
@@ -245,3 +236,8 @@ nmap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
 nmap <leader>g :Goyo<CR>
 
 nmap <leader>b :!bu<CR>
+
+nmap <leader>n :w !wc -w<CR>
+
+autocmd! Filetype elm imap <leader>` Debug.todo "TODO"
+autocmd! Filetype rust imap <leader>` todo!()

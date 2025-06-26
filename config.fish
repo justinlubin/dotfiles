@@ -113,7 +113,6 @@ end
 # Aliases
 
 alias ls "ls -G"
-
 alias viminstall "vim +PlugInstall"
 alias vimupdate "vim +PlugUpdate"
 alias pipes "~/dotfiles/pipes.sh"
@@ -135,7 +134,8 @@ alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
 alias wk "cd ~/Dropbox/notes; vim +WikiIndex"
-alias t "todo.sh"
+alias c "fish ~/dotfiles/create-note.fish"
+alias s "fish ~/dotfiles/search-notes.fish"
 
 # Functions
 
