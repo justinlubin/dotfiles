@@ -134,8 +134,7 @@ alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
 alias wk "cd ~/Dropbox/notes; vim +WikiIndex"
-alias c "fish ~/dotfiles/create-note.fish"
-alias s "fish ~/dotfiles/search-notes.fish"
+alias n "fish ~/dotfiles/notes.fish"
 
 # Functions
 

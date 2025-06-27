@@ -1,10 +1,12 @@
 set -l dir ~/Dropbox/notes
 
+# set -l tags (fish ~/dotfiles/show-tags.fish | string join ':')
+
 set -l files (
     rg --sortr modified -l "$argv" $dir
 )
 
-set -l file (
+set -l queryfile (
     for f in $files;
         echo -ns (basename $f) (set_color brblack) " ▷ "
         set -l preview (head -1 $f)
@@ -21,14 +23,24 @@ set -l file (
         --bind "?:toggle-preview" \
         --preview-window hidden \
         --preview-window=up \
-        --color=16,border:bright-black \
+        --color=16,border:bright-black,label:bright-black \
         --delimiter=" ▷ " \
-    | string match -rg '^(.*) ▷'
+        --print-query
 )
+
+set -l query $queryfile[1]
+set -l file (string match -rg '^(.*) ▷' $queryfile[2])
+
+if test (string match -r '^!' $query)
+    set -l prefix (date +"%Y-%m-%d")
+    set -l name (string trim -c '!' $query)
+    set -l suffix ".md"
+    set file "$prefix $name$suffix"
+end
 
 if test -n "$file"
     vim +Goyo "$dir/$file"
-    cd $dir && bu
+    # cd $dir && bu
     exit 0
 else
     exit 1
