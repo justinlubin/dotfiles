@@ -35,7 +35,12 @@ if test (string match -r '^!' $query)
     set -l prefix (date +"%Y-%m-%d")
     set -l name (string trim -c '!' $query)
     set -l suffix ".md"
-    set file "$prefix $name$suffix"
+
+    if test -n "$name"
+        set prefix "$prefix "
+    end
+
+    set file "$prefix$name$suffix"
 end
 
 if test -n "$file"
