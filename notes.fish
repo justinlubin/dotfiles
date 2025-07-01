@@ -44,7 +44,8 @@ if test (string match -r '^!' $query)
 end
 
 if test -n "$file"
-    vim +Goyo "$dir/$file"
+    cd "$dir"
+    vim +Goyo "$file"
     # cd $dir && bu
     exit 0
 else
