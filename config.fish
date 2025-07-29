@@ -133,8 +133,8 @@ alias openv 'eval (opam env)'
 alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
-alias wk "cd ~/Dropbox/notes; vim +WikiIndex"
 alias s "fish ~/dotfiles/notes.fish"
+alias i "cd ~/Dropbox/notes; vim _INDEX.md; cd -"
 
 # Functions
 

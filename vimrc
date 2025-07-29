@@ -233,11 +233,28 @@ nmap <leader>s <Plug>SlimeSendCell
 
 nmap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
 
-nmap <leader>g :Goyo<CR>
-
-nmap <leader>b :!bu<CR>
-
-nmap <leader>n :w !wc -w<CR>
+" TODOs
 
 autocmd! Filetype elm imap <leader>` Debug.todo "TODO"
 autocmd! Filetype rust imap <leader>` todo!()
+
+" Prose
+
+nmap <leader>0 :w !wc -w<CR>
+nmap <leader>g :Goyo<CR>
+
+" Notes
+
+nmap <leader>b :!bu<CR>
+
+function! Due()
+    call inputsave()
+    let due = input('due:')
+    execute 'r!python3 ~/dotfiles/date.py ' . due
+    call inputrestore()
+endfunction
+
+nmap <leader>d k:call Due()<CR>Idue:<ESC>J
+nmap <leader>x k:r!date +"\%Y-\%m-\%d"<CR>Idone:<ESC>JddGp''zz
+vmap <leader>r :%!sort -n<CR>
+nmap <leader>z /^#<CR>

@@ -2,9 +2,13 @@ set -l dir ~/Dropbox/notes
 
 # set -l tags (fish ~/dotfiles/show-tags.fish | string join ':')
 
-set -l files (
-    rg --sortr modified -l "$argv" $dir
-)
+set -l files (ls -d $dir/*)
+
+if test -n "$argv"
+    set -l files (
+        rg --sortr modified -l "$argv" $dir
+    )
+end
 
 set -l queryfile (
     for f in $files;
