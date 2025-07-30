@@ -1,8 +1,8 @@
-set -l dir ~/Dropbox/notes
+set -l dir $argv[1]
 
 # set -l tags (fish ~/dotfiles/show-tags.fish | string join ':')
 
-set -l files (ls -d $dir/*)
+set -l files (ls -dt $dir/*)
 
 if test -n "$argv"
     set -l files (
@@ -45,12 +45,15 @@ if test (string match -r '^!' $query)
     end
 
     set file "$prefix$name$suffix"
+else if test (string match -r '^@' $query)
+    set -l name (string trim -c '@' $query)
+    set -l suffix ".md"
+    set file "$name$suffix"
 end
 
 if test -n "$file"
     cd "$dir"
-    vim +Goyo "$file"
-    # cd $dir && bu
+    vim "$file"
     exit 0
 else
     exit 1

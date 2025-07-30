@@ -133,10 +133,24 @@ alias openv 'eval (opam env)'
 alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
-alias s "fish ~/dotfiles/notes.fish"
-alias i "cd ~/Dropbox/notes; vim _INDEX.md; cd -"
+
+alias i "cd ~/Dropbox/notes; vim home.md; cd -"
+alias o "cd ~/Dropbox/notes/logs/; vim +Files; cd -"
 
 # Functions
+
+function qn
+    cd ~/Dropbox/notes/quick-notes/
+    if test -z "$argv[1]"
+        vim +Files
+    else
+        set -l prefix (date +"%Y-%m-%d")
+        set -l name $argv[1]
+        set -l suffix ".md"
+        vim "$prefix $name$suffix"
+    end
+    cd -
+end
 
 function kao
   ssh \

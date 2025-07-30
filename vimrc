@@ -22,7 +22,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
-Plug 'junegunn/goyo.vim'
 
 " Language support
 Plug 'dag/vim-fish'
@@ -115,7 +114,7 @@ vnoremap <C-S-K> :move '<-2<CR>gv=gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Markdown
-" autocmd Filetype markdown setlocal wrap
+autocmd Filetype markdown setlocal wrap
 
 " TeX
 autocmd Filetype tex setlocal wrap
@@ -174,38 +173,6 @@ let g:tagbar_position = 'rightbelow'
 let g:tagbar_sort = 0
 let g:tagbar_height = winheight(0) / 2
 
-" Goyo
-
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-  set wrap
-  set number
-endfunction
-
-function! s:goyo_leave()
-  set nowrap
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
-
-" wiki.vim
-let g:wiki_root = '~/Dropbox/notes'
-let g:wiki_link_creation = { 'md': { 'link_type': 'wiki', 'link_text': {_ -> ''} } }
-let g:wiki_link_transform_on_follow = 0
-let g:wiki_mappings_use_defaults = 'none'
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,7 +208,6 @@ autocmd! Filetype rust imap <leader>` todo!()
 " Prose
 
 nmap <leader>0 :w !wc -w<CR>
-nmap <leader>g :Goyo<CR>
 
 " Notes
 
@@ -255,6 +221,7 @@ function! Due()
 endfunction
 
 nmap <leader>d k:call Due()<CR>Idue:<ESC>J
+nmap <leader>e O# <ESC>:r!date +"\%Y-\%m-\%d"<CR>kJo<CR><CR><ESC>ki
 nmap <leader>x k:r!date +"\%Y-\%m-\%d"<CR>Idone:<ESC>JddGp''zz
 vmap <leader>r :%!sort -n<CR>
 nmap <leader>z /^#<CR>
