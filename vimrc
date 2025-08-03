@@ -220,7 +220,7 @@ function! Due()
     call inputrestore()
 endfunction
 
-nmap <leader>d k:call Due()<CR>Idue:<ESC>J
+nmap <leader>t k:call Due()<CR>Idue:<ESC>J
 nmap <leader>e O# <ESC>:r!date +"\%Y-\%m-\%d"<CR>kJo<CR><CR><ESC>ki
 nmap <leader>x k:r!date +"\%Y-\%m-\%d"<CR>Idone:<ESC>JddGp''zz
 vmap <leader>r :%!sort -n<CR>

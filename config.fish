@@ -133,6 +133,7 @@ alias openv 'eval (opam env)'
 alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
+alias nun "ssh justin@169.229.147.36"
 
 alias i "cd ~/Dropbox/notes; vim home.md; cd -"
 alias o "cd ~/Dropbox/notes/logs/; vim +Files; cd -"
