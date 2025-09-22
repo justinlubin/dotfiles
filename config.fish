@@ -248,7 +248,7 @@ end
 
 function checktime
     set -l d (sntp time.apple.com | string split ' ' | head -n1 | string sub -s2)
-    test $d -lt 0.05
+    test $d -lt 0.05 # 0.05 seconds (50 ms)
 end
 
 function updatetime
@@ -267,7 +267,7 @@ set -l in_tmux (string match "screen*" "$TERM")
 if status is-interactive
     if test -n "$in_tmux" # in tmux
         if ! checktime
-            echo "$(set_color --bold red)Time out of sync! Enter password to update time.$(set_color normal)"
+            echo "$(set_color --bold red)Time out of sync! Enter password to update (CTRL-C to skip).$(set_color normal)"
             updatetime
         end
     else # not in tmux
