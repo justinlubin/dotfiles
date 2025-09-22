@@ -142,7 +142,7 @@ let g:LanguageClient_serverCommands = {
   \ 'gleam': ['gleam', 'lsp'],
   \ }
 
-let g:LanguageClient_rootMarkers = ['biome.json']
+let g:LanguageClient_rootMarkers = ['biome.json', 'elm.json']
 
 hi clear SpellBad
 hi SpellBad cterm=underline
@@ -200,6 +200,15 @@ nmap <leader>s <Plug>SlimeSendCell
 
 nmap <leader>m :NERDTreeToggle<CR>:TagbarToggle<CR>
 
+nmap <leader>c g<C-G>
+
+function! MdCleanCopy()
+    execute '!cat % | mdclean | pbcopy'
+endfunction
+nmap <leader>y :call MdCleanCopy()<CR><CR>
+
+vmap <leader>u "*yy
+
 " TODOs
 
 autocmd! Filetype elm imap <leader>` Debug.todo "TODO"
@@ -211,7 +220,7 @@ nmap <leader>0 :w !wc -w<CR>
 
 " Notes
 
-nmap <leader>b :!bu<CR>
+nmap <leader>b :!bu<CR><CR>
 
 function! Due()
     call inputsave()

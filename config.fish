@@ -3,13 +3,12 @@
 set -gx PATH \
   ~/.local/bin \
   ~/.cabal/bin \
-  ~/bin \
-  ~/bin/sra/bin \
-  ~/bin/edirect \
-  ~/bin/enaBrowserTools/python3 \
   ~/.cargo/bin \
   ~/.elan/bin \
   /usr/local/opt/llvm/bin \
+  ~/bin \
+  ~/bin/sratoolkit \
+  ~/bin/enaBrowserTools/python3 \
   $PATH
 
 # Global variables
@@ -134,9 +133,12 @@ alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
 alias nun "ssh justin@169.229.147.36"
+alias mdclean "pandoc -f markdown -t markdown --wrap=none"
+alias jcal "ncal -B1 -A2"
 
 alias i "cd ~/Dropbox/notes; vim home.md; cd -"
 alias o "cd ~/Dropbox/notes/logs/; vim +Files; cd -"
+alias n "cd ~/Dropbox/notes"
 
 # Functions
 
@@ -232,9 +234,25 @@ end
 
 function lmake
     while true
-        make -s
-        sleep 1
+        if make -s
+            sleep 1
+        else
+            if read -p "set_color --bold red; printf '\n    (***) Make failed! Press ENTER try again.\n\n'"
+                continue
+            else
+                break
+            end
+        end
     end
+end
+
+function checktime
+    set -l d (sntp time.apple.com | string split ' ' | head -n1 | string sub -s2)
+    test $d -lt 0.05
+end
+
+function updatetime
+    sudo sntp -sS time.apple.com
 end
 
 # OCaml
@@ -246,6 +264,13 @@ end
 # Launch tmux on startup
 
 set -l in_tmux (string match "screen*" "$TERM")
-if test \( -z "$in_tmux" \); and status --is-interactive
-  tinit
+if status is-interactive
+    if test -n "$in_tmux" # in tmux
+        if ! checktime
+            echo "$(set_color --bold red)Time out of sync! Enter password to update time.$(set_color normal)"
+            updatetime
+        end
+    else # not in tmux
+        tinit
+    end
 end
