@@ -136,14 +136,14 @@ alias nun "ssh justin@169.229.147.36"
 alias mdclean "pandoc -f markdown -t markdown --wrap=none"
 alias jcal "ncal -B1 -A2"
 
+# Notes
+
 alias i "cd ~/Dropbox/notes; vim home.md; cd -"
 alias o "cd ~/Dropbox/notes/logs/; vim +Files; cd -"
 alias n "cd ~/Dropbox/notes"
 
-# Functions
-
 function qn
-    cd ~/Dropbox/notes/quick-notes/
+    cd ~/Dropbox/notes/quick
     if test -z "$argv[1]"
         vim +Files
     else
@@ -154,6 +154,20 @@ function qn
     end
     cd -
 end
+
+function sn
+    cd ~/Dropbox/notes/stable
+    if test -z "$argv[1]"
+        vim +Files
+    else
+        set -l name $argv[1]
+        set -l suffix ".md"
+        vim "$name$suffix"
+    end
+    cd -
+end
+
+# Functions
 
 function kao
   ssh \
