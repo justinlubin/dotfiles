@@ -5,3 +5,6 @@ confirm-close-surface = false
 title = " "
 term = "xterm-256color"
 macos-titlebar-proxy-icon = hidden
+bell-features = no-title
+window-width = 86
+window-height = 21

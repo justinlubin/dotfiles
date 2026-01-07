@@ -1,2 +1,4 @@
 set nocompatible
 set nowrap
+set mouse=a
+syntax enable

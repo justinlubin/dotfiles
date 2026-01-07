@@ -139,7 +139,6 @@ alias jcal "ncal -B1 -A2"
 # Notes
 
 alias i "cd ~/Dropbox/notes; vim home.md; cd -"
-alias o "cd ~/Dropbox/notes/logs/; vim +Files; cd -"
 alias n "cd ~/Dropbox/notes"
 
 function qn
@@ -167,7 +166,40 @@ function sn
     cd -
 end
 
+function o
+    cd ~/Dropbox/notes/logs
+    if test -z "$argv[1]"
+        vim +Files
+    else
+        set -l name $argv[1]
+        set -l suffix ".md"
+        vim "$name$suffix"
+    end
+    cd -
+end
+
 # Functions
+
+# shrinkvideo INPUTFILE OUTPUTFILE CRF
+function shrinkvideo
+    set -l inputfile "$argv[1]"
+    set -l outputfile "$argv[2]"
+    set -l crf "$argv[3]"
+    if test -z "$crf"
+        set crf 30
+    end
+    ffmpeg -i "$inputfile" -vcodec libx264 -crf "$crf" "$outputfile"
+end
+
+# shrinkvideo CRF
+function shrinkallvideos
+    set -l crf "$argv[1]"
+    mkdir -p shrunk
+    for f in *.mov
+        set -l out (path change-extension '.mp4' $f)
+        shrinkvideo "$f" "shrunk/$out" "$crf"
+    end
+end
 
 function kao
   ssh \
@@ -262,11 +294,15 @@ end
 
 function checktime
     set -l d (sntp time.apple.com | string split ' ' | head -n1 | string sub -s2)
-    test $d -lt 0.05 # 0.05 seconds (50 ms)
+    test $d -lt 1 # 1 second
 end
 
 function updatetime
     sudo sntp -sS time.apple.com
+end
+
+function tinycargocheck
+    cargo check --message-format=short 2>&1 | rg "^$1" | tac
 end
 
 # OCaml
@@ -280,10 +316,10 @@ end
 set -l in_tmux (string match "screen*" "$TERM")
 if status is-interactive
     if test -n "$in_tmux" # in tmux
-        if ! checktime
-            echo "$(set_color --bold red)Time out of sync! Enter password to update (CTRL-C to skip).$(set_color normal)"
-            updatetime
-        end
+        # if ! checktime
+        #     echo "$(set_color --bold red)Time out of sync! Enter password to update (CTRL-C to skip).$(set_color normal)"
+        #     updatetime
+        # end
     else # not in tmux
         tinit
     end

@@ -56,6 +56,12 @@ mkdir -p ~/.config/nvim
 mv ~/.config/nvim/init.vim $old_dir
 ln -s $dir/init.vim ~/.config/nvim/init.vim
 
+# Helix configuration
+
+mkdir -p ~/.config/helix
+mv ~/.config/helix/config.toml $old_dir
+ln -s $dir/helix.toml ~/.config/helix/config.toml
+
 # Vim plugins (and plugin manager)
 
 mkdir -p ~/.vim

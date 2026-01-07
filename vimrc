@@ -28,6 +28,7 @@ Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
 Plug 'raivivek/nextflow-vim'
 Plug 'eigenfoo/stan-vim'
+Plug 'Apeiros-46B/uiua.vim'
 
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
@@ -140,22 +141,28 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['npx', '@biomejs/biome', 'lsp-proxy'],
   \ 'css': ['npx', '@biomejs/biome', 'lsp-proxy'],
   \ 'gleam': ['gleam', 'lsp'],
+  \ 'uiua': ['uiua', 'lsp'],
   \ }
 
-let g:LanguageClient_rootMarkers = ['biome.json', 'elm.json']
+let g:LanguageClient_rootMarkers = ['biome.json', 'elm.json', 'main.ua']
 
 hi clear SpellBad
 hi SpellBad cterm=underline
 hi clear SpellCap
 hi SpellCap cterm=underline
 
-autocmd BufWritePre
-  \ *.py,*.rs,*.js,*.elm,*.gleam",*.css
-  \ call LanguageClient#textDocument_formatting_sync()
+function PythonFormat()
+    call LanguageClient#textDocument_formatting_sync()
+    call LanguageClient#executeCodeAction('source.organizeImports.ruff')
+endfunction
 
 autocmd BufWritePre
-  \ *.py
-  \ call LanguageClient#executeCodeAction('source.organizeImports.ruff')
+  \ *.rs,*.js,*.elm,*.gleam
+  \ call LanguageClient#textDocument_formatting_sync()
+
+
+autocmd BufWritePre *.py call PythonFormat()
+autocmd BufWritePre *.rs call LanguageClient#textDocument_formatting_sync()
 
 " vim-slime
 
