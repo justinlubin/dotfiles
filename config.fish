@@ -1,19 +1,19 @@
 # Path
 
 set -gx PATH \
-  ~/.local/bin \
-  ~/.cabal/bin \
-  ~/.cargo/bin \
-  ~/.elan/bin \
-  /usr/local/opt/llvm/bin \
-  ~/bin \
-  ~/bin/sratoolkit \
-  ~/bin/enaBrowserTools/python3 \
-  $PATH
+    ~/.local/bin \
+    ~/.cabal/bin \
+    ~/.cargo/bin \
+    ~/.elan/bin \
+    /usr/local/opt/llvm/bin \
+    ~/bin \
+    ~/bin/sratoolkit \
+    ~/bin/enaBrowserTools/python3 \
+    $PATH
 
 # Global variables
 
-set -gx EDITOR 'vim'
+set -gx EDITOR hx
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
 set -gx FISH (which fish)
 
@@ -24,89 +24,90 @@ source "$HOME/.env"
 # Prompt
 
 function git_prompt
-  if test -z (git rev-parse --is-inside-work-tree 2> /dev/null)
-    return
-  end
+    if test -z (git rev-parse --is-inside-work-tree 2> /dev/null)
+        return
+    end
 
-  set -l untracked (git status 2> /dev/null | grep 'Untracked files')
-  set -l not_staged (git status 2> /dev/null | grep 'Changes not staged for commit')
-  set -l staged (git status 2> /dev/null | grep 'Changes to be committed')
-  set -l ahead (git status 2> /dev/null | grep 'Your branch is ahead')
+    set -l untracked (git status 2> /dev/null | grep 'Untracked files')
+    set -l not_staged (git status 2> /dev/null | grep 'Changes not staged for commit')
+    set -l staged (git status 2> /dev/null | grep 'Changes to be committed')
+    set -l ahead (git status 2> /dev/null | grep 'Your branch is ahead')
 
-  echo -ns (set_color blue) ' ('
+    echo -ns (set_color blue) ' ('
 
-  # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
+    # http://mfitzp.io/article/add-git-branch-name-to-terminal-prompt-mac/
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | tr -d '\n'
 
-  if test -n "$untracked"
-    echo -ns (set_color yellow) '?'
-  end
-  if test -n "$not_staged"
-    echo -ns (set_color red) '*'
-  end
-  if test -n "$staged"
-    echo -ns (set_color green) '+'
-  end
-  if test -n "$ahead"
-    echo -ns (set_color magenta) '>'
-  end
+    if test -n "$untracked"
+        echo -ns (set_color yellow) '?'
+    end
+    if test -n "$not_staged"
+        echo -ns (set_color red) '*'
+    end
+    if test -n "$staged"
+        echo -ns (set_color green) '+'
+    end
+    if test -n "$ahead"
+        echo -ns (set_color magenta) '>'
+    end
 
-  echo -ns (set_color blue) ')'
+    echo -ns (set_color blue) ')'
 end
 
 function status_prompt
-  if test "$argv[1]" -ne 0
-    echo -ns (set_color red) " [" $argv[1] "]"
-  end
+    if test "$argv[1]" -ne 0
+        echo -ns (set_color red) " [" $argv[1] "]"
+    end
 end
 
 set -g fish_prompt_pwd_dir_length 0
 
 function check_ssh
-  if test -n "$SSH_CLIENT"
-    echo -ens "SSH:"
-  end
+    if test -n "$SSH_CLIENT"
+        echo -ens "SSH:"
+    end
 end
 
 function fish_prompt
-  set -l previous_status $status
-  set_color brblack
-  echo -ens \
-    (set_color brblack) "[" \
-    (set_color green) (check_ssh) \
-    (set_color brblack) (hostname) "] " \
-    (set_color magenta) (prompt_pwd) \
-    (git_prompt) \
-    (set_color brblack) " [" "$CMD_DURATION" "ms]" \
-    (status_prompt $previous_status) \
-    (set_color magenta) '\n>>> ' \
-    (set_color normal)
+    set -l previous_status $status
+    set_color brblack
+    echo -ens \
+        (set_color brblack) "[" \
+        (set_color green) (check_ssh) \
+        (set_color brblack) (hostname) "] " \
+        (set_color magenta) (prompt_pwd) \
+        (git_prompt) \
+        (set_color brblack) " [" "$CMD_DURATION" "ms]" \
+        (status_prompt $previous_status) \
+        (set_color magenta) '\n>>> ' \
+        (set_color normal)
 end
 
 # !! and !$
 
 function bind_bang
-  switch (commandline -t)[-1]
-    case "!"
-      commandline -t $history[1]; commandline -f repaint
-    case "*"
-      commandline -i !
-  end
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t $history[1]
+            commandline -f repaint
+        case "*"
+            commandline -i !
+    end
 end
 
 function bind_dollar
-  switch (commandline -t)[-1]
-    case "!"
-      commandline -t ""
-      commandline -f history-token-search-backward
-    case "*"
-      commandline -i '$'
-  end
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t ""
+            commandline -f history-token-search-backward
+        case "*"
+            commandline -i '$'
+    end
 end
 
 function fish_user_key_bindings
-  bind ! bind_bang
-  bind '$' bind_dollar
+    bind ! bind_bang
+    bind '$' bind_dollar
 end
 
 # Aliases
@@ -138,45 +139,46 @@ alias jcal "ncal -B1 -A2"
 
 # Notes
 
-alias i "cd ~/Dropbox/notes; vim home.md; cd -"
-alias n "cd ~/Dropbox/notes"
+alias i "cd ~/Dropbox/notes; hx home.md; cd -"
 
-function qn
-    cd ~/Dropbox/notes/quick
-    if test -z "$argv[1]"
-        vim +Files
-    else
-        set -l prefix (date +"%Y-%m-%d")
-        set -l name $argv[1]
-        set -l suffix ".md"
-        vim "$prefix $name$suffix"
-    end
-    cd -
-end
+# alias n "cd ~/Dropbox/notes"
 
-function sn
-    cd ~/Dropbox/notes/stable
-    if test -z "$argv[1]"
-        vim +Files
-    else
-        set -l name $argv[1]
-        set -l suffix ".md"
-        vim "$name$suffix"
-    end
-    cd -
-end
+# function qn
+#     cd ~/Dropbox/notes/quick
+#     if test -z "$argv[1]"
+#         vim +Files
+#     else
+#         set -l prefix (date +"%Y-%m-%d")
+#         set -l name $argv[1]
+#         set -l suffix ".md"
+#         vim "$prefix $name$suffix"
+#     end
+#     cd -
+# end
 
-function o
-    cd ~/Dropbox/notes/logs
-    if test -z "$argv[1]"
-        vim +Files
-    else
-        set -l name $argv[1]
-        set -l suffix ".md"
-        vim "$name$suffix"
-    end
-    cd -
-end
+# function sn
+#     cd ~/Dropbox/notes/stable
+#     if test -z "$argv[1]"
+#         vim +Files
+#     else
+#         set -l name $argv[1]
+#         set -l suffix ".md"
+#         vim "$name$suffix"
+#     end
+#     cd -
+# end
+
+# function o
+#     cd ~/Dropbox/notes/logs
+#     if test -z "$argv[1]"
+#         vim +Files
+#     else
+#         set -l name $argv[1]
+#         set -l suffix ".md"
+#         vim "$name$suffix"
+#     end
+#     cd -
+# end
 
 # Functions
 
@@ -202,40 +204,40 @@ function shrinkallvideos
 end
 
 function kao
-  ssh \
-    -L 8888:localhost:8888 \
-    justinlubin@kaofang.cs.berkeley.edu \
-    -t "fish --login"
+    ssh \
+        -L 8888:localhost:8888 \
+        justinlubin@kaofang.cs.berkeley.edu \
+        -t "fish --login"
 end
 
 function va
-  if test -z "$argv[1]"
-    source .venv/bin/activate.fish
-  else
-    source $argv[1]/.venv/bin/activate.fish
-  end
+    if test -z "$argv[1]"
+        source .venv/bin/activate.fish
+    else
+        source $argv[1]/.venv/bin/activate.fish
+    end
 end
 
 function skim
-  open -a Skim $argv[1] &
+    open -a Skim $argv[1] &
 end
 
 function _sizes_helper
-  for f in (ls -1);
-    du -sh "$f"
-  end | sort -h -b -r
+    for f in (ls -1)
+        du -sh "$f"
+    end | sort -h -b -r
 end
 
 function sizes
-  if test -z "$argv[1]"
-    _sizes_helper
-  else
-    _sizes_helper | head -$argv[1]
-  end
+    if test -z "$argv[1]"
+        _sizes_helper
+    else
+        _sizes_helper | head -$argv[1]
+    end
 end
 
 function space
-  df -h .
+    df -h .
 end
 
 # https://unix.stackexchange.com/a/205854
@@ -245,37 +247,37 @@ end
 
 # https://stackoverflow.com/a/16673745
 function read_confirm_n
-  while true
-    set -l prompt (echo -ns "$argv[1] [y/N] " (set_color normal))
-    read -l -P "$prompt" confirm
+    while true
+        set -l prompt (echo -ns "$argv[1] [y/N] " (set_color normal))
+        read -l -P "$prompt" confirm
 
-    switch $confirm
-      case Y y
-        return 0
-      case '' N n
-        return 1
+        switch $confirm
+            case Y y
+                return 0
+            case '' N n
+                return 1
+        end
     end
-  end
 end
 
 function _ok_helper
-  set -l last_nonempty_line
-  while read line
-    set line (string trim "$line")
-    if test -n $line
-      set last_nonempty_line $line
+    set -l last_nonempty_line
+    while read line
+        set line (string trim "$line")
+        if test -n $line
+            set last_nonempty_line $line
+        end
     end
-  end
-  echo $last_nonempty_line
+    echo $last_nonempty_line
 end
 
 function ok
-  set -l last_nonempty_line (eval "$history[1] 2>&1 | _ok_helper")
-	echo -ns (set_color --bold green) "Command to run: " (set_color normal)
-  echo $last_nonempty_line
-	if read_confirm_n (echo -ns (set_color --bold red) "Continue?")
-		eval $last_nonempty_line
-	end
+    set -l last_nonempty_line (eval "$history[1] 2>&1 | _ok_helper")
+    echo -ns (set_color --bold green) "Command to run: " (set_color normal)
+    echo $last_nonempty_line
+    if read_confirm_n (echo -ns (set_color --bold red) "Continue?")
+        eval $last_nonempty_line
+    end
 end
 
 function lmake
@@ -307,15 +309,14 @@ end
 
 # OCaml
 
-if type "opam" > /dev/null 2> /dev/null
-  openv
+if type opam >/dev/null 2>/dev/null
+    openv
 end
 
 # Launch tmux on startup
 
-set -l in_tmux (string match "screen*" "$TERM")
 if status is-interactive
-    if test -n "$in_tmux" # in tmux
+    if test -n "$TMUX" # in tmux
         # if ! checktime
         #     echo "$(set_color --bold red)Time out of sync! Enter password to update (CTRL-C to skip).$(set_color normal)"
         #     updatetime

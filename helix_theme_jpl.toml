@@ -1,0 +1,17 @@
+inherits = "base16_transparent"
+
+"comment" = "gray"
+"ui.linenr.selected" = { fg = "gray", modifiers = ["dim"] }
+
+"info" = { fg = "gray", modifiers = ["dim"] }
+"hint" = { fg = "gray", modifiers = ["dim"] }
+"debug" = { fg = "gray", modifiers = ["dim"] }
+"warning" = { fg = "yellow", modifiers = ["dim"] }
+"error" = { fg = "red", modifiers = ["dim"] }
+
+"diff.plus" = { fg = "green", modifiers = ["dim"] }
+"diff.delta" = { fg = "yellow", modifiers = ["dim"] }
+"diff.delta.moved" = { fg = "yellow", modifiers = ["dim"] }
+"diff.minus" = { fg = "red", modifiers = ["dim"] }
+
+"markup.link.url" = { }

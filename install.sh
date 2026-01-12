@@ -62,6 +62,9 @@ mkdir -p ~/.config/helix
 mv ~/.config/helix/config.toml $old_dir
 ln -s $dir/helix.toml ~/.config/helix/config.toml
 
+mkdir -p ~/.config/helix/themes
+ln -s $dir/helix_theme_jpl.toml ~/.config/helix/themes/jpl.toml
+
 # Vim plugins (and plugin manager)
 
 mkdir -p ~/.vim

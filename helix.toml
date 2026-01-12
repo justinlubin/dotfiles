@@ -1,8 +1,32 @@
-theme = "base16_transparent"
+theme = "jpl"
 
 [editor]
 rulers = [80]
+shell = ["fish", "-c"]
+search.wrap-around = false
 
 [editor.indent-guides]
 render = true
 character = "┊"
+
+[keys.normal]
+"A-h" = "jump_view_left"
+"A-j" = "jump_view_down"
+"A-k" = "jump_view_up"
+"A-l" = "jump_view_right"
+"#" = "toggle_comments"
+"(" = ":diffg"
+"S-6" = "@ghidone:<esc>:insert-output date +\"%%Y-%%m-%%d\"<ret><A-;>a <esc>xdgep<C-o>"
+
+[keys.normal."\\"]
+"y" = "@<A-s>:sort<ret><A-minus>,"
+"u" = "@5u"
+"b" = ":sh bu"
+"r" = ":config-reload"
+"s" = [
+  "trim_selections",
+  ":pipe-to tmux load-buffer -b SLIME -"
+  "tmux paste-buffer -p -b SLIME -t 1"
+  "tmux send-keys -t 1 Enter"
+]
+"c" = "@?# %%<ret>/((\n)|([^#].*\n?)|(#[^ ].*\n?)|(# [^%].*\n?)|(# %[^%].*\n?))*<ret>X"
