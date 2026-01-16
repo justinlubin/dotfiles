@@ -133,9 +133,8 @@ alias openv 'eval (opam env)'
 alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
-alias nun "ssh justin@169.229.147.36"
 alias mdclean "pandoc -f markdown -t markdown --wrap=none"
-alias jcal "ncal -B1 -A2"
+alias jcal "echo -n '                          Today is... '; date +'%Y-%m-%d!'; echo; ncal -B1 -A2"
 
 # Notes
 

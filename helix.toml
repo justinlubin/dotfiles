@@ -3,7 +3,7 @@ theme = "jpl"
 [editor]
 rulers = [80]
 shell = ["fish", "-c"]
-search.wrap-around = false
+search.wrap-around = true
 
 [editor.indent-guides]
 render = true
@@ -14,10 +14,19 @@ character = "┊"
 "A-j" = "jump_view_down"
 "A-k" = "jump_view_up"
 "A-l" = "jump_view_right"
+"S-A-k" = "expand_selection"
+"S-A-j" = "shrink_selection"
+"S-A-h" = "select_prev_sibling"
+"S-A-l" = "select_next_sibling"
 "#" = "toggle_comments"
-"S-6" = "@ghidone:<esc>:insert-output date +\"%%Y-%%m-%%d\"<ret><A-;>a <esc>xdgep<C-o>"
+"G" = "@ge"
+"'" = "jump_backward"
+"A-'" = "jump_forward"
 
 [keys.normal."\\"]
+"x" = "@ghidone:<esc>:insert-output date +\"%%Y-%%m-%%d\"<ret><A-;>a <esc>xdgep<C-o>"
+"X" = "@5u"
+"1" = "@jt^dO<esc>kmiw\\2i<ret><ret><esc>kk"
 "u" = ":diffg"
 "y" = "@<A-s>:sort<ret><A-minus>,"
 "b" = ":sh bu"
@@ -26,4 +35,5 @@ character = "┊"
   "trim_selections",
   ":sh echo '%{selection}' | tmux load-buffer -b SLIME -; tmux paste-buffer -p -b SLIME -t 1; tmux send-keys -t 1 Enter",
 ]
-"c" = "@?# %%<ret>/((\n)|([^#].*\n?)|(#[^ ].*\n?)|(# [^%].*\n?)|(# %[^%].*\n?))*<ret>X"
+"c" = "@:set search.wrap-around false<ret>?# %%<ret>/((\n)|([^#].*\n?)|(#[^ ].*\n?)|(# [^%].*\n?)|(# %[^%].*\n?))*<ret>X:set search.wrap-around true<ret>"
+"2" = ":append-output %{selection}"

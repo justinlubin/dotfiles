@@ -60,7 +60,9 @@ ln -s $dir/init.vim ~/.config/nvim/init.vim
 
 mkdir -p ~/.config/helix
 mv ~/.config/helix/config.toml $old_dir
+mv ~/.config/helix/languages.toml $old_dir
 ln -s $dir/helix.toml ~/.config/helix/config.toml
+ln -s $dir/helix_languages.toml ~/.config/helix/languages.toml
 
 mkdir -p ~/.config/helix/themes
 ln -s $dir/helix_theme_jpl.toml ~/.config/helix/themes/jpl.toml
