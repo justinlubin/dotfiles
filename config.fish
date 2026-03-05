@@ -9,6 +9,7 @@ set -gx PATH \
     ~/bin \
     ~/bin/sratoolkit \
     ~/bin/enaBrowserTools/python3 \
+    ~/.bun/bin \
     $PATH
 
 # Global variables
@@ -125,7 +126,7 @@ alias tinit "tmux new-session -A -s init"
 alias takeover "tmux detach -a"
 alias td "tmux detach"
 alias sserver "python3 -m http.server 8888" # Simple server
-alias lserver "live-server --port=8888 --no-browser" # Live server
+alias lserver "live-server --port=8888 --no-browser --ignore='**/*.bck'" # Live server
 alias jserver "jupyter lab --port=8888 --no-browser" # Jupyter lab server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
@@ -134,7 +135,9 @@ alias ui "uv run ipython"
 alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
 alias mdclean "pandoc -f markdown -t markdown --wrap=none"
-alias jcal "echo -n '                          Today is... '; date +'%Y-%m-%d!'; echo; ncal -B1 -A2"
+# alias jcal "echo -n '                          Today is... '; date +'%Y-%m-%d!'; echo; ncal -B1 -A2"
+alias jcal "cal -B1 -A1 | boxes -d ansi-rounded-dashed"
+alias glcheck "gleam check 2>&1 | rg '.gleam:' | sed 's/.*src\///' | sed 's/:.*//' | sort | uniq"
 
 # Notes
 

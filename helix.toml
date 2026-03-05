@@ -37,3 +37,5 @@ character = "┊"
 ]
 "c" = "@:set search.wrap-around false<ret>?# %%<ret>/((\n)|([^#].*\n?)|(#[^ ].*\n?)|(# [^%].*\n?)|(# %[^%].*\n?))*<ret>X:set search.wrap-around true<ret>"
 "2" = ":append-output %{selection}"
+"\\" = "@:set search.wrap-around false<ret>?# %%<ret>/((\n)|([^#].*\n?)|(#[^ ].*\n?)|(# [^%].*\n?)|(# %[^%].*\n?))*<ret>X:set search.wrap-around true<ret>\\s''"
+"o" = ":pipe boxes -d ansi-rounded-dashed"
