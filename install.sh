@@ -20,7 +20,7 @@ fi
 
 # The dotfiles to handle
 
-files="vimrc tmux.conf tinyvimrc gitconfig wezterm.lua todo.cfg"
+files="vimrc tmux.conf gitconfig"
 
 # Link new dotfiles and backup old ones
 
@@ -31,13 +31,7 @@ for file in $files; do
   ln -s $dir/$file ~/.$file
 done
 
-# alacritty
-
-mkdir -p ~/.config/alacritty
-mv ~/.config/alacritty/alacritty.toml $old_dir
-ln -s $dir/alacritty.toml ~/.config/alacritty/alacritty.toml
-
-# alacritty
+# ghostty
 
 mkdir -p ~/.config/ghostty
 mv ~/.config/ghostty/config $old_dir
@@ -49,12 +43,6 @@ mkdir -p ~/.config/fish
 mv ~/.config/fish/config.fish $old_dir
 ln -s $dir/config.fish ~/.config/fish/config.fish
 ln -s $dir/fish_variables ~/.config/fish/fish_variables
-
-# nvim configuration
-
-mkdir -p ~/.config/nvim
-mv ~/.config/nvim/init.vim $old_dir
-ln -s $dir/init.vim ~/.config/nvim/init.vim
 
 # Helix configuration
 
@@ -78,5 +66,3 @@ vim +PlugInstall +qall
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-nvim +PlugInstall +qall

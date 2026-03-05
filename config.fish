@@ -1,3 +1,5 @@
+set -g fish_greeting ""
+
 # Path
 
 set -gx PATH \
