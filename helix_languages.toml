@@ -1,7 +1,4 @@
-[[language]]
-name = "python"
-language-servers = [ "ty", "ruff" ]
-auto-format = true
+# Language servers
 
 [language-server.ty]
 command = "ty"
@@ -10,6 +7,20 @@ args = ["server"]
 [language-server.ruff]
 command = "ruff"
 args = ["server"]
+
+[language-server.air]
+command = "air"
+args = ["language-server"]
+
+[language-server.elm-language-server-rs]
+command = "elm-language-server-rs"
+
+# Language configuration
+
+[[language]]
+name = "python"
+language-servers = [ "ty", "ruff" ]
+auto-format = true
 
 [[language]]
 name = "javascript"
@@ -24,4 +35,15 @@ auto-format = true
 [[language]]
 name = "tsx"
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "r"
+language-servers = [ "air" ]
+auto-format = true
+
+[[language]]
+name = "elm"
+language-servers = [ "elm-language-server-rs" ]
+formatter = { command = "elm-format", args = ["--stdin"] }
 auto-format = true

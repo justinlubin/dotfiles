@@ -3,7 +3,7 @@
     email = "jlubi333@gmail.com"
 
 [core]
-    excludesfile = ~/.gitignore
+	excludesFile = ~/.config/git/ignore
     autocrlf = input
 
 [push]

@@ -1,6 +1,6 @@
 set -g fish_greeting ""
 
-# Path
+# Paths
 
 set -gx PATH \
     ~/.local/bin \
@@ -127,9 +127,9 @@ alias evim "$EDITOR ~/.vimrc"
 alias tinit "tmux new-session -A -s init"
 alias takeover "tmux detach -a"
 alias td "tmux detach"
-alias sserver "python3 -m http.server 8888" # Simple server
-alias lserver "live-server --port=8888 --no-browser --ignore='**/*.bck'" # Live server
-alias jserver "jupyter lab --port=8888 --no-browser" # Jupyter lab server
+alias sserver "python3 -m http.server 8880" # Simple server
+alias lserver "live-server --port=8880 --no-browser --ignore='**/*.bck'" # Live server
+alias jserver "jupyter lab --port=8880 --no-browser" # Jupyter lab server
 alias tinyvim "vim -u ~/.tinyvimrc"
 alias line80 "echo \"--------------------------------------------------------------------------------\""
 alias openv 'eval (opam env)'
@@ -138,12 +138,25 @@ alias rgf "rg --files | rg"
 alias bu "git add -A; git commit -m 'Backup'; git push"
 alias mdclean "pandoc -f markdown -t markdown --wrap=none"
 # alias jcal "echo -n '                          Today is... '; date +'%Y-%m-%d!'; echo; ncal -B1 -A2"
+alias jb "boxes -d ansi-rounded-dashed"
 alias jcal "cal -B1 -A1 | boxes -d ansi-rounded-dashed"
 alias glcheck "gleam check 2>&1 | rg '.gleam:' | sed 's/.*src\///' | sed 's/:.*//' | sort | uniq"
+alias c "cat ~/Dropbox/notes/home.md | rg due: | rg -v done: | calcat"
+
+function livecalc
+    if test -n "$TMUX"
+        tmux rename-window TODOs
+    end
+    clear
+    calc $argv
+    fswatch -o ~/Dropbox/notes/home.md \
+        | xargs -n1 -I{} fish -c "clear; calc $argv"
+end
 
 # Notes
 
 alias i "cd ~/Dropbox/notes; hx home.md; cd -"
+alias ni "cd ~/Dropbox/notes; hx nikita.md; cd -"
 
 # alias n "cd ~/Dropbox/notes"
 
