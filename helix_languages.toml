@@ -50,5 +50,5 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-formatter = { command = "pandoc", args = ["-f", "markdown", "-t", "markdown"] }
+formatter = { command = "mdformat", args = ["--require-config"] }
 auto-format = true

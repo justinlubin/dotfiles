@@ -1,0 +1,57 @@
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.11"
+# ///
+import subprocess
+
+import argparse
+import sys
+from pathlib import Path
+
+import tomllib
+
+parser = argparse.ArgumentParser(
+    prog="mdformat",
+    description="Format markdown files",
+)
+
+parser.add_argument(
+    "--require-config",
+    action=argparse.BooleanOptionalAction,
+    help="Pass input through to output if config file not present",
+)
+
+args = parser.parse_args()
+
+
+config = None
+for d in Path.cwd().parents:
+    try:
+        with open(d / "mdformat.toml", "rb") as f:
+            config = tomllib.load(f)
+    except FileNotFoundError:
+        continue
+
+if args.require_config and config is None:
+    for line in sys.stdin:
+        sys.stdout.write(line)
+    sys.exit(0)
+
+if config is None:
+    config = {}
+
+if "columns" not in config:
+    config["columns"] = 80
+
+subprocess.run(
+    [
+        "pandoc",
+        "-f",
+        "markdown",
+        "-t",
+        "markdown",
+        "--columns",
+        str(config["columns"]),
+    ]
+)

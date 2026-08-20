@@ -1,7 +1,7 @@
 theme = "jpl"
 
 [editor]
-rulers = [80]
+# rulers = [80]
 shell = ["fish", "-c"]
 search.wrap-around = true
 

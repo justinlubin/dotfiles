@@ -12,6 +12,7 @@ set -gx PATH \
     ~/bin/sratoolkit \
     ~/bin/enaBrowserTools/python3 \
     ~/.bun/bin \
+    ~/dotfiles/bin \
     $PATH
 
 # Global variables
