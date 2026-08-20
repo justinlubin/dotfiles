@@ -153,6 +153,45 @@ function livecalc
         | xargs -n1 -I{} fish -c "clear; calc $argv"
 end
 
+function mdpreview
+    pandoc \
+        --from markdown+tex_math_dollars \
+        --mathml \
+        --standalone \
+        --css ~/dotfiles/basic.css \
+        -o $argv[1].html \
+        $argv[1]
+end
+
+function mdlive
+    if test -z "$argv[1]"
+        echo 'no file specified'
+        return
+    end
+
+    function forward_sigint --on-signal SIGINT
+        for pid in (jobs -p)
+            kill -2 $pid
+        end
+    end
+
+    mdpreview $argv[1]
+
+    fswatch -o $argv[1] | xargs -n1 -I{} fish -c "mdpreview $argv[1]" &
+    live-server --quiet --port=8880 $argv[1].html &
+
+    set_color brblack
+    jobs
+    set_color green
+    echo "Serving '$argv[1].html' at http://127.0.0.1:8880"
+    set_color normal
+    wait
+
+    rm $argv[1].html
+
+    functions -e forward_sigint
+end
+
 # Notes
 
 alias i "cd ~/Dropbox/notes; hx home.md; cd -"

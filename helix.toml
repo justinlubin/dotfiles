@@ -24,7 +24,7 @@ character = "┊"
 "A-'" = "jump_forward"
 
 [keys.normal."\\"]
-"p" = "@ghf(lmi(:sh open '%{selection}'<ret>gh"
+"m" = "@ghf(lmi(:sh open '%{selection}'<ret>gh"
 "o" = ":pipe boxes -d ansi-rounded-dashed"
 "x" = "@ghidone:<esc>:insert-output date +\"%%Y-%%m-%%d\"<ret><A-;>a <esc>xdgep<C-o>"
 "X" = "@5u"

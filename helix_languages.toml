@@ -47,3 +47,8 @@ name = "elm"
 language-servers = [ "elm-language-server-rs" ]
 formatter = { command = "elm-format", args = ["--stdin"] }
 auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = "pandoc", args = ["-f", "markdown", "-t", "markdown"] }
+auto-format = true

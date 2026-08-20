@@ -1,0 +1,14 @@
+body {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.5;
+  padding: 50px;
+}
+
+img {
+  width: 100%;
+}
+
+figcaption {
+  text-align: center;
+}
